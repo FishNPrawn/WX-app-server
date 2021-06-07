@@ -1,0 +1,91 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+.container{
+    margin-left: 100px;
+}
+.modal-test, .modal-test1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal-test.active, .modal-test1.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header-test {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-test .title-test {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header-test .close-button-test {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body-test {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.label_category,
+.label_image,
+.label_price,
+.label_status,
+.label_stock,
+.label_weight,
+.label_supplier,
+.label_description,
+.label_production,
+.label_size,
+.label_expiration,
+.label_optimal_period,
+.label_publish_date,
+.label_status,
+.label_image,
+.label_image_1,
+.label_image_description
+{
+    margin-top: 15px;
+}
+#good-window{
+    height:600px;
+    overflow-y:auto;
+}
