@@ -34,7 +34,8 @@ const good_image_description = document.getElementById('good_image_description')
 const BASE_DOMAIN = "http://localhost:8080"
 // const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
 const DB_NAME = "fishnprawn"
-const PREFIX = ([BASE_DOMAIN, DB_NAME]).join("/");
+// const PREFIX = ([BASE_DOMAIN, DB_NAME]).join("/");
+const PREFIX = BASE_DOMAIN;
 //放上騰訊雲只要改這邊就好
 
 openModalButtons.forEach(button => {

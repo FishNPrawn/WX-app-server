@@ -40,6 +40,10 @@ public class FreeMarkerController {
     @Autowired
     private GoodDao repositoryGood;
 
+    @GetMapping("/")
+    public String indexPage(){
+        return "index/index";
+    }
 
     //----------------------------------------category------------------------------------------------//
     // http://localhost:8080/fishnprawn/category
@@ -53,13 +57,13 @@ public class FreeMarkerController {
     @GetMapping("/category/remove")
     public String remove(@RequestParam(value = "catid", required = false) Integer catid, ModelMap map){
         repositoryCat.deleteById(catid);
-        map.put("url", "/fishnprawn/category");
+        map.put("url", "/category");
         return "/operation/success";
     }
 
     @GetMapping("/category/addsuccess")
     public String addsuccess(ModelMap map){
-        map.put("url", "/fishnprawn/category");
+        map.put("url", "/category");
         return "/operation/success";
     }
 
@@ -74,13 +78,13 @@ public class FreeMarkerController {
     }
     @GetMapping("/goodlist/addgoodsuccess")
     public String addGoodSuccess(ModelMap map){
-        map.put("url", "/fishnprawn/menulist");
+        map.put("url", "/menulist");
         return "/operation/success";
     }
     @GetMapping("/goodlist/removegoodlist")
     public String removegoodlist(@RequestParam(value = "goodid", required = false) Integer goodid, ModelMap map){
         repositoryGood.deleteById(goodid);
-        map.put("url", "/fishnprawn/menulist");
+        map.put("url", "/menulist");
         return "/operation/success";
     }
 
@@ -96,7 +100,7 @@ public class FreeMarkerController {
         // create a request
         HttpRequest request = HttpRequest.newBuilder(
                 //https://fishnprawn.cn
-                URI.create("http://localhost:8080/fishnprawn/admin/getall"))
+                URI.create("http://localhost:8080/admin/getall"))
                 .headers("accept", "application/json",
                         COOKIE, JSESSIONID + "=" + aToken)
                 .build();
@@ -118,7 +122,7 @@ public class FreeMarkerController {
 
     @GetMapping("/admin/addadminsuccess")
     public String addAdminSuccess(ModelMap map){
-        map.put("url", "/fishnprawn/admin"); //go back to original tab
+        map.put("url", "/admin"); //go back to original tab
         return "/operation/success";
     }
 

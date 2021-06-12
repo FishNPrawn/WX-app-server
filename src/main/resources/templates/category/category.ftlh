@@ -105,8 +105,8 @@
                             <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
                             <td>${category.cat_create_time!''}</td>
                             <td>${category.cat_update_time!''}</td>
-                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/fishnprawn/category" >Update</a>
-                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/fishnprawn/category">Delete</a>
+                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category" >Update</a>
+                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category">Delete</a>
                         </tr>
                     </#list>
                     </tbody>
@@ -127,7 +127,7 @@
                 <label>Category Name</label>
                 <input id="category_user_input" minlength="3" maxlength="20" type="text" class="form-control"/>
             </div>
-            <a href="/fishnprawn/category/addsuccess" id="add_category_btm" class="btn btn-info btn-dark">add</a>
+            <a href="/category/addsuccess" id="add_category_btm" class="btn btn-info btn-dark">add</a>
         </form>
 
     </div>

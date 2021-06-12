@@ -1,7 +1,7 @@
 server:
     port: 8080
     servlet:
-        context-path: /fishnprawn
+        context-path: /
 ################# For 腾讯云 https #########################################
 #server:
 #    port: 443

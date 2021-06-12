@@ -2,25 +2,25 @@
 <div class="navigation">
     <ul>
         <li class="li">
-            <a href="../fishnprawn/home">
+            <a href="../home">
                 <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
                 <span class="title">Home</span>
             </a>
         </li>
         <li class="li">
-            <a href="../fishnprawn/admin">
+            <a href="../admin">
                 <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
                 <span class="title">Admin</span>
             </a>
         </li>
         <li class="li">
-            <a href="../fishnprawn/category">
+            <a href="../category">
                 <span class="icon"><i class="fa fa-lemon-o" aria-hidden="true"></i></span>
                 <span class="title">Food category</span>
             </a>
         </li>
         <li class="li">
-            <a href="../fishnprawn/menulist">
+            <a href="../menulist">
                 <span class="icon"><i class="fa fa-cutlery" aria-hidden="true"></i></span>
                 <span class="title">Goods</span>
             </a>
@@ -32,7 +32,7 @@
             </a>
         </li>
         <li class="li">
-            <a href="../fishnprawn/logout">
+            <a href="../logout">
                 <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                 <span class="title">sign out</span>
             </a>
