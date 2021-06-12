@@ -40,6 +40,10 @@ public class FreeMarkerController {
     @Autowired
     private GoodDao repositoryGood;
 
+    @GetMapping("/")
+    public String indexPage(){
+        return "index/index";
+    }
 
     //----------------------------------------category------------------------------------------------//
     // http://localhost:8080/fishnprawn/category
