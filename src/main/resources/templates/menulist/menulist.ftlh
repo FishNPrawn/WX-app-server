@@ -67,7 +67,7 @@
 <#--                            <td class="image_description_text">${good.good_image_description}</td>-->
 <#--                            <td><a onclick="sendUpdateRequest(`${good.good_id}`)" href = "/fishnprawn/menulist" >Update</a>-->
                             <td><button data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">Update</button>
-                            <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/fishnprawn/menulist" class="btn btn-danger">Delete</a>
+                            <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">Delete</a>
                         </tr>
                     </#list>
                 </table>
@@ -116,7 +116,7 @@
                 <label class="label_image_description">Good Description</label>
                 <input id="good_image_description"  type="text" class="form-control"/>
             </div>
-            <a href="/fishnprawn/goodlist/addgoodsuccess" id="add_good_btm" class="btn btn-info btn-dark">add</a>
+            <a href="/goodlist/addgoodsuccess" id="add_good_btm" class="btn btn-info btn-dark">add</a>
         </form>
     </div>
 </div>
@@ -177,7 +177,7 @@
                 <label class="label_image_description">Good Description</label>
                 <input id="update_good_image_description"  type="text" class="form-control"/>
             </div>
-            <a href="/fishnprawn/menulist" id="updateBtn" class="btn btn-info btn-dark">Update</a>
+            <a href="/menulist" id="updateBtn" class="btn btn-info btn-dark">Update</a>
         </form>
     </div>
 </div>

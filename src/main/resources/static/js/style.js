@@ -9,7 +9,7 @@ const BASE_DOMAIN = "http://localhost:8080"
 // const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
 const DB_NAME = "fishnprawn"
 const TABLE = "category"
-const PREFIX = ([BASE_DOMAIN, DB_NAME, TABLE]).join("/");
+const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
 //放上騰訊雲只要改這邊就好
 
 openModalButtons.forEach(button => {

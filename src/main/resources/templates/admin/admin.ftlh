@@ -109,8 +109,8 @@
                                 <td contenteditable="true" id="admintype${admin.adminid}">${admin.admintype}</td>
                                 <td>${admin.admin_create_time!''}</td>
                                 <td>${admin.admin_update_time!''}</td>
-                                <td><a onclick="sendUpdateRequest(`${admin.adminid}`)" href = "/fishnprawn/admin" >Update</a>
-                                <td><a onclick="sendDeleteRequest(`${admin.adminid}`)" href = "/fishnprawn/admin" >Delete</a>
+                                <td><a onclick="sendUpdateRequest(`${admin.adminid}`)" href = "/admin" >Update</a>
+                                <td><a onclick="sendDeleteRequest(`${admin.adminid}`)" href = "/admin" >Delete</a>
                                     <#--                            <td><a href="/fishnprawn/admin/removeadmin?adminid=${admin.adminid}">Delete</a>-->
                             </tr>
                         </#list>
@@ -138,7 +138,7 @@
                 <label>Admin Type(1 for staff，2 for admin)</label>
                 <input id="admin_type" type="text" minlength="3" maxlength="20" class="form-control"/>
             </div>
-            <a href="/fishnprawn/admin/addadminsuccess" id="add_admin_btm" class="btn btn-info btn-dark">add</a>
+            <a href="/admin/addadminsuccess" id="add_admin_btm" class="btn btn-info btn-dark">add</a>
         </form>
     </div>
 </div>
