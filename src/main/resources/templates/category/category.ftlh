@@ -43,8 +43,8 @@
                             <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
                             <td>${category.cat_create_time!''}</td>
                             <td>${category.cat_update_time!''}</td>
-                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category" >修改</a>
-                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category">删除</a>
+                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
+                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category/addsuccess">删除</a>
                         </tr>
                     </#list>
                     </tbody>
