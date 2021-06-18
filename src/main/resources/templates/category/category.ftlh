@@ -2,73 +2,7 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
-<style>
-    *, *::after, *::before {
-        box-sizing: border-box;
-    }
 
-    .modal-test {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        transition: 200ms ease-in-out;
-        border: 1px solid black;
-        border-radius: 5px;
-        z-index: 10;
-        background-color: white;
-        width: 500px;
-        max-width: 80%;
-    }
-
-    .modal-test.active {
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .modal-header-test {
-        padding: 10px 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid black;
-    }
-
-    .modal-header-test .title-test {
-        font-size: 1.25rem;
-        font-weight: bold;
-    }
-
-    .modal-header-test .close-button-test {
-        cursor: pointer;
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 1.25rem;
-        font-weight: bold;
-    }
-
-    .modal-body-test {
-        padding: 10px 15px;
-    }
-
-    #overlay {
-        position: fixed;
-        opacity: 0;
-        transition: 200ms ease-in-out;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, .5);
-        pointer-events: none;
-    }
-
-    #overlay.active {
-        opacity: 1;
-        pointer-events: all;
-    }
-
-</style>
 <body>
 
 
@@ -77,25 +11,29 @@
     <#include "../header/sidebar.ftlh">
     <#--主要内容content-->
     <div id="page-content-wrapper" class="container">
-        <div class="center">
-            <h1>Category</h1>
+        <div class="d-flex justify-content-between">
+            <div class="center">
+                <h2 class="category_name">分类</h2>
+            </div>
+            <div>
+                <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                    添加单个
+                </button>
+                <button class="btn border my-3" onclick="window.parent.location.href='/category/categoryExcel';">
+                    批量导入
+                </button>
+            </div>
         </div>
-        <button class="btn btn-dark text-white my-3" data-modal-target="#modal-test" id="addCategory">
-             Add Category
-        </button>
-        <button class="btn btn-dark text-white my-3">
-            Add Category by Excel
-        </button>
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <table class="table table-bordered">
                     <thead class="thead-dark">
-                    <tr class="table-info  table-hover">
-                        <th>cat Id</th>
-                        <th>Cat Name</th>
-                        <th>Create Time</th>
-                        <th>Update Time</th>
-                        <th colspan="2">Update/Delete</th>
+                    <tr class="table-info table-hover">
+                        <th>分类ID</th>
+                        <th>分类名字</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                        <th colspan="2">修改/删除</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,8 +43,8 @@
                             <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
                             <td>${category.cat_create_time!''}</td>
                             <td>${category.cat_update_time!''}</td>
-                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category" >Update</a>
-                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category">Delete</a>
+                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category" >修改</a>
+                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category">删除</a>
                         </tr>
                     </#list>
                     </tbody>
@@ -124,10 +62,10 @@
     <div class="modal-body-test" id="cat-window">
         <form role="form">
             <div class="form-group">
-                <label>Category Name</label>
+                <label>分类名字</label>
                 <input id="category_user_input" minlength="3" maxlength="20" type="text" class="form-control"/>
             </div>
-            <a href="/category/addsuccess" id="add_category_btm" class="btn btn-info btn-dark">add</a>
+            <a href="/category/addsuccess" id="add_category_btm" class="btn btn-info btn-dark">添加</a>
         </form>
 
     </div>

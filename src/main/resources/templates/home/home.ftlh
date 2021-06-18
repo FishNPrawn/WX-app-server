@@ -10,32 +10,11 @@
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossorigin="anonymous"
     />
-    <link href="${path}/css/home.css" rel="stylesheet" />
     <title>DASHBOARD</title>
 </head>
 <body id="body">
 <#include "../header/sidebar.ftlh">
 <div class="container1">
-    <nav class="navbar">
-        <div class="nav_icon">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </div>
-        <div class="navbar__left">
-        </div>
-        <div class="navbar__right">
-            <a href="#">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-            <a href="#">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
-            </a>
-            <a href="#">
-                <img width="30" src="${path}/img/avatar.svg" alt="" />
-                <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
-            </a>
-        </div>
-    </nav>
-
     <main>
         <div class="main__container">
             <!-- MAIN TITLE STARTS HERE -->
@@ -143,6 +122,7 @@
             <!-- CHARTS ENDS HERE -->
         </div>
     </main>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="${path}/js/home.js"></script>
 </body>

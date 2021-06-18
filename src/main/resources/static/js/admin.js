@@ -94,3 +94,11 @@ function sendDeleteRequest(adminid){
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }
+
+$('[data-hidden-value]').on('click', function () {
+    var
+        $wrapper = $(this).parent(),
+        revealed = $wrapper.data('revealed')
+    ;
+    $wrapper.data('revealed', !revealed);
+});

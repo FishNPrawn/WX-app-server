@@ -1,7 +1,8 @@
 *, *::after, *::before {
     box-sizing: border-box;
 }
-.modal-test, .modal-test1 {
+
+.modal-test {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -15,7 +16,7 @@
     max-width: 80%;
 }
 
-.modal-test.active, .modal-test1.active {
+.modal-test.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -62,27 +63,12 @@
     pointer-events: all;
 }
 
-.label_category,
-.label_image,
-.label_price,
-.label_status,
-.label_stock,
-.label_weight,
-.label_supplier,
-.label_description,
-.label_production,
-.label_size,
-.label_expiration,
-.label_optimal_period,
-.label_publish_date,
-.label_status,
-.label_image,
-.label_image_1,
-.label_image_description
-{
-    margin-top: 15px;
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
 }
-#good-window{
-    height:600px;
-    overflow-y:auto;
+
+.category_name, .menulist_name, .admin_name, .category_excel{
+    padding-top: 15px;
 }

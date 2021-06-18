@@ -1,11 +1,15 @@
 package com.example.fishnprawn.category;
 
+import com.example.fishnprawn.utils.ExcelImport;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -19,6 +23,9 @@ import java.util.Map;
 public class CategoryController {
 
     public static final String BASE_URL = "/category";
+
+    @Autowired
+    private CategoryDao categoryDao;
 
     @Autowired
     private CategoryServices categoryServices;
@@ -94,6 +101,34 @@ public class CategoryController {
     public ResponseEntity<Category> deleteCategoryById(@PathVariable Integer id){ //pathvariable here gaurantee id will mapping to variable in path
         System.out.println("[Delete one category] parameters: "+ id);
         return new ResponseEntity<>(categoryServices.deleteById(id), HttpStatus.OK);
+    }
+
+    @RequestMapping("/uploadExcel")
+    public String uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
+        String name = file.getOriginalFilename();
+
+        List<Category> list;
+        try {
+            list = ExcelImport.excelToCategoryList(file.getInputStream());
+            log.info("excel导入的list={}", list);
+
+            //excel的数据保存到数据库
+            try {
+                for(Category excel:list){
+                    if(excel != null){
+                        categoryDao.save(excel);
+                    }
+                }
+            }catch (Exception e){
+                log.error("某一行存入数据库失败={}", e);
+            }
+
+        }catch (Exception e){
+            log.error("失败", e);
+        }
+
+
+        return "/operation/success";
     }
 
 }

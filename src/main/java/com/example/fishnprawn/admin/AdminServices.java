@@ -92,6 +92,7 @@ public class AdminServices implements Services<Admin> {
             //must use findById, or we cannot update field by reflection
             Admin adminOld = adminDao.findById(id).orElse(null);
             admin.setAdminid(id);
+            admin.setPassword(PasswordEncrypt.encrypt(admin.getPassword()));
             admin.setAdmin_create_time(adminOld.getAdmin_create_time());
             admin.setAdmin_update_time(LocalDateTime.now());
             save(admin); //H2 will overwrite the existing data

@@ -39,6 +39,7 @@
         </li>
     </ul>
 </div>
+
 <div class="toggle" onclick="toggleMenu()"></div>
 <script type="text/javascript">
     function toggleMenu() {
@@ -48,3 +49,4 @@
         toggle.classList.toggle('active');
     }
 </script>
+<#include "../header/navbar.ftlh">
