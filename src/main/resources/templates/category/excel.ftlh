@@ -12,7 +12,7 @@
         <div class="row clearfix">
             <div class="col-md-8 offset-1 column">
                 <h2 class="category_excel">导入Excel表格</h2>
-                <form action="/category/uploadCategoryExcel" method="post"
+                <form action="/category/uploadCategoryByExcel" method="post"
                       enctype="multipart/form-data">
                     <input class="mt-4 mb-2" type="file" name="file">
                     <p><input class="btn btn-success " type="submit" value="提交"></p>

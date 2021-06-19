@@ -104,7 +104,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryServices.deleteById(id), HttpStatus.OK);
     }
 
-    @RequestMapping("/uploadCategoryExcel")
+    @RequestMapping("/uploadCategoryByExcel")
     public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
         ModelAndView modelAndView = new ModelAndView();
         String name = file.getOriginalFilename();
