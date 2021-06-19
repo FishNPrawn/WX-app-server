@@ -10,32 +10,61 @@
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossorigin="anonymous"
     />
-    <link href="${path}/css/home.css" rel="stylesheet" />
     <title>DASHBOARD</title>
 </head>
 <body id="body">
-<#include "../header/sidebar.ftlh">
-<div class="container1">
-    <nav class="navbar">
-        <div class="nav_icon">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </div>
-        <div class="navbar__left">
-        </div>
-        <div class="navbar__right">
-            <a href="#">
-                <i class="fa fa-search" aria-hidden="true"></i>
+<div class="navigation">
+    <ul>
+        <li class="li">
+            <a href="../home">
+                <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                <span class="title">Home</span>
             </a>
-            <a href="#">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </li>
+        <li class="li">
+            <a href="../admin">
+                <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <span class="title">Admin</span>
             </a>
-            <a href="#">
-                <img width="30" src="${path}/img/avatar.svg" alt="" />
-                <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+        </li>
+        <li class="li">
+            <a href="../category">
+                <span class="icon"><i class="fa fa-lemon-o" aria-hidden="true"></i></span>
+                <span class="title">Food category</span>
             </a>
-        </div>
-    </nav>
+        </li>
+        <li class="li">
+            <a href="../menulist">
+                <span class="icon"><i class="fa fa-cutlery" aria-hidden="true"></i></span>
+                <span class="title">Goods</span>
+            </a>
+        </li>
+        <li class="li">
+            <a href="#">
+                <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                <span class="title">Order</span>
+            </a>
+        </li>
+        <li class="li">
+            <a href="../logout">
+                <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                <span class="title">sign out</span>
+            </a>
+        </li>
+    </ul>
+</div>
 
+<div class="toggle" onclick="toggleMenu()"></div>
+<script type="text/javascript">
+    function toggleMenu() {
+        let navigation = document.querySelector('.navigation');
+        let toggle = document.querySelector('.toggle');
+        navigation.classList.toggle('active');
+        toggle.classList.toggle('active');
+    }
+</script>
+<div class="container1">
+    <#include "../header/navbar.ftlh">
     <main>
         <div class="main__container">
             <!-- MAIN TITLE STARTS HERE -->
@@ -143,6 +172,7 @@
             <!-- CHARTS ENDS HERE -->
         </div>
     </main>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="${path}/js/home.js"></script>
 </body>

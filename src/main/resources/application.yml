@@ -10,7 +10,8 @@ server:
 #        key-store-password: 9j93756w87
 #        key-store-type: JKS
 #    servlet:
-#        context-path: /fishnprawn
+#        context-path: /
+
 
 spring:
     datasource:

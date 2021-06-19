@@ -8,6 +8,7 @@ import com.example.fishnprawn.category.Category;
 import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.good.Good;
 import com.example.fishnprawn.good.GoodDao;
+import com.lly835.bestpay.rest.HttpsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -67,6 +68,11 @@ public class FreeMarkerController {
         return "/operation/success";
     }
 
+    @GetMapping("/category/categoryExcel")
+    public String categoryExcel(ModelMap map){
+        map.put("url", "/category");
+        return "/category/excel";
+    }
 
     //----------------------------------------good---------------------------------------------------//
     // http://localhost:8080/fishnprawn/menulist
@@ -136,5 +142,13 @@ public class FreeMarkerController {
     public String home(){
         return "/home/home";
     }
+
+    @GetMapping("/menulist/menulistExcel")
+    public String menulistExcel(ModelMap map){
+        map.put("url", "/category");
+        return "/menulist/excel";
+    }
+
+
 }
 

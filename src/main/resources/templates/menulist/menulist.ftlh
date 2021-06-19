@@ -9,40 +9,46 @@
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
     <#--主要内容content-->
-    <div id="page-content-wrapper" class="container float-left">
-        <div class="center">
-            <h1>Good List</h1>
+    <div id="page-content-wrapper" class="container">
+        <div class="d-flex justify-content-between">
+            <div class="center">
+                <h2 class="menulist_name">商品列表</h2>
+            </div>
+            <div>
+                <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                    添加单个
+                </button>
+                <button class="btn border my-3" onclick="window.parent.location.href='/menulist/menulistExcel';">
+                    批量添加
+                </button>
+            </div>
+
         </div>
-        <button class="btn btn-dark text-white my-3" data-modal-target="#modal-test" id="addCategory">
-            Add Good
-        </button>
-        <button class="btn btn-dark text-white my-3">
-            Add Goods by Excel
-        </button>
+
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <table class="table table-bordered">
                     <thead class="thead-dark">
                     <tr class="table-info  table-hover">
                         <th>Good Id</th>
-                        <th>Good Name</th>
-                        <th>Good Category</th>
-                        <th>Good Price</th>
-                        <th>Good Stock</th>
-                        <th>Good Weight</th>
-                        <th>Good Supplier</th>
-                        <th>Good Description</th>
-                        <th>Good Production</th>
-                        <th>Good Size</th>
-                        <th>Good Expiration</th>
-                        <th>Good Optimal Period</th>
-                        <th>Good Publish Date</th>
+                        <th>商品名字</th>
+                        <th>商品分类</th>
+                        <th>价格</th>
+                        <th>库存</th>
+                        <th>重量</th>
+                        <th>供应商</th>
+                        <th>商品详情</th>
+                        <th>产地</th>
+                        <th>规格</th>
+                        <th>过期</th>
+                        <th>品味最佳期</th>
+                        <th>发布日期</th>
                         <th>status</th>
-                        <th>Good Image</th>
-                        <th>Good Image1</th>
-                        <th>Good Image Description</th>
-                        <th>Update</th>
-                        <th>Delete</th>
+                        <th>图片1</th>
+                        <th>图片2</th>
+                        <th>长图片</th>
+                        <th>修改</th>
+                        <th>删除</th>
                     </tr>
                     </thead>
                     <#list menulist as good>
@@ -66,8 +72,8 @@
                             <td><img class="image_description_text" height="50" width="50" src="${good.good_image_description}"></td>
 <#--                            <td class="image_description_text">${good.good_image_description}</td>-->
 <#--                            <td><a onclick="sendUpdateRequest(`${good.good_id}`)" href = "/fishnprawn/menulist" >Update</a>-->
-                            <td><button data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">Update</button>
-                            <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">Delete</a>
+                            <td><button data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
+                            <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
                         </tr>
                     </#list>
                 </table>
@@ -182,7 +188,6 @@
     </div>
 </div>
 <#--    update module -->
-
 
 
 <div id="overlay"></div>
