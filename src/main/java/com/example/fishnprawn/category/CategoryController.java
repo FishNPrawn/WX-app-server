@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -103,8 +104,9 @@ public class CategoryController {
         return new ResponseEntity<>(categoryServices.deleteById(id), HttpStatus.OK);
     }
 
-    @RequestMapping("/uploadExcel")
-    public String uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
+    @RequestMapping("/uploadCategoryExcel")
+    public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
+        ModelAndView modelAndView = new ModelAndView();
         String name = file.getOriginalFilename();
 
         List<Category> list;
@@ -128,7 +130,9 @@ public class CategoryController {
         }
 
 
-        return "/operation/success";
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/category");
+        return modelAndView;
     }
 
 }
