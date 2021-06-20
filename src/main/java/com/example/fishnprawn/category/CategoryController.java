@@ -135,4 +135,19 @@ public class CategoryController {
         return modelAndView;
     }
 
+    @PostMapping("/deleteSelected")
+    public ModelAndView delete(@RequestParam("idChecked") List<String> cat_id, ModelMap map){
+        ModelAndView modelAndView = new ModelAndView();
+
+        if(cat_id != null){
+            for(String cat_idStr : cat_id){
+                int cat_id_idx = Integer.parseInt(cat_idStr);
+                categoryServices.deleteById(cat_id_idx);
+            }
+        }
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/category");
+        return modelAndView;
+    }
+
 }

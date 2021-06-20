@@ -9,6 +9,11 @@ body{
     background: #fafafa;
 }
 
+.checkbox, .checkBoxes {
+    width:15px;
+    height:15px;
+}
+
 .navigation{
     position: fixed;
     z-index: 1;
