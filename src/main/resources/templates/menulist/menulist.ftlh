@@ -63,7 +63,7 @@
                             <tr>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input checkBoxes" type="checkbox" name="idChecked" value="${good.good_id}" id="flexCheckDefault">
+                                        <input class="form-check-input checkBoxes idtext" type="checkbox" name="idChecked" value="${good.good_id}">
                                     </div>
                                 </td>
                                 <td class="nametext">${good.good_name}</td>
@@ -82,7 +82,7 @@
                                 <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
                                 <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
                                 <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
-                                <td><button data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
+                                <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
                                 <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
                             </tr>
                         </#list>
@@ -195,7 +195,7 @@
                 <label class="label_image_description">Good Description</label>
                 <input id="update_good_image_description"  type="text" class="form-control"/>
             </div>
-            <a href="/menulist" id="updateBtn" class="btn btn-info btn-dark">Update</a>
+            <a href="/goodlist/addgoodsuccess" id="updateBtn" class="btn btn-info btn-dark">Update</a>
         </form>
     </div>
 </div>
@@ -204,6 +204,13 @@
 
 <div id="overlay"></div>
 <script type="text/javascript" src="${path}/js/menulist.js"></script>
-
+<script>
+    $(document).ready(function () {
+        $('#dtHorizontalExample').DataTable({
+            "scrollX": true
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
 </body>
 </html>
