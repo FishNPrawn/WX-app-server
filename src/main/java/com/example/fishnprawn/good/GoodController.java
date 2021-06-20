@@ -1,10 +1,15 @@
 package com.example.fishnprawn.good;
+import com.example.fishnprawn.utils.ExcelImport;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -115,4 +120,35 @@ public class GoodController {
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+
+    @RequestMapping("/uploadGoodByExcel")
+    public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
+        ModelAndView modelAndView = new ModelAndView();
+        String name = file.getOriginalFilename();
+
+        List<Good> list;
+
+        try {
+            list = ExcelImport.excelToMenulistList(file.getInputStream());
+            log.info("excel导入的menulist={}", list);
+            try {
+                for(Good excel:list){
+                    if(excel != null){
+                        goodDao.save(excel);
+                    }
+                }
+            }catch (Exception e){
+                log.error("某一行存入数据库失败={}", e);
+            }
+        }catch (Exception e){
+            log.error("失败", e);
+        }
+
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/menulist");
+        return modelAndView;
+
+    }
+
 }
