@@ -31,7 +31,7 @@
             </div>
         </div>
         <#--       Checkbox delete selected -->
-        <form action='/category/deleteSelected' method="post" id="category_form">
+        <form action='/category/deleteCategorySelected' method="post" id="category_form">
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <table class="table table-bordered">

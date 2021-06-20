@@ -135,7 +135,7 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @PostMapping("/deleteSelected")
+    @PostMapping("/deleteCategorySelected")
     public ModelAndView delete(@RequestParam("idChecked") List<String> cat_id, ModelMap map){
         ModelAndView modelAndView = new ModelAndView();
 
