@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
-
 <body>
 
 
@@ -16,6 +15,13 @@
                 <h2 class="category_name">分类</h2>
             </div>
             <div>
+                <button class="btn btn-danger" id="deleteSelected"
+                        type="submit" name='delete' value="delete"
+                        data-toggle="tooltip" data-placement="right"
+                        form="category_form"
+                >
+                    删除选中
+                </button>
                 <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                     添加单个
                 </button>
@@ -24,33 +30,42 @@
                 </button>
             </div>
         </div>
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                    <tr class="table-info table-hover">
-                        <th>分类ID</th>
-                        <th>分类名字</th>
-                        <th>创建时间</th>
-                        <th>更新时间</th>
-                        <th colspan="2">修改/删除</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <#list categoryList as category>
-                        <tr>
-                            <td>${category.cat_id}</td>
-                            <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
-                            <td>${category.cat_create_time!''}</td>
-                            <td>${category.cat_update_time!''}</td>
-                            <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
-                            <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category/addsuccess">删除</a>
+        <#--       Checkbox delete selected -->
+        <form action='/category/deleteCategorySelected' method="post" id="category_form">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr class="table-info table-hover">
+                            <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
+                            <th>分类名字</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
+                            <th colspan="2">修改/删除</th>
                         </tr>
-                    </#list>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <#list categoryList as category>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input checkBoxes" type="checkbox" name="idChecked" value="${category.cat_id}" id="flexCheckDefault">
+                                    </div>
+                                </td>
+                                <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
+                                <td>${category.cat_create_time!''}</td>
+                                <td>${category.cat_update_time!''}</td>
+                                <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
+                                <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category/addsuccess">删除</a>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </form>
+
+
     </div>
 </div>
 <div class="modal-test" id="modal-test">
@@ -72,7 +87,6 @@
 </div>
 <div id="overlay"></div>
 <script type="text/javascript"  src="${path}/js/style.js"></script>
-
 
 
 </body>

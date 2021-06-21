@@ -15,6 +15,13 @@
                 <h2 class="menulist_name">商品列表</h2>
             </div>
             <div>
+                <button class="btn btn-danger" id="deleteSelected"
+                        type="submit" name='delete' value="delete"
+                        data-toggle="tooltip" data-placement="right"
+                        form="good_form"
+                >
+                    删除选中
+                </button>
                 <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                     添加单个
                 </button>
@@ -25,60 +32,65 @@
 
         </div>
 
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                    <tr class="table-info  table-hover">
-                        <th>Good Id</th>
-                        <th>商品名字</th>
-                        <th>商品分类</th>
-                        <th>价格</th>
-                        <th>库存</th>
-                        <th>重量</th>
-                        <th>供应商</th>
-                        <th>商品详情</th>
-                        <th>产地</th>
-                        <th>规格</th>
-                        <th>过期</th>
-                        <th>品味最佳期</th>
-                        <th>发布日期</th>
-                        <th>status</th>
-                        <th>图片1</th>
-                        <th>图片2</th>
-                        <th>长图片</th>
-                        <th>修改</th>
-                        <th>删除</th>
-                    </tr>
-                    </thead>
-                    <#list menulist as good>
-                        <tr>
-                            <td class="idtext">${good.good_id}</td>
-                            <td class="nametext">${good.good_name}</td>
-                            <td class="catnametext">${good.cat_name}</td>
-                            <td class="pricetext">${good.good_price}</td>
-                            <td class="stocktext">${good.good_stock}</td>
-                            <td class="weighttext">${good.good_weight}</td>
-                            <td class="suppliertext">${good.good_supplier}</td>
-                            <td class="descriptiontext">${good.good_description}</td>
-                            <td class="productiontext">${good.good_production}</td>
-                            <td class="sizetext">${good.good_size}</td>
-                            <td class="expirationtext">${good.good_expiration}</td>
-                            <td class="optimal_period_text">${good.good_optimal_period}</td>
-                            <td class="publish_text">${good.good_publish_date?string('yyyy-MM-dd')}</td>
-                            <td class="statustext">${good.good_status}</td>
-                            <td><img class="imagetext" height="50" width="50" src="${good.good_image}"></td>
-                            <td><img class="image1text" height="50" width="50" src="${good.good_image_1}"></td>
-                            <td><img class="image_description_text" height="50" width="50" src="${good.good_image_description}"></td>
-<#--                            <td class="image_description_text">${good.good_image_description}</td>-->
-<#--                            <td><a onclick="sendUpdateRequest(`${good.good_id}`)" href = "/fishnprawn/menulist" >Update</a>-->
-                            <td><button data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
-                            <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
+        <form action='/good/deleteGoodSelected' method="post" id="good_form">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr class="table-info  table-hover">
+                            <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
+                            <th>商品名</th>
+                            <th>分类</th>
+                            <th>价格</th>
+                            <th>库存</th>
+                            <th>重量</th>
+                            <th>供应商</th>
+                            <th>商品详情</th>
+                            <th>产地</th>
+                            <th>规格</th>
+                            <th>过期</th>
+                            <th>品味最佳期</th>
+                            <th>发布日期</th>
+                            <th>状态</th>
+                            <th>图片1</th>
+                            <th>图片2</th>
+                            <th>长图片</th>
+                            <th>修改</th>
+                            <th>删除</th>
                         </tr>
-                    </#list>
-                </table>
+                        </thead>
+                        <#list menulist as good>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input checkBoxes idtext" type="checkbox" name="idChecked" value="${good.good_id}">
+                                    </div>
+                                </td>
+                                <td class="nametext">${good.good_name}</td>
+                                <td class="catnametext">${good.cat_name}</td>
+                                <td class="pricetext">${good.good_price}</td>
+                                <td class="stocktext">${good.good_stock}</td>
+                                <td class="weighttext">${good.good_weight}</td>
+                                <td class="suppliertext">${good.good_supplier}</td>
+                                <td class="descriptiontext">${good.good_description}</td>
+                                <td class="productiontext">${good.good_production}</td>
+                                <td class="sizetext">${good.good_size}</td>
+                                <td class="expirationtext">${good.good_expiration}</td>
+                                <td class="optimal_period_text">${good.good_optimal_period}</td>
+                                <td class="publish_text">${good.good_publish_date?string('yyyy-MM-dd')}</td>
+                                <td class="statustext">${good.good_status}</td>
+                                <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
+                                <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
+                                <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
+                                <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
+                                <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
+                            </tr>
+                        </#list>
+                    </table>
+                </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
 <div class="modal-test" id="modal-test">
@@ -183,7 +195,7 @@
                 <label class="label_image_description">Good Description</label>
                 <input id="update_good_image_description"  type="text" class="form-control"/>
             </div>
-            <a href="/menulist" id="updateBtn" class="btn btn-info btn-dark">Update</a>
+            <a href="/goodlist/addgoodsuccess" id="updateBtn" class="btn btn-info btn-dark">Update</a>
         </form>
     </div>
 </div>
@@ -192,6 +204,13 @@
 
 <div id="overlay"></div>
 <script type="text/javascript" src="${path}/js/menulist.js"></script>
-
+<script>
+    $(document).ready(function () {
+        $('#dtHorizontalExample').DataTable({
+            "scrollX": true
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
 </body>
 </html>

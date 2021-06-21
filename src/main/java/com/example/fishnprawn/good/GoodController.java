@@ -151,4 +151,20 @@ public class GoodController {
 
     }
 
+    @PostMapping("/deleteGoodSelected")
+    public ModelAndView delete(@RequestParam("idChecked") List<String> good_id, ModelMap map){
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        if(good_id != null){
+            for(String good_idStr : good_id){
+                int good_id_idx = Integer.parseInt(good_idStr);
+                goodServices.deleteById(good_id_idx);
+            }
+        }
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/menulist");
+        return modelAndView;
+    }
+
 }

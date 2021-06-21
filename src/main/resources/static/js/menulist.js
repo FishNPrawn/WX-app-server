@@ -150,7 +150,7 @@ function updateMenulist(r){
     document.getElementById("update_good_optimal_period").value = li.querySelector('.optimal_period_text').innerHTML;
     document.getElementById("update_good_publish_date").value = li.querySelector('.publish_text').innerHTML;
     document.getElementById("update_good_image_description").value =  li.querySelector('.image_description_text').src;
-    let content_id = li.querySelector('.idtext').innerHTML;
+    let content_id = li.querySelector('.idtext').value;
 
     updateBtn.onclick = function(){
         let goodtext =  document.getElementById("update_good_name_input").value
@@ -191,14 +191,14 @@ function updateMenulist(r){
             "good_image_description":img_descriptiontext
         });
         let url = ([PREFIX, "good/updatebyid", `${content_id}` ]).join("/")
-        // let url = `https://fishnprawn.cn/fishnprawn/good/updatebyid/${goodid}`     // For 腾讯云
+        // let url = `https://fishnprawn.cn/good/updatebyid/${goodid}`     // For 腾讯云
         http.open("PUT", url);
         http.setRequestHeader("Content-Type", "application/json");
         http.send(data);
         // add category if the new one is not present
         http = new XMLHttpRequest();
         url = ([PREFIX, "category", "add" ]).join("/")
-        // url = "https://fishnprawn.cn/fishnprawn/category/add";      // For 腾讯云
+        // url = "https://fishnprawn.cn/category/add";      // For 腾讯云
         http.open("POST", url, true);
         http.setRequestHeader("Content-Type", "application/json");
         data = JSON.stringify({ "cat_name":catnametext  });
@@ -230,3 +230,18 @@ function removeDot(input){
     }
     return ret;
 }
+
+// checkbox select all
+$(document).ready(function() {
+    $('#selectAllBoxes').click(function(event){
+        if(this.checked){
+            $('.checkBoxes').each(function(){
+                this.checked = true;
+            });
+        }else{
+            $('.checkBoxes').each(function(){
+                this.checked = false;
+            });
+        }
+    });
+});
