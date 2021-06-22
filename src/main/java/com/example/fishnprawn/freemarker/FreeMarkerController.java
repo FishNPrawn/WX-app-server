@@ -8,6 +8,7 @@ import com.example.fishnprawn.category.Category;
 import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.good.Good;
 import com.example.fishnprawn.good.GoodDao;
+import com.example.fishnprawn.wxorder.*;
 import com.lly835.bestpay.rest.HttpsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,11 +37,20 @@ import java.util.*;
 public class FreeMarkerController {
     private final String COOKIE = "Cookie";
     private final String JSESSIONID = "JSESSIONID";
+
+    //---------------------------------------- Repository ------------------------------------------------//
+
     @Autowired
     private CategoryDao repositoryCat;
 
     @Autowired
     private GoodDao repositoryGood;
+
+    @Autowired
+    private OrderRootDao repositoryOrderRoot;
+
+    @Autowired
+    private WxOrderUtils wxOrder;
 
     @GetMapping("/")
     public String indexPage(){
@@ -125,19 +136,45 @@ public class FreeMarkerController {
         return "/admin/admin";
     }
 
-
     @GetMapping("/admin/addadminsuccess")
     public String addAdminSuccess(ModelMap map){
         map.put("url", "/admin"); //go back to original tab
         return "/operation/success";
     }
 
-    // http://localhost:8080/fishnprawn/login
+    //----------------------------------------Wechat order lsit---------------------------------------------------//
+
+    // http://localhost:8080/orderlist
+    @GetMapping("/orderlist")
+    public String orderlist(ModelMap map){
+        List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
+        map.put("orderlist", orderlist);
+        return "/wxorder/wxorderlist";
+    }
+
+    // http://localhost:8080/detail?orderId=...
+    @GetMapping("/detail")
+    public String detail(@RequestParam("orderId") int orderId,
+                         ModelMap map) {
+        WxOrderResponse orderDTO = new WxOrderResponse();
+        orderDTO = wxOrder.findOne(orderId);
+
+        map.put("orderDTO", orderDTO);
+        return "wxorder/wxorderdetail";
+    }
+
+
+
+
+    //----------------------------------------Page---------------------------------------------------//
+
+    // http://localhost:8080/login
     @GetMapping("/login")
     public String login(){
         return "/login/login";
     }
 
+    // http://localhost:8080/home
     @GetMapping("/home")
     public String home(){
         return "/home/home";
@@ -148,6 +185,7 @@ public class FreeMarkerController {
         map.put("url", "/category");
         return "/menulist/excel";
     }
+
 
 
 }
