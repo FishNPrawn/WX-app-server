@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 
 @Service
@@ -27,10 +30,10 @@ public class WxOrderUtils {
 //        log.error("小程序提交上来的订单={}", orderBean);
 
 
-        WxOrderRoot orderMaster = new WxOrderRoot();
-        BeanUtils.copyProperties(orderBean, orderMaster);
+        WxOrderRoot wxOrderRoot = new WxOrderRoot();
+        BeanUtils.copyProperties(orderBean, wxOrderRoot);
 
-        WxOrderRoot orderRoot = orderRootDao.save(orderMaster);
+        WxOrderRoot orderRoot = orderRootDao.save(wxOrderRoot);
 
         for (WxOrderDetail orderDetail : orderBean.getOrderDetailList()) {
             Good foodInfo = goodDao.findById(orderDetail.getGood_id()).orElse(null);
@@ -44,4 +47,20 @@ public class WxOrderUtils {
 
         return orderBean;
     }
+
+    //查询单个订单
+    public WxOrderResponse findOne(Integer order_id) {
+
+        WxOrderRoot wxOrderRoot = orderRootDao.findById(order_id).orElse(null);
+
+        List<WxOrderDetail> orderDetailList = orderDetailDao.findByOrderId(order_id);
+
+        WxOrderResponse orderDTO = new WxOrderResponse();
+        BeanUtils.copyProperties(wxOrderRoot, orderDTO);
+        orderDTO.setOrderDetailList(orderDetailList);
+
+        return orderDTO;
+    }
+
+
 }

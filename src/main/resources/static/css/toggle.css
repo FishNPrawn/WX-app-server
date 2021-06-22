@@ -69,6 +69,6 @@ table {
     overflow: hidden;
 }
 
-.category_name, .menulist_name, .admin_name, .category_excel{
+.category_name, .menulist_name, .admin_name, .category_excel, .orderlist_name{
     padding-top: 15px;
 }

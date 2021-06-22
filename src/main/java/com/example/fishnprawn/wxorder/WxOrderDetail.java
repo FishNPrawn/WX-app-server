@@ -17,6 +17,8 @@ public class WxOrderDetail {
     @GenericGenerator(name = "native", strategy = "native")
     private Integer order_detail_id;
 
+    private Integer orderId; //菜品id
+
     @NotNull
     private String order_number; //订单变好
 

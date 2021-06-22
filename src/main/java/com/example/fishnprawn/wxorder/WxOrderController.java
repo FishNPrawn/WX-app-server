@@ -5,9 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -51,6 +49,15 @@ public class WxOrderController {
         orderBean.setOrderDetailList(orderDetailList);
 
         wxOrder.createOrder(orderBean);
+
+        return "success";
+    }
+
+    //订单详情
+    @GetMapping("/detail")
+    public String detail(@RequestParam("orderId") int orderId) {
+
+        wxOrder.findOne(orderId);
 
         return "success";
     }

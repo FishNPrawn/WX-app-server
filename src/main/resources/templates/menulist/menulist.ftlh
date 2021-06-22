@@ -35,30 +35,31 @@
         <form action='/good/deleteGoodSelected' method="post" id="good_form">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="example">
                         <thead class="thead-dark">
-                        <tr class="table-info  table-hover">
-                            <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
-                            <th>商品名</th>
-                            <th>分类</th>
-                            <th>价格</th>
-                            <th>库存</th>
-                            <th>重量</th>
-                            <th>供应商</th>
-                            <th>商品详情</th>
-                            <th>产地</th>
-                            <th>规格</th>
-                            <th>过期</th>
-                            <th>品味最佳期</th>
-                            <th>发布日期</th>
-                            <th>状态</th>
-                            <th>图片1</th>
-                            <th>图片2</th>
-                            <th>长图片</th>
-                            <th>修改</th>
-                            <th>删除</th>
-                        </tr>
+                            <tr class="table-info  table-hover">
+                                <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
+                                <th>商品名</th>
+                                <th>分类</th>
+                                <th>价格</th>
+                                <th>库存</th>
+                                <th>重量</th>
+                                <th>供应商</th>
+                                <th>商品详情</th>
+                                <th>产地</th>
+                                <th>规格</th>
+                                <th>过期</th>
+                                <th>品味最佳期</th>
+                                <th>发布日期</th>
+                                <th>状态</th>
+                                <th>图片1</th>
+                                <th>图片2</th>
+                                <th>长图片</th>
+                                <th>修改</th>
+                                <th>删除</th>
+                            </tr>
                         </thead>
+                        <tbody>
                         <#list menulist as good>
                             <tr>
                                 <td>
@@ -86,6 +87,7 @@
                                 <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
                             </tr>
                         </#list>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -204,13 +206,5 @@
 
 <div id="overlay"></div>
 <script type="text/javascript" src="${path}/js/menulist.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#dtHorizontalExample').DataTable({
-            "scrollX": true
-        });
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script>
 </body>
 </html>
