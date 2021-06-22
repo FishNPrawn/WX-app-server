@@ -5,38 +5,39 @@
 <link href="${path}/css/menulist.css" rel="stylesheet" />
 
 <body>
-<div id="wrapper" class="toggled">
+<div id="wrapper" class="toggled container1">
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
     <#--主要内容content-->
-    <div id="page-content-wrapper" class="container">
-        <div class="d-flex justify-content-between">
-            <div class="center">
-                <h2 class="menulist_name">商品列表</h2>
-            </div>
-            <div>
-                <button class="btn btn-danger" id="deleteSelected"
-                        type="submit" name='delete' value="delete"
-                        data-toggle="tooltip" data-placement="right"
-                        form="good_form"
-                >
-                    删除选中
-                </button>
-                <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
-                    添加单个
-                </button>
-                <button class="btn border my-3" onclick="window.parent.location.href='/menulist/menulistExcel';">
-                    批量添加
-                </button>
+    <main>
+        <div id="page-content-wrapper" class="container">
+            <div class="d-flex justify-content-between">
+                <div class="center">
+                    <h2 class="menulist_name">商品列表</h2>
+                </div>
+                <div>
+                    <button class="btn btn-danger" id="deleteSelected"
+                            type="submit" name='delete' value="delete"
+                            data-toggle="tooltip" data-placement="right"
+                            form="good_form"
+                    >
+                        删除选中
+                    </button>
+                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                        添加单个
+                    </button>
+                    <button class="btn border my-3" onclick="window.parent.location.href='/menulist/menulistExcel';">
+                        批量添加
+                    </button>
+                </div>
+
             </div>
 
-        </div>
-
-        <form action='/good/deleteGoodSelected' method="post" id="good_form">
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <table class="table table-bordered" id="example">
-                        <thead class="thead-dark">
+            <form action='/good/deleteGoodSelected' method="post" id="good_form">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <table class="table table-bordered" id="example">
+                            <thead class="thead-dark">
                             <tr class="table-info  table-hover">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>商品名</th>
@@ -58,42 +59,44 @@
                                 <th>修改</th>
                                 <th>删除</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <#list menulist as good>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input checkBoxes idtext" type="checkbox" name="idChecked" value="${good.good_id}">
-                                    </div>
-                                </td>
-                                <td class="nametext">${good.good_name}</td>
-                                <td class="catnametext">${good.cat_name}</td>
-                                <td class="pricetext">${good.good_price}</td>
-                                <td class="stocktext">${good.good_stock}</td>
-                                <td class="weighttext">${good.good_weight}</td>
-                                <td class="suppliertext">${good.good_supplier}</td>
-                                <td class="descriptiontext">${good.good_description}</td>
-                                <td class="productiontext">${good.good_production}</td>
-                                <td class="sizetext">${good.good_size}</td>
-                                <td class="expirationtext">${good.good_expiration}</td>
-                                <td class="optimal_period_text">${good.good_optimal_period}</td>
-                                <td class="publish_text">${good.good_publish_date?string('yyyy-MM-dd')}</td>
-                                <td class="statustext">${good.good_status}</td>
-                                <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
-                                <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
-                                <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
-                                <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
-                                <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
-                            </tr>
-                        </#list>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <#list menulist as good>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input checkBoxes idtext" type="checkbox" name="idChecked" value="${good.good_id}">
+                                        </div>
+                                    </td>
+                                    <td class="nametext">${good.good_name}</td>
+                                    <td class="catnametext">${good.cat_name}</td>
+                                    <td class="pricetext">${good.good_price}</td>
+                                    <td class="stocktext">${good.good_stock}</td>
+                                    <td class="weighttext">${good.good_weight}</td>
+                                    <td class="suppliertext">${good.good_supplier}</td>
+                                    <td class="descriptiontext">${good.good_description}</td>
+                                    <td class="productiontext">${good.good_production}</td>
+                                    <td class="sizetext">${good.good_size}</td>
+                                    <td class="expirationtext">${good.good_expiration}</td>
+                                    <td class="optimal_period_text">${good.good_optimal_period}</td>
+                                    <td class="publish_text">${good.good_publish_date?string('yyyy-MM-dd')}</td>
+                                    <td class="statustext">${good.good_status}</td>
+                                    <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
+                                    <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
+                                    <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
+                                    <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
+                                    <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
+                                </tr>
+                            </#list>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
-    </div>
+        </div>
+    </main>
+
 </div>
 <div class="modal-test" id="modal-test">
     <div class="modal-header-test">
