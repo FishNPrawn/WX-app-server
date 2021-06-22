@@ -32,6 +32,12 @@
             </a>
         </li>
         <li class="li">
+            <a href="../allorder">
+                <span class="icon"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
+                <span class="title">总订单</span>
+            </a>
+        </li>
+        <li class="li">
             <a href="../logout">
                 <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                 <span class="title">sign out</span>

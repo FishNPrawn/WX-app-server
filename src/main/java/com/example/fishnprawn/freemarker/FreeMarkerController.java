@@ -1,36 +1,22 @@
 package com.example.fishnprawn.freemarker;
 
 
-import com.example.fishnprawn.admin.Admin;
-import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.utils.JsonBodyHandler;
 import com.example.fishnprawn.category.Category;
 import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.good.Good;
 import com.example.fishnprawn.good.GoodDao;
 import com.example.fishnprawn.wxorder.*;
-import com.lly835.bestpay.rest.HttpsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -48,6 +34,9 @@ public class FreeMarkerController {
 
     @Autowired
     private OrderRootDao repositoryOrderRoot;
+
+    @Autowired
+    private OrderDetailDao repositoryorderDetail;
 
     @Autowired
     private WxOrderUtils wxOrder;
@@ -164,6 +153,12 @@ public class FreeMarkerController {
     }
 
 
+    //----------------------------------------所有订单---------------------------------------------------//
+    // http://localhost:8080/allorder
+    @GetMapping("/allorder")
+    public String allorder(){
+        return "/wxorder/allorder";
+    }
 
 
     //----------------------------------------Page---------------------------------------------------//
@@ -176,7 +171,15 @@ public class FreeMarkerController {
 
     // http://localhost:8080/home
     @GetMapping("/home")
-    public String home(){
+    public String home(ModelMap map){
+        // 未发货订单
+        List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
+        map.put("orderlist", orderlist);
+
+        // 总交易金额
+        List<WxOrderDetail> orderdetailist = repositoryorderDetail.findAll();
+        map.put("orderdetailist", orderdetailist);
+
         return "/home/home";
     }
 

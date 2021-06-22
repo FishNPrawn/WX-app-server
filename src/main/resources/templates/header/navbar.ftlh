@@ -3,17 +3,11 @@
         <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
     <div class="navbar__left">
+        <h4 class="mt-2"><a href="../home" class="text-decoration-none" style="color: #2e4a66;">欢喜食货</a></h4>
     </div>
     <div class="navbar__right">
-        <a href="#">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
-        <a href="#">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-        </a>
-        <a href="#">
-            <img width="30" src="${path}/img/avatar.svg" alt="" />
-            <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+        <a href="../home">
+            <img width="40" src="${path}/img/avatar.jpg" alt="" style="border-radius: 50%;"/>
         </a>
     </div>
 </nav>

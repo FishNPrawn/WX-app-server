@@ -10,7 +10,7 @@
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossorigin="anonymous"
     />
-    <title>DASHBOARD</title>
+    <title>欢喜食货</title>
 </head>
 <body id="body">
 <div class="navigation">
@@ -40,9 +40,15 @@
             </a>
         </li>
         <li class="li">
-            <a href="#">
+            <a href="../orderlist">
                 <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                 <span class="title">Order</span>
+            </a>
+        </li>
+        <li class="li">
+            <a href="../allorder">
+                <span class="icon"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
+                <span class="title">总订单</span>
             </a>
         </li>
         <li class="li">
@@ -72,7 +78,7 @@
             <div class="main__title">
                 <img src="${path}/img/hello.svg" alt="" />
                 <div class="main__greeting">
-                    <h1>Hello Codersbite</h1>
+                    <h1>Hello 欢喜食货</h1>
                     <p>Welcome to your admin dashboard</p>
                 </div>
             </div>
@@ -81,44 +87,56 @@
 
             <!-- MAIN CARDS STARTS HERE -->
             <div class="main__cards">
+                <#-- -----------------用户量------------------------------->
                 <div class="card">
                     <i
                             class="fa fa-user-o fa-2x text-lightblue"
                             aria-hidden="true"
                     ></i>
                     <div class="card_inner">
-                        <p class="text-primary-p">Number of Subscribers</p>
+                        <p class="text-primary-p mt-3">用户量</p>
                         <span class="font-bold text-title">578</span>
                     </div>
                 </div>
 
+                <#-- -----------------总订单------------------------------->
                 <div class="card">
                     <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                     <div class="card_inner">
-                        <p class="text-primary-p">Times of Watching</p>
+                        <p class="text-primary-p mt-3">总订单</p>
                         <span class="font-bold text-title">2467</span>
                     </div>
                 </div>
 
+                <#-- -----------------未发货订单------------------------------->
+                <#assign order_no_deliver = 0>
+                <#list orderlist as orderlist>
+                    <#assign order_no_deliver = order_no_deliver+1 >
+                </#list>
                 <div class="card">
                     <i
-                            class="fa fa-video-camera fa-2x text-yellow"
+                            class="fa fa-cart-plus fa-2x text-yellow"
                             aria-hidden="true"
                     ></i>
                     <div class="card_inner">
-                        <p class="text-primary-p">Number of Videos</p>
-                        <span class="font-bold text-title">340</span>
+                        <p class="text-primary-p mt-3">未发货订单</p>
+                        <span class="font-bold text-title">${order_no_deliver}</span>
                     </div>
                 </div>
 
+                <#-- -----------------总交易金额------------------------------->
+                <#assign totol_order_money = 0>
+                <#list orderdetailist as orderdetailist>
+                    <#assign totol_order_money = totol_order_money +  orderdetailist.good_price*orderdetailist.good_quantity >
+                </#list>
                 <div class="card">
                     <i
-                            class="fa fa-thumbs-up fa-2x text-green"
+                            class="fa fa-money fa-2x text-green"
                             aria-hidden="true"
                     ></i>
                     <div class="card_inner">
-                        <p class="text-primary-p">Number of Likes</p>
-                        <span class="font-bold text-title">645</span>
+                        <p class="text-primary-p mt-3">总交易金额</p>
+                        <span class="font-bold text-title">${totol_order_money}</span>
                     </div>
                 </div>
             </div>
