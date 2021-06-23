@@ -16,7 +16,7 @@
                 <div class="center">
                     <h2 class="admin_name">管理员</h2>
                 </div>
-                <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test" id="addCategory">
                     添加用户
                 </button>
             </div>

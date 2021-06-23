@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,12 @@ public class WxOrderController {
 
     @Autowired
     private WxOrderUtils wxOrder;
+
+    @Autowired
+    private OrderRootServices orderRootServices;
+
+    @Autowired
+    private OrderDetailServices orderDetailServices;
 
     @PostMapping("/create")
     @Transactional
@@ -80,8 +88,52 @@ public class WxOrderController {
         }
 
         map.put("url", "/orderlist");
-
     }
+
+
+    // filter by open_id get user order
+    @GetMapping(path="/order_filter", produces = "application/json")
+    public ResponseEntity<Map<String, List<OrderReq>>> filterOrder(@RequestParam(required = false) Map<String,String> filter){
+        log.info("[Get Filter_Order_Request]");
+
+        Map<String, List<OrderReq>> result = new HashMap<>();
+        result.put("data", new ArrayList<>());
+        try {
+            List<WxOrderRoot> wxOrderRoots = orderRootServices.getAll(filter);
+            for(WxOrderRoot order: wxOrderRoots){
+                OrderReq orderReq = new OrderReq();
+                orderReq.setAttributes(order);
+                result.get("data").add(orderReq);
+            }
+        }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
+    // filter by order_id to get specific oder list
+    @GetMapping(path="/order_detail_filter", produces = "application/json")
+    public ResponseEntity<Map<String, List<WxOrderDetailView>>> filterOrderDetail(@RequestParam(required = false) Map<String,String> filter){
+        log.info("[Get Filter_Order_Detail_Request]");
+
+        Map<String, List<WxOrderDetailView>> result = new HashMap<>();
+        result.put("data", new ArrayList<>());
+        try {
+            List<WxOrderDetail> wxOrderDetail = orderDetailServices.getAll(filter);
+            for(WxOrderDetail order : wxOrderDetail){
+                WxOrderDetailView wxOrderDetailView = new WxOrderDetailView();
+                wxOrderDetailView.setAttributes(order);
+                result.get("data").add(wxOrderDetailView);
+            }
+        }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 
 
 }

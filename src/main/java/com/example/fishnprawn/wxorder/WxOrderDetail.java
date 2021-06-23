@@ -34,6 +34,6 @@ public class WxOrderDetail {
     @NotNull
     private int good_quantity; //下单食物数量
 
-//    @NotNull
-//    private String good_img; //商品图
+    @NotNull
+    private String good_image; //商品图
 }

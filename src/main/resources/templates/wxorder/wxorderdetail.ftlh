@@ -15,6 +15,9 @@
                 <div class="center">
                     <h2 class="orderlist_name">订单详情</h2>
                 </div>
+                <div>
+                    <a class="btn btn-warning text-white my-3" href="../orderlist">返回</a>
+                </div>
             </div>
 
             <#--  table start-->
