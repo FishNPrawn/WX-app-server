@@ -119,6 +119,7 @@ CREATE TABLE `wx_order_detail` (
     `good_price`        DECIMAL not null comment '商品价格',
     `good_quantity`          int not null comment '购买数量',
     `order_id`		int not null,
+    `good_image` text not null,
     primary key (`order_detail_id`)
 );
 # INSERT INTO wx_order_detail VALUES (2,'12345', 2, 101, 3);

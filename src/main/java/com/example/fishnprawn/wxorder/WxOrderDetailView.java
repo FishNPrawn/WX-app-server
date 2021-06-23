@@ -15,6 +15,7 @@ public class WxOrderDetailView {
     private String good_name;
     private BigDecimal good_price;
     private int good_quantity; //下单食物数量
+    private String good_image; //商品图
 
     public void setAttributes(WxOrderDetail wxOrderDetail){
         this.setOrder_detail_id(wxOrderDetail.getOrder_detail_id());
@@ -24,5 +25,6 @@ public class WxOrderDetailView {
         this.setGood_name(wxOrderDetail.getGood_name());
         this.setGood_price(wxOrderDetail.getGood_price());
         this.setGood_quantity(wxOrderDetail.getGood_quantity());
+        this.setGood_image(wxOrderDetail.getGood_image());
     }
 }
