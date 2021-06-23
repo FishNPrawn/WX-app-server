@@ -51,6 +51,7 @@
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input checkBoxes" type="checkbox" name="idChecked" value="${category.cat_id}" id="flexCheckDefault">
+                                            <span class="default"></span>
                                         </div>
                                     </td>
                                     <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>

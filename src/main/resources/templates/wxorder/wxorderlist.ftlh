@@ -16,7 +16,7 @@
                     <h2 class="orderlist_name">订单管理</h2>
                 </div>
                 <div>
-                    <button class="btn btn-primary my-3">
+                    <button class="btn btn-primary my-3" onclick="window.parent.location.href='/order/export';">
                         导出订单Excel
                     </button>
                 </div>
@@ -35,9 +35,9 @@
                             <th>电话</th>
                             <th>订单金额</th>
                             <th>创建时间</th>
-                            <th>评论</th>
+                            <th>状态</th>
                             <th>详情</th>
-                            <th>删除</th>
+<#--                            <th>删除</th>-->
                         </tr>
                         </thead>
                         <tbody>
@@ -50,9 +50,18 @@
                                 <td>${order.user_phone}</td>
                                 <td>${order.order_total_price}</td>
                                 <td>${order.order_create_time}</td>
-                                <td>${order.order_comment}</td>
-                                <td><a class="btn btn-primary" href="/detail?orderId=${order.order_id}">详情</a>
-                                <td><a class="btn btn-danger">删除</a>
+
+                                <#if order.order_status == 0>
+<#--                                    <td><i class="fa fa-circle fa-xs text-danger" aria-hidden="true"></i> 待发货</td>-->
+                                    <td><div class="prepare_deliver">待发货</div></td>
+                                <#elseif order.order_status == 1>
+<#--                                    <td><i class="fa fa-circle fa-xs text-success" aria-hidden="true"></i> 已发货</td>-->
+                                    <td><div class="finish_deliver">已发货</div></td>
+                                </#if>
+
+                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.order_id}">详情</a>
+
+<#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
                         </#list>
                         </tbody>

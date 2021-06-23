@@ -36,7 +36,7 @@
             <form action='/good/deleteGoodSelected' method="post" id="good_form">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <table class="table table-bordered" id="example">
+                        <table class="table table-bordered" id="example" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
                             <thead class="thead-dark">
                             <tr class="table-info  table-hover">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
@@ -84,8 +84,8 @@
                                     <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
                                     <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
                                     <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
-                                    <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary">修改</button>
-                                    <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/menulist" class="btn btn-danger">删除</a>
+                                    <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary btn-sm">修改</button>
+                                    <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/goodlist/deletesuccess" class="btn btn-danger btn-sm">删除</a>
                                 </tr>
                             </#list>
                             </tbody>

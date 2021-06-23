@@ -106,9 +106,10 @@ create table `wx_order_root` (
      `order_total_price`   DECIMAL      not null comment '总金额',
      `order_create_time` timestamp not null comment '订单创造时间',
      `order_comment` text comment '备注',
+     `order_status` int not null,
      primary key (`order_id`)
 );
-# INSERT INTO `user_order` VALUES (1,'12345','open_id', 'access_token', 'yang', 'guangzhou', '139555', 10, 1, now(), 'order_comment');
+INSERT INTO `wx_order_root` VALUES (1,'12345','open_id', 'access_token', 'yang', 'guangzhou', '139555', 10, now(), 'order_comment', 1);
 
 CREATE TABLE `wx_order_detail` (
     `order_detail_id`   int not null auto_increment,
@@ -120,5 +121,4 @@ CREATE TABLE `wx_order_detail` (
     `order_id`		int not null,
     primary key (`order_detail_id`)
 );
-# INSERT INTO wx_order_detail VALUES (1,'12345', 1, 10, 2);
 # INSERT INTO wx_order_detail VALUES (2,'12345', 2, 101, 3);
