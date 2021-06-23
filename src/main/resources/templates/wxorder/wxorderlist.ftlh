@@ -16,7 +16,7 @@
                     <h2 class="orderlist_name">订单管理</h2>
                 </div>
                 <div>
-                    <button class="btn btn-primary my-3" onclick="window.parent.location.href='/order/export';">
+                    <button class="btn btn-danger my-3" onclick="window.parent.location.href='/order/export';">
                         导出订单Excel
                     </button>
                 </div>
