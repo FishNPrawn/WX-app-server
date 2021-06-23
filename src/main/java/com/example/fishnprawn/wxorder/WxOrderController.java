@@ -5,12 +5,17 @@ import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(WxOrderController.BASE_URL)
 @RestController
@@ -36,6 +41,7 @@ public class WxOrderController {
         orderBean.setOrder_total_price(orderReq.getOrder_total_price());
         orderBean.setOrder_create_time(LocalDateTime.now());
         orderBean.setOrder_comment(orderReq.getOrder_comment());
+        orderBean.setOrder_status(orderReq.getOrder_status());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -50,6 +56,7 @@ public class WxOrderController {
 
         wxOrder.createOrder(orderBean);
 
+
         return "success";
     }
 
@@ -62,6 +69,19 @@ public class WxOrderController {
         return "success";
     }
 
+    //导出菜品订单到excel
+    @GetMapping("/export")
+    public void export(HttpServletResponse response, ModelMap map) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            wxOrder.exportOrderToExcel(response);
+        } catch (Exception e) {
+            System.out.println("导出excel失败");
+        }
+
+        map.put("url", "/orderlist");
+
+    }
 
 
 }

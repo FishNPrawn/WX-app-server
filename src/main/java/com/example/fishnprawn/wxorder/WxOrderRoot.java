@@ -27,4 +27,5 @@ public class WxOrderRoot {
     private BigDecimal order_total_price;
     private LocalDateTime order_create_time;
     private String order_comment;
+    private int order_status;
 }

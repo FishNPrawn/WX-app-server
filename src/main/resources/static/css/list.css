@@ -1,0 +1,31 @@
+.prepare_deliver{
+    background-color: rgb(241,221,244);
+    height: 30px;
+    width: 80px;
+    font-size: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: rgb(188,96,201);
+    font-weight: bold;
+}
+
+.finish_deliver{
+    background-color: rgb(206,236,253);
+    height: 25px;
+    width: 80px;
+    font-size: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: rgb(96,162,204);
+    font-weight: bold;
+}
+
+td{
+    text-align: center;
+}

@@ -30,6 +30,8 @@ public class OrderReq {
 
     private String order_comment;
 
+    private int order_status;
+
     private String items;   //购物车
 
 }

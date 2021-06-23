@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="${path}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/toggle.css">
+    <link rel="stylesheet" type="text/css" href="${path}/css/list.css">
     <link rel="stylesheet" href="${path}/css/bootstrap_min.css">
     <script src="${path}/js/jquery_min.js"></script>
     <script src="${path}/js/bootstrap_min.js"></script>

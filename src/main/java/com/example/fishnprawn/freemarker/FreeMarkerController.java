@@ -94,6 +94,12 @@ public class FreeMarkerController {
         return "/operation/success";
     }
 
+    @GetMapping("/goodlist/deletesuccess")
+    public String deleteGoodSuccess(ModelMap map){
+        map.put("url", "/menulist");
+        return "/operation/success";
+    }
+
 
     //----------------------------------------admin---------------------------------------------------//
     //http://localhost:8080/fishnprawn/admin
@@ -147,8 +153,11 @@ public class FreeMarkerController {
                          ModelMap map) {
         WxOrderResponse orderDTO = new WxOrderResponse();
         orderDTO = wxOrder.findOne(orderId);
-
         map.put("orderDTO", orderDTO);
+
+        List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
+        map.put("orderlist", orderlist);
+
         return "wxorder/wxorderdetail";
     }
 
