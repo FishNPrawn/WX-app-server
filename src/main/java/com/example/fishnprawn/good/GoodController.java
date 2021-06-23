@@ -97,7 +97,7 @@ public class GoodController {
         return new ResponseEntity<>(goodServices.deleteById(id), HttpStatus.OK);
     }
 
-//    http://localhost:8080/fishnprawn/good/good_filter
+//    http://localhost:8080/good/good_filter
 //    search example: http://localhost:8080/fishnprawn/good/good_filter?filter=KEYWORD
 //    filter by good_name, cat_name
     @GetMapping(path="/good_filter", produces = "application/json")

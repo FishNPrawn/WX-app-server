@@ -14,5 +14,10 @@
     <script src="${path}/js/bootstrap_min.js"></script>
     <link href="${path}/css/home.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/d463772734.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 </head>
