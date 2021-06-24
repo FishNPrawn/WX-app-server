@@ -38,6 +38,12 @@
             </a>
         </li>
         <li class="li">
+            <a href="../allswiper">
+                <span class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                <span class="title">轮播图</span>
+            </a>
+        </li>
+        <li class="li">
             <a href="../logout">
                 <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                 <span class="title">sign out</span>

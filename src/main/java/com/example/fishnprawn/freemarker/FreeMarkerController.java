@@ -1,6 +1,8 @@
 package com.example.fishnprawn.freemarker;
 
 
+import com.example.fishnprawn.swiper.SwiperImg;
+import com.example.fishnprawn.swiper.SwiperImgDao;
 import com.example.fishnprawn.utils.JsonBodyHandler;
 import com.example.fishnprawn.category.Category;
 import com.example.fishnprawn.category.CategoryDao;
@@ -37,6 +39,9 @@ public class FreeMarkerController {
 
     @Autowired
     private OrderDetailDao repositoryorderDetail;
+
+    @Autowired
+    private SwiperImgDao repositorySwiperImg;
 
     @Autowired
     private WxOrderUtils wxOrder;
@@ -159,6 +164,21 @@ public class FreeMarkerController {
         map.put("orderlist", orderlist);
 
         return "wxorder/wxorderdetail";
+    }
+
+    //----------------------------------------轮播图---------------------------------------------------//
+    // http://localhost:8080/swiper
+    @GetMapping("/allswiper")
+    public String swiper(ModelMap map){
+        List<SwiperImg> swiperImgList = repositorySwiperImg.findAll();
+        map.put("swiperImgList", swiperImgList);
+        return "/swiper/swiper";
+    }
+
+    @GetMapping("/allswiper/addsuccess")
+    public String addSwipersuccess(ModelMap map){
+        map.put("url", "/allswiper");
+        return "/operation/success";
     }
 
 

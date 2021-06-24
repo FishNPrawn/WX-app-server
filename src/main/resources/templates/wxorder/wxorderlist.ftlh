@@ -16,7 +16,7 @@
                     <h2 class="orderlist_name">订单管理</h2>
                 </div>
                 <div>
-                    <button class="btn btn-danger my-3" onclick="window.parent.location.href='/order/export';">
+                    <button class="btn btn-danger my-3" data-toggle="modal" data-target="#confirmModal">
                         导出订单Excel
                     </button>
                 </div>
@@ -73,6 +73,24 @@
         </div>
     </main>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">是否导出订单Excel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="window.parent.location.href='/order/export';">导出</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="overlay"></div>

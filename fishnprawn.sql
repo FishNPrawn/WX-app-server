@@ -123,3 +123,12 @@ CREATE TABLE `wx_order_detail` (
     primary key (`order_detail_id`)
 );
 # INSERT INTO wx_order_detail VALUES (2,'12345', 2, 101, 3);
+
+CREATE TABLE `swiper_img`
+(
+    `swiper_img_id` int not null auto_increment,
+    `image_src` text not null,
+    primary key (`swiper_img_id`)
+);
+INSERT INTO swiper_img VALUES (1, 'fewfawfewafeawf');
+INSERT INTO swiper_img VALUES (2, 'grfgregrege');

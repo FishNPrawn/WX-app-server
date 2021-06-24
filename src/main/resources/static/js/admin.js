@@ -37,8 +37,10 @@ overlay.addEventListener('click', () => {
 
 closecat_close_btn.addEventListener('click', ()=>{
     // delete button todo
-    window.location.replace(PREFIX);
-    // window.location.replace("https://fishnprawn.cn/fishnprawn/admin");     // For 腾讯云
+    const modals = document.querySelectorAll('.modal-test.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
 })
 
 function openModal(modal) {

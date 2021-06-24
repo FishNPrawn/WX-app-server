@@ -100,43 +100,43 @@
 </div>
 <div class="modal-test" id="modal-test">
     <div class="modal-header-test">
-        <div class="title-test">Add Good</div>
+        <div class="title-test">添加商品</div>
         <button data-close-button class="close-button-test" id="good_close_btn" >&times;</button>
     </div>
     <div class="modal-body-test" id="good-window">
         <form role="form">
             <div class="form-group">
-                <label class="label_name">Good Name</label>
+                <label class="label_name">商品名</label>
                 <input id="good_name_input" type="text" class="form-control"/>
-                <label class="label_category">Good Category</label>
+                <label class="label_category">分类</label>
                 <input id="good_category_input" type="text" class="form-control"/>
-                <label class="label_price">Good Price</label>
+                <label class="label_price">价格</label>
                 <input id="good_price_input" type="text" class="form-control"/>
-                <label class="label_stock">Good Stock</label>
+                <label class="label_stock">库存</label>
                 <input id="good_stock_input" type="text" class="form-control"/>
-                <label class="label_weight">Good Weight</label>
+                <label class="label_weight">重量</label>
                 <input id="good_weight_input" type="text" class="form-control"/>
-                <label class="label_supplier">Good Supplier</label>
+                <label class="label_supplier">供应商</label>
                 <input id="good_supplier_input" type="text" class="form-control"/>
-                <label class="label_description">Good Description</label>
+                <label class="label_description">商品详情</label>
                 <input id="good_description_input" type="text" class="form-control"/>
-                <label class="label_description">Good Production</label>
+                <label class="label_description">产地</label>
                 <input id="good_production_input" type="text" class="form-control"/>
-                <label class="label_size">Good Size</label>
+                <label class="label_size">规格</label>
                 <input id="good_size_input" type="text" class="form-control"/>
-                <label class="label_expiration">Good Expiration</label>
+                <label class="label_expiration">过期</label>
                 <input id="good_expiration_input" type="text" class="form-control"/>
-                <label class="label_optimal_period">Good Optimal Period</label>
+                <label class="label_optimal_period">品味最佳期</label>
                 <input id="good_optimal_period" type="text" class="form-control"/>
-                <label class="label_publish_date">Good Publish Date</label>
+                <label class="label_publish_date">发布日期</label>
                 <input id="good_publish_date" type="date" class="form-control"/>
-                <label class="label_status">Good Status(0/1)</label>
+                <label class="label_status">状态(0/1)</label>
                 <input id="good_status_input" type="text" class="form-control"/>
-                <label class="label_image">Good Image</label>
+                <label class="label_image">图片1</label>
                 <input id="good_image_input"  type="text" class="form-control"/>
-                <label class="label_image_1">Good Image_1</label>
+                <label class="label_image_1">图片2</label>
                 <input id="good_image_1_input"  type="text" class="form-control"/>
-                <label class="label_image_description">Good Description</label>
+                <label class="label_image_description">长图片</label>
                 <input id="good_image_description"  type="text" class="form-control"/>
             </div>
             <a href="/goodlist/addgoodsuccess" id="add_good_btm" class="btn btn-info btn-dark">add</a>
