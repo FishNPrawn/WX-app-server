@@ -69,6 +69,6 @@ table {
     overflow: hidden;
 }
 
-.category_name, .menulist_name, .admin_name, .category_excel, .orderlist_name, .all_order_name{
+.category_name, .menulist_name, .admin_name, .category_excel, .orderlist_name, .all_order_name, .swiper_name{
     padding-top: 15px;
 }

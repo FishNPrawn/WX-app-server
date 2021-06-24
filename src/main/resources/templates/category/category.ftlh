@@ -71,7 +71,7 @@
 </div>
 <div class="modal-test" id="modal-test">
     <div class="modal-header-test">
-        <div class="title-test">Add Category</div>
+        <div class="title-test">添加分类</div>
         <button data-close-button class="close-button-test" id="cat_close_btn" >&times;</button>
 
     </div>
