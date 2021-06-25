@@ -1,5 +1,6 @@
 package com.example.fishnprawn.wxorder;
 
+import com.example.fishnprawn.exception.ServiceException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +37,7 @@ public class WxOrderController {
     @Autowired
     private OrderDetailServices orderDetailServices;
 
+    /* 创建订单 */
     @PostMapping("/create")
     @Transactional
     public String create(@Valid OrderReq orderReq){
@@ -68,16 +71,16 @@ public class WxOrderController {
         return "success";
     }
 
-    //订单详情
+    /*订单详情*/
     @GetMapping("/detail")
     public String detail(@RequestParam("orderId") int orderId) {
 
         wxOrder.findOne(orderId);
-
         return "success";
     }
 
-    //导出菜品订单到excel
+
+    /* 导出菜品订单到excel */
     @GetMapping("/export")
     public void export(HttpServletResponse response, ModelMap map) {
         ModelAndView modelAndView = new ModelAndView();
@@ -86,12 +89,12 @@ public class WxOrderController {
         } catch (Exception e) {
             System.out.println("导出excel失败");
         }
-
         map.put("url", "/orderlist");
     }
 
 
-    // filter by open_id get user order
+    /* filter by open_id get user order */
+    /* http://localhost:8080/order/order_filter?filter=??? */
     @GetMapping(path="/order_filter", produces = "application/json")
     public ResponseEntity<Map<String, List<OrderReq>>> filterOrder(@RequestParam(required = false) Map<String,String> filter){
         log.info("[Get Filter_Order_Request]");
@@ -113,7 +116,8 @@ public class WxOrderController {
     }
 
 
-    // filter by order_id to get specific oder list
+    /* filter by order_id to get specific order list */
+    /* http://localhost:8080/order/order_detail_filter?filter=??? */
     @GetMapping(path="/order_detail_filter", produces = "application/json")
     public ResponseEntity<Map<String, List<WxOrderDetailView>>> filterOrderDetail(@RequestParam(required = false) Map<String,String> filter){
         log.info("[Get Filter_Order_Detail_Request]");
@@ -132,6 +136,27 @@ public class WxOrderController {
         }
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    /* 拿到订单列表by open_id 和 order_status */
+    /* http://localhost:8080/order/listByStatus?openid=?&orderStatus=? */
+    @GetMapping("/listByStatus")
+    public List<WxOrderResponse> listByStatus(@RequestParam("openid") String openid,
+                                                        @RequestParam(value = "orderStatus", defaultValue = "0") Integer orderStatus) {
+        if (StringUtils.isEmpty(openid)) {
+            log.error("[查询订单列表]openid为空");
+        }
+
+        List<WxOrderResponse> list = new ArrayList<>();
+        list.clear();
+
+        List<WxOrderResponse> listStats = wxOrder.findListStats(openid, orderStatus);
+        listStats.forEach((orderBean) -> {
+            WxOrderResponse one = wxOrder.findOne(orderBean.getOrder_id());
+            list.add(one);
+        });
+
+        return list;
     }
 
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +26,22 @@ public class SwiperImgController {
 
     //http://localhost:8080/allswiper/getAllSwiper
     @GetMapping(path = "/getAllSwiper", produces= MediaType.APPLICATION_JSON_VALUE)
-    public List<SwiperImg> getAllSwiper(@RequestParam(required = false) Map<String, String> filter) {
+    public Map<String, List<Map<String, String>>> getAllSwiper(@RequestParam(required = false) Map<String, String> filter) {
         System.out.println("[Get all Swiper| parameters: " + filter);
 
         List<SwiperImg> list = swiperImgServices.getAll(filter);
 
-        return list;
+        Map<String, List<Map<String, String>>> result = new HashMap<>();
+        result.put("data", new ArrayList<>());
+
+        for(SwiperImg s:list){
+            Map<String, String> temp = new HashMap<String, String>(1);
+            temp.put("image_src", s.getImage_src());
+            result.get("data").add(temp);
+        }
+
+
+        return result;
     }
 
 

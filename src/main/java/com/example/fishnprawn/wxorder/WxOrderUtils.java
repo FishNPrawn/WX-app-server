@@ -6,12 +6,14 @@ import com.example.fishnprawn.utils.ExcelExport;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -78,10 +80,32 @@ public class WxOrderUtils {
             dataList[i][3] = orderRoot.getUser_address();
             dataList[i][4] = "" + orderRoot.getUser_phone();
             dataList[i][5] = "" + orderRoot.getOrder_total_price();
-            dataList[i][6] = "" + orderRoot.getOrder_status();
+            dataList[i][6] = "" + orderRoot.getOrderStatus();
             dataList[i][7] = "" + orderRoot.getOrder_create_time();
         }
         ExcelExport.createWorkbook(fileName, titles, dataList, response);
+    }
+
+    //查询不同订单状态列表
+    public List<WxOrderResponse> findListStats(String open_id, Integer order_status) {
+
+        List<WxOrderRoot> orderMasters = orderRootDao.findByOpenIdAndOrderStatus(open_id, order_status);
+        return orderResponse(orderMasters);
+    }
+
+    /*
+     * 类型转换的工具类
+     * */
+    private WxOrderResponse convert1(WxOrderRoot orderMaster) {
+        WxOrderResponse orderDTO = new WxOrderResponse();
+        BeanUtils.copyProperties(orderMaster, orderDTO);
+        return orderDTO;
+    }
+
+    private List<WxOrderResponse> orderResponse(List<WxOrderRoot> orderMasterList) {
+        return orderMasterList.stream().map(e ->
+                convert1(e)
+        ).collect(Collectors.toList());
     }
 
 

@@ -57,6 +57,44 @@ create table `good`
   `good_image_description` text not null,
   primary key (`good_id`)
 );
+
+create table `wx_order_root` (
+     `order_id`		int not null auto_increment,
+     `order_number`  text not null comment '订单编号',
+     `open_id`       text        not null,
+     `access_token`  text        not null,
+     `user_name`     varchar(16) not null comment '用户名',
+     `user_address`  text not null comment '用户地址',
+     `user_phone`    varchar(32) not null comment '用户电话',
+     `order_total_price`   DECIMAL      not null comment '总金额',
+     `order_create_time` timestamp not null comment '订单创造时间',
+     `order_comment` text comment '备注',
+     `order_status` int not null,
+     primary key (`order_id`)
+);
+
+
+CREATE TABLE `wx_order_detail` (
+    `order_detail_id`   int not null auto_increment,
+    `order_number`      text not null comment '订单编号',
+    `good_id`           int not null comment '商品ID',
+    `good_name` varchar(64) not null,
+    `good_price`        DECIMAL not null comment '商品价格',
+    `good_quantity`          int not null comment '购买数量',
+    `order_id`		int not null,
+    `good_image` text not null,
+    primary key (`order_detail_id`)
+);
+
+
+CREATE TABLE `swiper_img`
+(
+    `swiper_img_id` int not null auto_increment,
+    `image_src` text not null,
+    primary key (`swiper_img_id`)
+);
+
+
 INSERT INTO good
 VALUES (1, 'rockfish', 10, 100, 'fish1', 10, 'hi.jpg', 1, now(), now(), 'hi.jpg', 'hihi', 'hi', 5, '2001', '5','3', now(), 'hihi'  );
 
@@ -95,40 +133,8 @@ VALUES (8, 'shrimp2', 10, 100, 'shrimp', 10, 'https://gimg2.baidu.com/image_sear
 INSERT INTO good
 VALUES (9, 'shrimp3', 10, 100, 'shrimp', 10, 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2785278829,2022407696&fm=26&gp=0.jpg', 1, now(), now(), 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.cnpp.cn%2Fupload%2Fimages%2F20170722%2F1500703140_22719_3.jpg&refer=http%3A%2F%2Fimage.cnpp.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622620505&t=7f29be1bae61c9e53833b0cbf8816652', 'hihi', 'hi', 5, '2001', '5','3', now(), 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fsh%2Fj8%2FQJ8129672480.jpg%3Fx-oss-process%3Dstyle%2Fshow&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622620505&t=e3bbaf5dfa465b8bc6f5bac3f836904e');
 
-create table `wx_order_root` (
-     `order_id`		int not null auto_increment,
-     `order_number`  text not null comment '订单编号',
-     `open_id`       text        not null,
-     `access_token`  text        not null,
-     `user_name`     varchar(16) not null comment '用户名',
-     `user_address`  text not null comment '用户地址',
-     `user_phone`    varchar(32) not null comment '用户电话',
-     `order_total_price`   DECIMAL      not null comment '总金额',
-     `order_create_time` timestamp not null comment '订单创造时间',
-     `order_comment` text comment '备注',
-     `order_status` int not null,
-     primary key (`order_id`)
-);
-INSERT INTO `wx_order_root` VALUES (1,'12345','open_id', 'access_token', 'yang', 'guangzhou', '139555', 10, now(), 'order_comment', 1);
 
-CREATE TABLE `wx_order_detail` (
-    `order_detail_id`   int not null auto_increment,
-    `order_number`      text not null comment '订单编号',
-    `good_id`           int not null comment '商品ID',
-    `good_name` varchar(64) not null,
-    `good_price`        DECIMAL not null comment '商品价格',
-    `good_quantity`          int not null comment '购买数量',
-    `order_id`		int not null,
-    `good_image` text not null,
-    primary key (`order_detail_id`)
-);
-# INSERT INTO wx_order_detail VALUES (2,'12345', 2, 101, 3);
 
-CREATE TABLE `swiper_img`
-(
-    `swiper_img_id` int not null auto_increment,
-    `image_src` text not null,
-    primary key (`swiper_img_id`)
-);
+
 INSERT INTO swiper_img VALUES (1, 'fewfawfewafeawf');
 INSERT INTO swiper_img VALUES (2, 'grfgregrege');
