@@ -31,7 +31,7 @@ public class CategoryController {
     @Autowired
     private CategoryServices categoryServices;
 
-    //http://localhost:8080/fishnprawn/category/getAllcategory
+    //http://localhost:8080/category/getAllcategory
     @GetMapping(path = "/getAllcategory", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, List<Map<String, String>>>> getAllCategory(@RequestParam(required = false) Map<String, String> filter) {
         System.out.println("[Get all category] | parameters: " + filter);
