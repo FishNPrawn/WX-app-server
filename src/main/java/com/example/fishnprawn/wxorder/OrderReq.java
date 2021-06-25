@@ -38,7 +38,7 @@ public class OrderReq {
 
     public void setAttributes(WxOrderRoot wxOrderRoot)
     {
-        this.setOpen_id(wxOrderRoot.getOpen_id());
+        this.setOpen_id(wxOrderRoot.getOpenId());
         this.setOrder_number(wxOrderRoot.getOrder_number());
         this.setAccess_token(wxOrderRoot.getAccess_token());
         this.setUser_name(wxOrderRoot.getUser_name());
@@ -46,7 +46,7 @@ public class OrderReq {
         this.setUser_phone(wxOrderRoot.getUser_phone());
         this.setOrder_total_price(wxOrderRoot.getOrder_total_price());
         this.setOrder_comment(wxOrderRoot.getOrder_comment());
-        this.setOrder_status(wxOrderRoot.getOrder_status());
+        this.setOrder_status(wxOrderRoot.getOrderStatus());
     }
 
 }

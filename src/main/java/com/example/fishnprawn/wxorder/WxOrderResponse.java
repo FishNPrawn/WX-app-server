@@ -32,4 +32,5 @@ public class WxOrderResponse {
     private int order_status;
 
     List<WxOrderDetail> orderDetailList;
+
 }

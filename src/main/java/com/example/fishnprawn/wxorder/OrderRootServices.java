@@ -43,7 +43,7 @@ public class OrderRootServices implements Services<WxOrderRoot> {
         }
         try {
             WxOrderRoot wxOrderRoot = new WxOrderRoot();
-            wxOrderRoot.setOpen_id(filter.get("filter"));
+            wxOrderRoot.setOpenId(filter.get("filter"));
 
             ExampleMatcher customExampleMatcher = ExampleMatcher.matchingAny()
                     .withMatcher("open_id", ExampleMatcher.GenericPropertyMatchers.exact());
