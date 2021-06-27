@@ -39,12 +39,11 @@ public class WxOrderController {
 
     /* 创建订单 */
     @PostMapping("/create")
-    @Transactional
     public String create(@Valid OrderReq orderReq){
         //数据转换
         WxOrderResponse orderBean = new WxOrderResponse();
         orderBean.setOrder_number(orderReq.getOrder_number());
-        orderBean.setOpen_id(orderReq.getOpen_id());
+        orderBean.setOpenId(orderReq.getOpenId());
         orderBean.setAccess_token(orderReq.getAccess_token());
         orderBean.setUser_name(orderReq.getUser_name());
         orderBean.setUser_address(orderReq.getUser_address());
@@ -52,7 +51,7 @@ public class WxOrderController {
         orderBean.setOrder_total_price(orderReq.getOrder_total_price());
         orderBean.setOrder_create_time(LocalDateTime.now());
         orderBean.setOrder_comment(orderReq.getOrder_comment());
-        orderBean.setOrder_status(orderReq.getOrder_status());
+        orderBean.setOrderStatus(orderReq.getOrderStatus());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -142,17 +141,44 @@ public class WxOrderController {
     /* http://localhost:8080/order/listByStatus?openid=?&orderStatus=? */
     @GetMapping("/listByStatus")
     public List<WxOrderResponse> listByStatus(@RequestParam("openid") String openid,
-                                                        @RequestParam(value = "orderStatus", defaultValue = "0") Integer orderStatus) {
+                                                        @RequestParam(value = "orderStatus", required = false) Integer orderStatus) {
         if (StringUtils.isEmpty(openid)) {
             log.error("[查询订单列表]openid为空");
         }
 
         List<WxOrderResponse> list = new ArrayList<>();
         list.clear();
+        List<WxOrderResponse> listStats;
+        if(orderStatus == null){
+            listStats = wxOrder.findListStats(openid, null);
+        }else{
+            listStats = wxOrder.findListStats(openid, orderStatus);
+        }
 
-        List<WxOrderResponse> listStats = wxOrder.findListStats(openid, orderStatus);
+
+
         listStats.forEach((orderBean) -> {
-            WxOrderResponse one = wxOrder.findOne(orderBean.getOrder_id());
+            WxOrderResponse one = wxOrder.findOne(orderBean.getOrderId());
+            list.add(one);
+        });
+
+        return list;
+    }
+
+    /* 拿到订单列表by open_id 和 order_status */
+    /* http://localhost:8080/order/listByStatus?openid=?&orderStatus=? */
+    @GetMapping("/listByOrderId")
+    public List<WxOrderResponse> listByOrderId(@RequestParam("orderid") int orderid) {
+        if (StringUtils.isEmpty(orderid)) {
+            log.error("[查询订单列表]openid为空");
+        }
+
+        List<WxOrderResponse> list = new ArrayList<>();
+        list.clear();
+
+        List<WxOrderResponse> listStats = wxOrder.findListByOrderId(orderid);
+        listStats.forEach((orderBean) -> {
+            WxOrderResponse one = wxOrder.findOne(orderBean.getOrderId());
             list.add(one);
         });
 

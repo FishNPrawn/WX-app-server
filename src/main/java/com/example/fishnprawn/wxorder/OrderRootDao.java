@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface OrderRootDao extends JpaRepository<WxOrderRoot, Integer> {
 
+    List<WxOrderRoot> findByOpenId(String openId);
+
     List<WxOrderRoot> findByOpenIdAndOrderStatus(String openId, Integer orderStatus);
 
+    List<WxOrderRoot> findByOrderId(Integer orderId);
 }

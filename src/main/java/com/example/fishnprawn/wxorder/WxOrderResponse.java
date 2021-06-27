@@ -4,6 +4,7 @@ package com.example.fishnprawn.wxorder;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,10 +18,13 @@ import java.util.List;
 @Data
 public class WxOrderResponse {
     @Id
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private Integer order_id;
-    private String open_id;
+    private Integer orderId;
+
+    @Column(name = "open_id")
+    private String openId;
     private String order_number;
     private String access_token;
     private String user_name;
@@ -29,7 +33,9 @@ public class WxOrderResponse {
     private BigDecimal order_total_price;
     private LocalDateTime order_create_time;
     private String order_comment;
-    private int order_status;
+
+    @Column(name = "order_status")
+    private int orderStatus;
 
     List<WxOrderDetail> orderDetailList;
 

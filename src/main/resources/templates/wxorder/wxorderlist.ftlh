@@ -29,6 +29,7 @@
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover">
                             <th>订单id</th>
+                            <th>open id</th>
                             <th>订单编号</th>
                             <th>用户名</th>
                             <th>地址</th>
@@ -43,7 +44,8 @@
                         <tbody>
                         <#list orderlist as order>
                             <tr>
-                                <td>${order.order_id}</td>
+                                <td>${order.orderId}</td>
+                                <td>${order.openId}</td>
                                 <td>${order.order_number}</td>
                                 <td>${order.user_name}</td>
                                 <td>${order.user_address}</td>
@@ -51,15 +53,17 @@
                                 <td>${order.order_total_price}</td>
                                 <td>${order.order_create_time}</td>
 
-                                <#if order.order_status == 0>
-<#--                                    <td><i class="fa fa-circle fa-xs text-danger" aria-hidden="true"></i> 待发货</td>-->
-                                    <td><div class="prepare_deliver">待发货</div></td>
-                                <#elseif order.order_status == 1>
-<#--                                    <td><i class="fa fa-circle fa-xs text-success" aria-hidden="true"></i> 已发货</td>-->
-                                    <td><div class="finish_deliver">已发货</div></td>
+                                <#if order.orderStatus == 0>
+                                    <td><div class="prepare_deliver">订单完成0</div></td>
+                                <#elseif order.orderStatus == 1>
+                                    <td><div class="finish_deliver">待发货1</div></td>
+                                <#elseif order.orderStatus == 2>
+                                    <td><div class="finish_deliver">待收货2</div></td>
+                                <#elseif order.orderStatus == 3>
+                                    <td><div class="finish_deliver">待评价3</div></td>
                                 </#if>
 
-                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.order_id}">详情</a>
+                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
 
 <#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>

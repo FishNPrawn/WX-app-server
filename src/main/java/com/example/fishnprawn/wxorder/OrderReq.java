@@ -2,13 +2,15 @@ package com.example.fishnprawn.wxorder;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
 public class OrderReq {
     @NotNull
-    private String open_id;
+    @Column(name = "open_id")
+    private String openId;
 
     @NotNull
     private String order_number;
@@ -30,7 +32,8 @@ public class OrderReq {
 
     private String order_comment;
 
-    private int order_status;
+    @Column(name = "order_status")
+    private int orderStatus;
 
     private String items;   //购物车
 
@@ -38,7 +41,7 @@ public class OrderReq {
 
     public void setAttributes(WxOrderRoot wxOrderRoot)
     {
-        this.setOpen_id(wxOrderRoot.getOpenId());
+        this.setOpenId(wxOrderRoot.getOpenId());
         this.setOrder_number(wxOrderRoot.getOrder_number());
         this.setAccess_token(wxOrderRoot.getAccess_token());
         this.setUser_name(wxOrderRoot.getUser_name());
@@ -46,7 +49,7 @@ public class OrderReq {
         this.setUser_phone(wxOrderRoot.getUser_phone());
         this.setOrder_total_price(wxOrderRoot.getOrder_total_price());
         this.setOrder_comment(wxOrderRoot.getOrder_comment());
-        this.setOrder_status(wxOrderRoot.getOrderStatus());
+        this.setOrderStatus(wxOrderRoot.getOrderStatus());
     }
 
 }
