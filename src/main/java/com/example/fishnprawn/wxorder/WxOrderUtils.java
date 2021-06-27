@@ -41,7 +41,7 @@ public class WxOrderUtils {
             Good foodInfo = goodDao.findById(orderDetail.getGood_id()).orElse(null);
             //订单详情入库
 //            orderDetail.setGood_id(orderRoot.getOrder_id());
-            orderDetail.setOrderId(orderRoot.getOrder_id());
+            orderDetail.setOrderId(orderRoot.getOrderId());
             BeanUtils.copyProperties(foodInfo, orderDetail);
             orderDetailDao.save(orderDetail);
         }
@@ -74,7 +74,7 @@ public class WxOrderUtils {
         String[][] dataList = new String[size][titles.length];
         for (int i = 0; i < size; i++) {
             WxOrderRoot orderRoot = rootList.get(i);
-            dataList[i][0] = "" + orderRoot.getOrder_id();
+            dataList[i][0] = "" + orderRoot.getOrderId();
             dataList[i][1] = orderRoot.getOrder_number();
             dataList[i][2] = orderRoot.getUser_name();
             dataList[i][3] = orderRoot.getUser_address();
@@ -89,7 +89,20 @@ public class WxOrderUtils {
     //查询不同订单状态列表
     public List<WxOrderResponse> findListStats(String open_id, Integer order_status) {
 
-        List<WxOrderRoot> orderMasters = orderRootDao.findByOpenIdAndOrderStatus(open_id, order_status);
+        List<WxOrderRoot> orderMasters;
+
+        if(order_status == null){
+            orderMasters = orderRootDao.findByOpenId(open_id);
+        }else{
+            orderMasters = orderRootDao.findByOpenIdAndOrderStatus(open_id, order_status);
+        }
+
+
+        return orderResponse(orderMasters);
+    }
+
+    public List<WxOrderResponse> findListByOrderId(Integer order_id){
+        List<WxOrderRoot> orderMasters = orderRootDao.findByOrderId(order_id);
         return orderResponse(orderMasters);
     }
 

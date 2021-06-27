@@ -54,7 +54,7 @@
             <#--  table end-->
             <#list orderlist as order>
                 <#list orderDTO.orderDetailList as orderdetail>
-                    <#if order.order_id == orderDTO.order_id  >
+                    <#if order.orderId == orderDTO.orderId  >
                         <#assign comment = order.order_comment>
 
                     </#if>

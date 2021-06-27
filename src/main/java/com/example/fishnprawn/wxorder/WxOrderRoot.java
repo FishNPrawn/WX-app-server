@@ -15,9 +15,10 @@ import java.time.LocalDateTime;
 @Table(name = "wx_order_root")
 public class WxOrderRoot {
     @Id
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private Integer order_id;
+    private Integer orderId;
 
     @Column(name = "open_id")
     private String openId;
