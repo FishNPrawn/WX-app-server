@@ -1,6 +1,8 @@
 package com.example.fishnprawn.freemarker;
 
 
+import com.example.fishnprawn.comment.Comment;
+import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
 import com.example.fishnprawn.swiper.SwiperImgDao;
 import com.example.fishnprawn.utils.JsonBodyHandler;
@@ -42,6 +44,9 @@ public class FreeMarkerController {
 
     @Autowired
     private SwiperImgDao repositorySwiperImg;
+
+    @Autowired
+    private CommentDao repositoryComment;
 
     @Autowired
     private WxOrderUtils wxOrder;
@@ -216,6 +221,14 @@ public class FreeMarkerController {
     public String menulistExcel(ModelMap map){
         map.put("url", "/category");
         return "/menulist/excel";
+    }
+
+
+    @GetMapping("/commentList")
+    public String comment(ModelMap map){
+        List<Comment> commentList = repositoryComment.findAll();
+        map.put("commentList", commentList);
+        return "/comment/comment";
     }
 
 
