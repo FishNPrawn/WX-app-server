@@ -94,6 +94,21 @@ CREATE TABLE `swiper_img`
     primary key (`swiper_img_id`)
 );
 
+CREATE TABLE `good_comment`
+(
+    `comment_id` int not null auto_increment,
+    `open_id` text not null,
+    `good_id` int not null,
+    `name` varchar(64) not null,
+    `content` text not null,
+    `image` text not null,
+    `comment_create_time` text not null,
+    primary key (`comment_id`)
+);
+
+INSERT INTO good_comment
+VALUES (1, '1111111', 4, 'jayingyoung', '此用户没有填写评价', 'url', now());
+
 
 INSERT INTO good
 VALUES (1, 'rockfish', 10, 100, 'fish1', 10, 'hi.jpg', 1, now(), now(), 'hi.jpg', 'hihi', 'hi', 5, '2001', '5','3', now(), 'hihi'  );
