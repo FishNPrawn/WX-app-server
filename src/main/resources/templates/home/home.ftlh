@@ -52,6 +52,12 @@
             </a>
         </li>
         <li class="li">
+            <a href="../commentList">
+                <span class="icon"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
+                <span class="title">评论</span>
+            </a>
+        </li>
+        <li class="li">
             <a href="../allswiper">
                 <span class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
                 <span class="title">轮播图</span>
