@@ -97,7 +97,7 @@ CREATE TABLE `swiper_img`
 CREATE TABLE `good_comment`
 (
     `comment_id` int not null auto_increment,
-    `open_id` text not null,
+    `username` text not null,
     `good_id` int not null,
     `name` varchar(64) not null,
     `content` text not null,
@@ -107,7 +107,7 @@ CREATE TABLE `good_comment`
 );
 
 INSERT INTO good_comment
-VALUES (1, '1111111', 4, 'jayingyoung', '此用户没有填写评价', 'url', now());
+VALUES (1, 'jayingyoung', 4, 'jayingyoung', '此用户没有填写评价', 'url', now());
 
 
 INSERT INTO good

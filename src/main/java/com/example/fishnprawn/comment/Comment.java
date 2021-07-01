@@ -21,8 +21,8 @@ public class Comment {
     @GenericGenerator(name = "native", strategy = "native")
     private int commentId;
 
-    @Column(name = "open_id")
-    private String openId;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "good_id")
     private int goodId;

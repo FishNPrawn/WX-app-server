@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class CommentView {
 
     private int commentId;
-    private String openId;
+    private String username;
     private int goodId;
     private String name;
     private String content;
@@ -21,7 +21,7 @@ public class CommentView {
 
     public void setAttributes(Comment comment){
         this.setCommentId(comment.getCommentId());
-        this.setOpenId(comment.getOpenId());
+        this.setUsername(comment.getUsername());
         this.setGoodId(comment.getGoodId());
         this.setName(comment.getName());
         this.setContent(comment.getContent());
