@@ -37,7 +37,7 @@
                                 <td>${commentList.goodId}</td>
                                 <td>${commentList.name}</td>
                                 <td>${commentList.content}</td>
-                                <td>${commentList.image}</td>
+                                <td><img height="40" width="40" src="${commentList.image}"></td>
                                 <td>${commentList.comment_create_time}</td>
                             </tr>
                         </#list>
