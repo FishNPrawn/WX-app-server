@@ -5,6 +5,8 @@ import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
 import com.example.fishnprawn.swiper.SwiperImgDao;
+import com.example.fishnprawn.userinfo.UserInfo;
+import com.example.fishnprawn.userinfo.UserInfoDao;
 import com.example.fishnprawn.utils.JsonBodyHandler;
 import com.example.fishnprawn.category.Category;
 import com.example.fishnprawn.category.CategoryDao;
@@ -29,6 +31,9 @@ public class FreeMarkerController {
     private final String JSESSIONID = "JSESSIONID";
 
     //---------------------------------------- Repository ------------------------------------------------//
+
+    @Autowired
+    private UserInfoDao repositoryUserInfo;
 
     @Autowired
     private CategoryDao repositoryCat;
@@ -230,6 +235,14 @@ public class FreeMarkerController {
         map.put("commentList", commentList);
         return "/comment/comment";
     }
+
+    @GetMapping("/userInfoList")
+    public String userinfo(ModelMap map){
+        List<UserInfo> userInfoList = repositoryUserInfo.findAll();
+        map.put("userInfoList", userInfoList);
+        return "/userinfo/userinfo";
+    }
+
 
 
 

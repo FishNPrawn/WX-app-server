@@ -106,6 +106,18 @@ CREATE TABLE `good_comment`
     primary key (`comment_id`)
 );
 
+CREATE TABLE `userinfo`
+(
+  `openid` varchar(64) not null,
+  `username` text not null,
+  `city` varchar(64),
+  `phone` varchar(32),
+  `user_create_time` text not null,
+  primary key (`openid`)
+);
+INSERT INTO userinfo
+VALUES ('1561651awef', 'jaying', 'gz', '13952556310',now());
+
 INSERT INTO good_comment
 VALUES (1, 'jayingyoung', 4, 'jayingyoung', '此用户没有填写评价', 'url', now());
 

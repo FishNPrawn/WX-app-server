@@ -75,6 +75,13 @@
             <span class="tooltip">管理员</span>
         </li>
         <li>
+            <a href="../userInfoList">
+                <i class="fa fa-weixin" aria-hidden="true"></i>
+                <span class="links_name">微信用户</span>
+            </a>
+            <span class="tooltip">微信用户</span>
+        </li>
+        <li>
             <a href="../category">
                 <i class='bx bx-category'></i>
                 <span class="links_name">食品分类</span>
