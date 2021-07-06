@@ -19,7 +19,7 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
-                        <tr class="table-info table-hover">
+                        <tr class="table-info table-hover text-center">
                             <th>comment_id</th>
                             <th>open_id</th>
                             <th>good_id</th>

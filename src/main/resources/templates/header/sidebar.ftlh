@@ -98,9 +98,9 @@
         <li>
             <a href="../orderlist">
                 <i class='bx bx-list-ol' ></i>
-                <span class="links_name">订单列表</span>
+                <span class="links_name">待发货订单</span>
             </a>
-            <span class="tooltip">订单列表</span>
+            <span class="tooltip">待发货订单</span>
         </li>
         <li>
             <a href="../allorder">

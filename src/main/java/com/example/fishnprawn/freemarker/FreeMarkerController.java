@@ -195,7 +195,11 @@ public class FreeMarkerController {
     //----------------------------------------所有订单---------------------------------------------------//
     // http://localhost:8080/allorder
     @GetMapping("/allorder")
-    public String allorder(){
+    public String allorder(ModelMap map){
+
+        List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
+        map.put("orderlist", orderlist);
+
         return "/wxorder/allorder";
     }
 
@@ -218,6 +222,10 @@ public class FreeMarkerController {
         // 总交易金额
         List<WxOrderDetail> orderdetailist = repositoryorderDetail.findAll();
         map.put("orderdetailist", orderdetailist);
+
+        // 用户量
+        List<UserInfo> userInfoList = repositoryUserInfo.findAll();
+        map.put("userInfoList", userInfoList);
 
         return "/home/home";
     }
