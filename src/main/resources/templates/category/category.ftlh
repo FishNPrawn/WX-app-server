@@ -37,7 +37,7 @@
                     <div class="col-md-12 column">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
-                            <tr class="table-info table-hover">
+                            <tr class="table-info table-hover text-center ">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>分类名字</th>
                                 <th>创建时间</th>

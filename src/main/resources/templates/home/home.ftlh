@@ -55,9 +55,9 @@
         <li>
             <a href="../orderlist">
                 <i class='bx bx-list-ol' ></i>
-                <span class="links_name">订单列表</span>
+                <span class="links_name">待发货订单</span>
             </a>
-            <span class="tooltip">订单列表</span>
+            <span class="tooltip">待发货订单</span>
         </li>
         <li>
             <a href="../allorder">
@@ -110,6 +110,11 @@
             <!-- MAIN CARDS STARTS HERE -->
             <div class="main__cards">
                 <#-- -----------------用户量------------------------------->
+                <#-- -----------------总交易金额------------------------------->
+                <#assign userCount = 0>
+                <#list userInfoList as userInfoList>
+                    <#assign userCount = userCount +  1 >
+                </#list>
                 <div class="card">
                     <i
                             class="fa fa-user-o fa-2x text-lightblue"
@@ -117,23 +122,29 @@
                     ></i>
                     <div class="card_inner">
                         <p class="text-primary-p mt-3">用户量</p>
-                        <span class="font-bold text-title">578</span>
+                        <span class="font-bold text-title">${userCount}</span>
                     </div>
                 </div>
 
                 <#-- -----------------总订单------------------------------->
+                <#assign totol_order = 0>
+                <#list orderlist as orderlist>
+                    <#assign totol_order = totol_order+1 >
+                </#list>
                 <div class="card">
                     <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                     <div class="card_inner">
                         <p class="text-primary-p mt-3">总订单</p>
-                        <span class="font-bold text-title">2467</span>
+                        <span class="font-bold text-title">${totol_order}</span>
                     </div>
                 </div>
 
                 <#-- -----------------未发货订单------------------------------->
                 <#assign order_no_deliver = 0>
                 <#list orderlist as orderlist>
-                    <#assign order_no_deliver = order_no_deliver+1 >
+                    <#if (orderlist.orderStatus) == 1>
+                        <#assign order_no_deliver = order_no_deliver+1 >
+                    </#if>
                 </#list>
                 <div class="card">
                     <i

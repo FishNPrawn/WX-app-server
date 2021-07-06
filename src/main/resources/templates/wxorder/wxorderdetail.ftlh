@@ -25,7 +25,7 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
-                        <tr class="table-info  table-hover">
+                        <tr class="table-info  table-hover text-center">
                             <th>order_detail_id</th>
                             <th>订单编号</th>
                             <th>good_id</th>

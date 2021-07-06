@@ -38,7 +38,7 @@
                     <div class="col-md-12 column">
                         <table class="table table-bordered" id="example" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
                             <thead class="thead-dark">
-                            <tr class="table-info  table-hover">
+                            <tr class="table-info  table-hover text-center">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>商品名</th>
                                 <th>分类</th>

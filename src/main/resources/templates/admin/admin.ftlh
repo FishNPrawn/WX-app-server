@@ -24,7 +24,7 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
-                        <tr class="table-info  table-hover">
+                        <tr class="table-info  table-hover text-center">
                             <th>Admin Id</th>
                             <th>用户名</th>
                             <th>密码</th>

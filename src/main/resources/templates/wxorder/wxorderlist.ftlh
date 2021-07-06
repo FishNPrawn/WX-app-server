@@ -13,7 +13,7 @@
         <div id="page-content-wrapper" class="container">
             <div class="d-flex justify-content-between">
                 <div class="center">
-                    <h2 class="orderlist_name">订单管理</h2>
+                    <h2 class="orderlist_name">待发货订单</h2>
                 </div>
                 <div>
                     <button class="btn btn-danger my-3" data-toggle="modal" data-target="#confirmModal">
@@ -27,7 +27,7 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
-                        <tr class="table-info  table-hover">
+                        <tr class="table-info  table-hover text-center">
                             <th>订单id</th>
                             <th>open id</th>
                             <th>订单编号</th>
@@ -44,26 +44,20 @@
                         <tbody>
                         <#list orderlist as order>
                             <tr>
-                                <td>${order.orderId}</td>
-                                <td>${order.openId}</td>
-                                <td>${order.order_number}</td>
-                                <td>${order.user_name}</td>
-                                <td>${order.user_address}</td>
-                                <td>${order.user_phone}</td>
-                                <td>${order.order_total_price}</td>
-                                <td>${order.order_create_time}</td>
-
-                                <#if order.orderStatus == 0>
-                                    <td><div class="prepare_deliver">订单完成0</div></td>
-                                <#elseif order.orderStatus == 1>
-                                    <td><div class="finish_deliver">待发货1</div></td>
-                                <#elseif order.orderStatus == 2>
-                                    <td><div class="finish_deliver">待收货2</div></td>
-                                <#elseif order.orderStatus == 3>
-                                    <td><div class="finish_deliver">待评价3</div></td>
+                                <#if order.orderStatus == 1>
+                                    <td>${order.orderId}</td>
+                                    <td>${order.openId}</td>
+                                    <td>${order.order_number}</td>
+                                    <td>${order.user_name}</td>
+                                    <td>${order.user_address}</td>
+                                    <td>${order.user_phone}</td>
+                                    <td>${order.order_total_price}</td>
+                                    <td>${order.order_create_time}</td>
+                                    <td><div class="prepare_deliver">待发货1</div></td>
+                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
                                 </#if>
 
-                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
+
 
 <#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
