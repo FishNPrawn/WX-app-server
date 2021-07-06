@@ -33,7 +33,7 @@
                         <#list commentList as commentList>
                             <tr>
                                 <td>${commentList.commentId}</td>
-                                <td>${commentList.openId}</td>
+                                <td>${commentList.username}</td>
                                 <td>${commentList.goodId}</td>
                                 <td>${commentList.name}</td>
                                 <td>${commentList.content}</td>
