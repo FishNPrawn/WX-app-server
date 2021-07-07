@@ -244,6 +244,12 @@ public class FreeMarkerController {
         return "/comment/comment";
     }
 
+    @GetMapping("/comment/deletesuccess")
+    public String commentDeleteSuccess(ModelMap map){
+        map.put("url", "/commentList");
+        return "/operation/success";
+    }
+
     @GetMapping("/userInfoList")
     public String userinfo(ModelMap map){
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();

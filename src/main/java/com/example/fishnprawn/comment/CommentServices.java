@@ -1,5 +1,6 @@
 package com.example.fishnprawn.comment;
 
+import com.example.fishnprawn.exception.NotFoundException;
 import com.example.fishnprawn.exception.ServiceException;
 import com.example.fishnprawn.exception.ServiceValidationException;
 import com.example.fishnprawn.services.Services;
@@ -72,7 +73,20 @@ public class CommentServices implements Services<Comment> {
     }
 
     @Override
-    public Comment deleteById(Integer anId) {
-        return null;
+    public Comment deleteById(Integer id) {
+
+        if(!commentDao.existsById(id)){
+            throw new NotFoundException();
+        }
+
+        try {
+            Comment comment = commentDao.findById(id).orElse(null);
+            commentDao.deleteById(id);
+            return comment;
+        }catch(RuntimeException e){
+            //Exception from repository
+            throw new ServiceException(e.getMessage());
+        }
+
     }
 }

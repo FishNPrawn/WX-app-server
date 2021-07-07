@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,9 +30,8 @@ public class WxOrderUtils {
     @Autowired
     private OrderRootDao orderRootDao;
 
-
+    //创建订单
     public WxOrderResponse createOrder(WxOrderResponse orderBean){
-
         WxOrderRoot wxOrderRoot = new WxOrderRoot();
         BeanUtils.copyProperties(orderBean, wxOrderRoot);
 
@@ -49,6 +49,20 @@ public class WxOrderUtils {
         log.info("[添加订单成功={}]", orderBean);
 
         return orderBean;
+    }
+
+    //取消订单
+    @Transactional
+    public WxOrderResponse cancelOrder(WxOrderResponse orderDTO){
+        WxOrderRoot orderMaster = new WxOrderRoot();
+
+        orderDTO.setOrderStatus(4);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        WxOrderRoot updateResult = orderRootDao.save(orderMaster);
+        if (updateResult == null) {
+            log.error("[取消订单]失败, orderMaster={}", orderMaster);
+        }
+        return orderDTO;
     }
 
     //查询单个订单

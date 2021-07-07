@@ -27,6 +27,7 @@
                             <th>内容</th>
                             <th>头像</th>
                             <th>创建时间</th>
+                            <th>删除</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,7 @@
                                 <td>${commentList.content}</td>
                                 <td><img height="40" width="40" src="${commentList.image}"></td>
                                 <td>${commentList.comment_create_time}</td>
+                                <td><a onclick="sendDeleteRequest(`${commentList.commentId}`)" href = "/comment/deletesuccess" class="btn btn-danger">删除</a>
                             </tr>
                         </#list>
                         </tbody>
@@ -50,7 +52,7 @@
 </div>
 
 <div id="overlay"></div>
-<script type="text/javascript"  src="${path}/js/style.js"></script>
+<script type="text/javascript"  src="${path}/js/comment.js"></script>
 
 
 </body>

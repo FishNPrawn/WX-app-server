@@ -51,7 +51,7 @@ public class CommentController {
         return "success";
     }
 
-//    拿到评论
+    //    拿到评论
     @GetMapping(path="/comment_filter", produces = "application/json")
     public ResponseEntity<Map<String, List<CommentView>>> comment_filter(@RequestParam(required = false) Map<String,String> filter){
         log.info("[Get Comment_filter_Request]");
@@ -71,6 +71,12 @@ public class CommentController {
         }
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path="/deletebyid/{id}", produces = "application/json")
+    public ResponseEntity<Comment> deleteCommentById(@PathVariable Integer id){
+        System.out.println("[Delete one comment] parameters: "+ id);
+        return new ResponseEntity<>(commentServices.deleteById(id), HttpStatus.OK);
     }
 
 }
