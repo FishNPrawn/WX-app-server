@@ -70,6 +70,20 @@ public class WxOrderController {
         return "success";
     }
 
+    //取消订单
+    @PostMapping("/cancel")
+    public String cancelOrder(@RequestParam("openid") String openid,
+                              @RequestParam("orderId") int orderId){
+        WxOrderResponse orderDTO = wxOrder.findOne(orderId);
+        if (orderDTO == null) {
+            log.error("【取消订单】查不到改订单, orderId={}", orderId);
+        }
+        //判断是否是自己的订单
+        wxOrder.cancelOrder(orderDTO);
+
+        return "Cancel Success";
+    }
+
     /*订单详情*/
     @GetMapping("/detail")
     public String detail(@RequestParam("orderId") int orderId) {

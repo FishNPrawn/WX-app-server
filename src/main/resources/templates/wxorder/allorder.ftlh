@@ -61,6 +61,8 @@
                                     <td><div class="wait_deliver">待收货2</div></td>
                                 <#elseif order.orderStatus == 3>
                                     <td><div class="wait_comment">待评价3</div></td>
+                                <#elseif order.orderStatus == 4>
+                                    <td><div class="order_cancel">订单取消4</div></td>
                                 </#if>
 
                                 <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
