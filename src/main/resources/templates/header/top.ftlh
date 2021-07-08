@@ -22,4 +22,10 @@
 
     <#--  boxicon  -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        .container{
+            max-width: 90%;
+        }
+    </style>
 </head>

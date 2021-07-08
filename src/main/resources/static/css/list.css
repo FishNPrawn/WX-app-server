@@ -54,6 +54,20 @@
     font-weight: bold;
 }
 
+.order_cancel{
+    background-color: rgb(255, 0, 0);
+    height: 30px;
+    width: 80px;
+    font-size: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
 td{
     text-align: center;
 }

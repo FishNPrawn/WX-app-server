@@ -123,11 +123,11 @@ public class ExcelImport {
                         }
                         //column: 3. good_stock-库存
                         else if(j == 3){
-                            goodInfo.setGood_stock(Integer.parseInt(data));
+                            goodInfo.setGood_weight(Double.parseDouble(data));
                         }
                         //column: 4. good_weight-重量
                         else if(j == 4){
-                            goodInfo.setGood_weight(Double.parseDouble(data));
+                            goodInfo.setGood_stock(Integer.parseInt(data));
                         }
                         //column: 5. good_supplier-供应商
                         else if(j == 5){
