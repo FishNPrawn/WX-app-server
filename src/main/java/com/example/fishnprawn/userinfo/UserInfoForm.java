@@ -9,6 +9,7 @@ public class UserInfoForm {
 
 
     private String openid;
+    private String session_key;
     private String username;
     private String city;
     private String phone;

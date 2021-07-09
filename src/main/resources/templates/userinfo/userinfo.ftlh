@@ -22,6 +22,7 @@
                         <thead class="thead-dark">
                         <tr class="table-info table-hover text-center">
                             <th>openid</th>
+                            <th>session_key</th>
                             <th>用户名</th>
                             <th>城市</th>
                             <th>电话</th>
@@ -32,6 +33,7 @@
                         <#list userInfoList as userInfoList>
                             <tr>
                                 <td>${userInfoList.openid}</td>
+                                <td>${userInfoList.session_key}</td>
                                 <td>${userInfoList.username}</td>
                                 <td>${userInfoList.city}</td>
                                 <td>${userInfoList.phone}</td>

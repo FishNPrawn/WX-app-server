@@ -26,6 +26,7 @@ public class UserInfoController {
         }else{
             UserInfo user = new UserInfo();
             user.setOpenid(userInfoForm.getOpenid());
+            user.setSession_key(userInfoForm.getSession_key());
             user.setUsername(userInfoForm.getUsername());
             user.setCity(userInfoForm.getCity());
             user.setPhone(userInfoForm.getPhone());

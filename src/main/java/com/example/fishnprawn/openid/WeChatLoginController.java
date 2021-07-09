@@ -58,7 +58,7 @@ public class WeChatLoginController {
 
         System.out.println(session_key);
         System.out.println(openid);
-        return openid;
+        return resultString;
     }
 
 }
