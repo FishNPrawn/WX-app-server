@@ -1,6 +1,8 @@
 package com.example.fishnprawn.freemarker;
 
 
+import com.example.fishnprawn.admin.Admin;
+import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
@@ -15,6 +17,7 @@ import com.example.fishnprawn.good.GoodDao;
 import com.example.fishnprawn.wxorder.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +34,8 @@ public class FreeMarkerController {
     private final String JSESSIONID = "JSESSIONID";
 
     //---------------------------------------- Repository ------------------------------------------------//
+    @Autowired
+    private AdminDao adminDao;
 
     @Autowired
     private UserInfoDao repositoryUserInfo;
@@ -143,6 +148,13 @@ public class FreeMarkerController {
         }
         //List<Admin> adminList = response;
         map.put("adminlist", adminList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/admin/admin";
     }
 
