@@ -14,6 +14,7 @@ public class UserInfo {
     @Id
     private String openid;
 
+    private String session_key;
     private String username;
     private String city;
     private String phone;
