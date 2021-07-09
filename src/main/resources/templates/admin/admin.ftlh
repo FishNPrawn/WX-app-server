@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
-
 <body>
 
 
@@ -10,6 +9,20 @@
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
     <#--主要内容content-->
+    <#if !isAdmin??>
+        <main>
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <div class="center d-flex">
+                        <img width="200" src="${path}/img/avatar.jpg" alt="" style="border-radius: 50%;"/>
+                        <h2 class="d-flex text-center align-content-center align-items-center">您不是管理员，没有管理权限</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+    <#else >
     <main>
         <div id="page-content-wrapper" class="container">
             <div class="d-flex justify-content-between">
@@ -55,6 +68,7 @@
             </div>
         </div>
     </main>
+    </#if>
 
 </div>
 <div class="modal-test" id="modal-test">
