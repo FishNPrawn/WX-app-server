@@ -30,8 +30,9 @@
                         批量添加
                     </button>
                 </div>
-
             </div>
+
+            <#include "../header/pagination.ftlh">
 
             <form action='/good/deleteGoodSelected' method="post" id="good_form">
                 <div class="row clearfix">
@@ -60,9 +61,9 @@
                                 <th>删除</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="loop">
                             <#list menulist as good>
-                                <tr>
+                                <tr class="list-group_name">
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input checkBoxes idtext" type="checkbox" name="idChecked" value="${good.good_id}">
@@ -209,5 +210,10 @@
 
 <div id="overlay"></div>
 <script type="text/javascript" src="${path}/js/menulist.js"></script>
+
+<#--分页面（页数）-->
+<script type="text/javascript" src="${path}/js/pagination.js"></script>
+
+
 </body>
 </html>
