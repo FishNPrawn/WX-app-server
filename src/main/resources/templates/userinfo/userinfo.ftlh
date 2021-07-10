@@ -16,6 +16,10 @@
                     <h2 class="category_name">微信用户</h2>
                 </div>
             </div>
+
+            <#--   页数       -->
+            <#include "../header/pagination.ftlh">
+
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
@@ -29,9 +33,9 @@
                             <th>创建时间</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="loop">
                         <#list userInfoList as userInfoList>
-                            <tr>
+                            <tr class="list-group_name">
                                 <td>${userInfoList.openid}</td>
                                 <td>${userInfoList.session_key}</td>
                                 <td>${userInfoList.username}</td>
@@ -47,6 +51,8 @@
     </main>
 </div>
 
+<#--分页面（页数）-->
+<script type="text/javascript" src="${path}/js/pagination.js"></script>
 
 
 </body>

@@ -21,6 +21,8 @@
                     </button>
                 </div>
             </div>
+            <#--   页数       -->
+            <#include "../header/pagination.ftlh">
 
             <#--  table start-->
             <div class="row clearfix">
@@ -41,9 +43,9 @@
                             <#--                            <th>删除</th>-->
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="loop">
                         <#list orderlist as order>
-                            <tr>
+                            <tr class="list-group_name">
                                 <td>${order.orderId}</td>
                                 <td>${order.openId}</td>
                                 <td>${order.order_number}</td>
@@ -102,6 +104,8 @@
 <div id="overlay"></div>
 <script type="text/javascript"  src="${path}/js/style.js"></script>
 
+<#--分页面（页数）-->
+<script type="text/javascript" src="${path}/js/pagination.js"></script>
 
 </body>
 </html>

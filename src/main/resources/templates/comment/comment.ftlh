@@ -15,6 +15,10 @@
                     <h2 class="category_name">用户评论</h2>
                 </div>
             </div>
+
+            <#--   页数       -->
+            <#include "../header/pagination.ftlh">
+
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <table class="table table-bordered">
@@ -30,9 +34,9 @@
                             <th>删除</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="loop">
                         <#list commentList as commentList>
-                            <tr>
+                            <tr class="list-group_name">
                                 <td>${commentList.commentId}</td>
                                 <td>${commentList.username}</td>
                                 <td>${commentList.goodId}</td>
@@ -54,6 +58,8 @@
 <div id="overlay"></div>
 <script type="text/javascript"  src="${path}/js/comment.js"></script>
 
+<#--分页面（页数）-->
+<script type="text/javascript" src="${path}/js/pagination.js"></script>
 
 </body>
 </html>
