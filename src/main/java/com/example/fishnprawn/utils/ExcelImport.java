@@ -1,6 +1,7 @@
 package com.example.fishnprawn.utils;
 
 import com.example.fishnprawn.category.Category;
+import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.good.Good;
 import freemarker.template.SimpleDate;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
@@ -58,9 +60,12 @@ public class ExcelImport {
                     if(cell != null){
                         cell.setCellType(Cell.CELL_TYPE_STRING);
                         String data = cell.getStringCellValue();
+                        data = data.trim();
                         //column: 0. category
                         if(j == 0){
-                            categoryInfo.setCat_name(data);
+                            categoryInfo.setCatname(data);
+                        }else if(j == 1){
+                            categoryInfo.setCat_image(data);
                         }
                     }
                 }

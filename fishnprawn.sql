@@ -27,6 +27,7 @@ create table `category`
 (
     `cat_id`   int         not null auto_increment,
     `cat_name` varchar(32) not null UNIQUE,
+    `cat_image` text,
     `cat_create_time` timestamp not null default current_timestamp comment '创建时间',
     `cat_update_time` timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
     primary key (`cat_id`)

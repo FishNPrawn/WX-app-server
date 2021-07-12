@@ -25,9 +25,12 @@ public class Category {
     private int cat_id;
 
     @NotNull
-    @Column(unique=true)
+    @Column(unique=true, name="cat_name")
     @Size(min = 1, max = 20)
-    private String cat_name;
+    private String catname;
+
+    @Column(name="cat_image")
+    private String cat_image;
 
     @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
     @Generated(GenerationTime.INSERT)
@@ -37,37 +40,6 @@ public class Category {
     @Generated(GenerationTime.INSERT)
     private LocalDateTime cat_update_time;
 
-    public int getCat_id() {
-        return cat_id;
-    }
-
-    public void setCat_id(int cat_id) {
-        this.cat_id = cat_id;
-    }
-
-    public String getCat_name() {
-        return cat_name;
-    }
-
-    public void setCat_name(String cat_name) {
-        this.cat_name = cat_name;
-    }
-
-    public LocalDateTime getCat_create_time() {
-        return cat_create_time;
-    }
-
-    public void setCat_create_time(LocalDateTime cat_create_time) {
-        this.cat_create_time = cat_create_time;
-    }
-
-    public LocalDateTime getCat_update_time() {
-        return cat_update_time;
-    }
-
-    public void setCat_update_time(LocalDateTime cat_update_time) {
-        this.cat_update_time = cat_update_time;
-    }
 }
 
 

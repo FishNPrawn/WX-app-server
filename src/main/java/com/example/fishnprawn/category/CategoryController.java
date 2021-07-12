@@ -32,7 +32,7 @@ public class CategoryController {
     private CategoryServices categoryServices;
 
     //http://localhost:8080/category/getAllcategory
-    @GetMapping(path = "/getAllcategory", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/json/getAllcategory", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, List<Map<String, String>>>> getAllCategory(@RequestParam(required = false) Map<String, String> filter) {
         System.out.println("[Get all category] | parameters: " + filter);
         //1. Turn keys into lowercase
@@ -51,7 +51,8 @@ public class CategoryController {
         result.put("data", new ArrayList<>());
         for(Category c: all){
             Map<String, String> temp = new HashMap<String, String>(1);
-            temp.put("name", c.getCat_name());
+            temp.put("cat_name", c.getCatname());
+            temp.put("cat_image", c.getCat_image());
             result.get("data").add(temp);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);

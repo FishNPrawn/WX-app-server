@@ -2,6 +2,7 @@ const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.getElementById('add_category_btm')
 const overlay = document.getElementById('overlay')
 const category_user_input = document.getElementById('category_user_input')
+const cat_image = document.getElementById('category_image');
 const closecat_close_btn = document.getElementById("cat_close_btn")
 
 //放上騰訊雲只要改這邊就好
@@ -30,29 +31,33 @@ overlay.addEventListener('click', () => {
 //send post(create new category) request to backend server
 closeModalButtons.addEventListener('click', () => {
     let cat_input_value = String(category_user_input.value).trim()
-    // console.log(cat_input_value)
+    let cat_image_value = String(cat_image.value).trim();
+
     let xhr = new XMLHttpRequest();
     let url = ([PREFIX, "add"]).join("/")
-    // let url = "https://fishnprawn.cn/fishnprawn/category/add"; // For 腾讯云
+
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    let data = JSON.stringify({"cat_name": cat_input_value});
+    let data = JSON.stringify({"catname": cat_input_value, "cat_image": cat_image_value});
     xhr.send(data);
     window.location.href = url
-    // window.location.href = 'https://fishnprawn.cn/fishnprawn/category' // For 腾讯云
+
 })
 
 function sendUpdateRequest(catid){
     let content_id = catid
     let contenteditable = document.getElementById(content_id)
     let text = contenteditable.textContent;
+    let contenteditableImage = document.getElementById(content_id+"Image");
+    let imagetext = contenteditableImage.textContent;
     // let catid = document.getElementById ( "catid" ).innerText
     let http = new XMLHttpRequest();
     let url = ([PREFIX, "updatebyid",`${catid}`]).join("/")
     // let url = `https://fishnprawn.cn/fishnprawn/category/updatebyid/${catid}` // For 腾讯云
     let data = JSON.stringify({
         "cat_id": content_id,
-        "cat_name": text
+        "catname": text,
+        "cat_image": imagetext
     });
     http.open("PUT", url);
     http.setRequestHeader("Content-Type", "application/json");

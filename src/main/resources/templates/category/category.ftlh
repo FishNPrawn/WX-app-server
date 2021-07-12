@@ -40,6 +40,7 @@
                             <tr class="table-info table-hover text-center ">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>分类名字</th>
+                                <th>分类图片</th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
                                 <th colspan="2">修改/删除</th>
@@ -54,7 +55,8 @@
                                             <span class="default"></span>
                                         </div>
                                     </td>
-                                    <td contenteditable="true" id=${category.cat_id}>${category.cat_name}</td>
+                                    <td contenteditable="true" id=${category.cat_id}>${category.catname}</td>
+                                    <td contenteditable="true" id="${category.cat_id}Image">${category.cat_image}</td>
                                     <td>${category.cat_create_time!''}</td>
                                     <td>${category.cat_update_time!''}</td>
                                     <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
@@ -80,6 +82,10 @@
             <div class="form-group">
                 <label>分类名字</label>
                 <input id="category_user_input" minlength="3" maxlength="20" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>分类图片</label>
+                <input id="category_image" type="text" class="form-control"/>
             </div>
             <a href="/category/addsuccess" id="add_category_btm" class="btn btn-info btn-dark">添加</a>
         </form>

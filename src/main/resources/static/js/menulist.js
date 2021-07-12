@@ -94,7 +94,7 @@ addGood_Btm.addEventListener('click', ()=>{
     // let url = "https://fishnprawn.cn/fishnprawn/category/add";  // For 腾讯云
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    let data = JSON.stringify({ "cat_name":good_category_input.value  });
+    let data = JSON.stringify({ "catname":good_category_input.value, "cat_image": "url1"  });
     xhr.send(data);
     //add goods
     xhr = new XMLHttpRequest();
@@ -201,7 +201,7 @@ function updateMenulist(r){
         // url = "https://fishnprawn.cn/category/add";      // For 腾讯云
         http.open("POST", url, true);
         http.setRequestHeader("Content-Type", "application/json");
-        data = JSON.stringify({ "cat_name":catnametext  });
+        data = JSON.stringify({ "catname":catnametext, "cat_image": "https://images.unsplash.com/photo-1533656878820-0331502c8f70?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"  });
         http.send(data);
     }
 }
