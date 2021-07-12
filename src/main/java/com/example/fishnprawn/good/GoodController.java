@@ -1,4 +1,6 @@
 package com.example.fishnprawn.good;
+import com.example.fishnprawn.category.Category;
+import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.utils.ExcelImport;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class GoodController {
     private GoodServices goodServices;
     @Autowired
     private GoodServices goodDao;
+    @Autowired
+    private CategoryDao categoryDao;
+
     //http://localhost:8080/fishnprawn/good/getAllgood
     @GetMapping(path = "/getAllgood", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllGood(){
@@ -51,6 +56,37 @@ public class GoodController {
             }
             current.add(element);
         }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    //http://localhost:8080/good/getGoodByCatetory
+    @GetMapping(path = "/getGoodByCatetory", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> getGoodByCatetory(){
+
+        Map<String, String> filter = new HashMap<>();
+        filter.put("filter", "");
+        List<Good> all = goodServices.getAll(filter);
+
+        Map<String, Object> result = new HashMap<>();
+        Map<String, List<Good>> goods = new HashMap<>();
+        //Object
+        for(Good g: all){
+            String cat = g.getCat_name();
+            goods.putIfAbsent(cat, new ArrayList<>());
+            goods.get(cat).add(g);
+        }
+        //data
+        result.put("data", new HashMap<String, Object>());
+        Map<String, Object> current = (Map<String, Object>) result.get("data");
+
+        for(String cat: goods.keySet()){
+            ArrayList<Good> allGood = new ArrayList<>();
+            current.put(cat, allGood);
+            for(Good g: goods.get(cat)){
+                allGood.add(g);
+            }
+        }
+
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

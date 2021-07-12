@@ -61,7 +61,7 @@ public class CategoryServices implements Services<Category> {
             if (filter.get("cat_id") != null)
                 category.setCat_id(Integer.parseInt(filter.get("cat_id")));
             if (filter.get("cat_name") != null)
-                category.setCat_name(filter.get("cat_name"));
+                category.setCatname(filter.get("cat_name"));
 
             ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAll()
                     .withIgnorePaths("cat_id");
