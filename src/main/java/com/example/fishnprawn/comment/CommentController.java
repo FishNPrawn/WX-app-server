@@ -1,9 +1,14 @@
 package com.example.fishnprawn.comment;
 
 
+import com.example.fishnprawn.wxorder.OrderRootDao;
+import com.example.fishnprawn.wxorder.WxOrderResponse;
+import com.example.fishnprawn.wxorder.WxOrderRoot;
+import com.example.fishnprawn.wxorder.WxOrderUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +32,15 @@ public class CommentController {
     @Autowired
     private CommentDao commentDao;
 
+    @Autowired
+    private WxOrderUtils wxOrder;
+
+    @Autowired
+    private OrderRootDao orderRootDao;
+
 //    添加评论
     @PostMapping(path="/createComment")
-    public String saveGood(@Valid CommentReq commentReq){ //if any attribute in v is not valid type, it will return 400
+    public String createComment(@RequestParam("orderId") int orderId, @Valid CommentReq commentReq){ //if any attribute in v is not valid type, it will return 400
 
         CommentResponse commentBean = new CommentResponse();
         List<Comment> commentList = new ArrayList<>();
@@ -43,6 +54,13 @@ public class CommentController {
         }
 
         commentBean.setCommentList(commentList);
+
+        //修改订单状态
+        WxOrderResponse orderDTO = wxOrder.findOne(orderId);
+        orderDTO.setOrderStatus(0);
+        WxOrderRoot orderMaster = new WxOrderRoot();
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        WxOrderRoot updateResult = orderRootDao.save(orderMaster);
 
         for (Comment commentDetail: commentBean.getCommentList()){
             commentDao.save(commentDetail);
