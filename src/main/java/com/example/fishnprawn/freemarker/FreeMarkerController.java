@@ -185,7 +185,18 @@ public class FreeMarkerController {
         List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
         map.put("orderlist", orderlist);
 
+        List<Good> menulist = repositoryGood.findAll();
+        map.put("menulist", menulist);
+
         return "wxorder/wxorderdetail";
+    }
+
+    // http://localhost:8080/orderlist
+    @GetMapping("/cancelorder")
+    public String cancelorder(ModelMap map){
+        List<WxOrderRoot> cancelorder = repositoryOrderRoot.findAll();
+        map.put("cancelorder", cancelorder);
+        return "/wxorder/cancelorder";
     }
 
     //----------------------------------------轮播图---------------------------------------------------//

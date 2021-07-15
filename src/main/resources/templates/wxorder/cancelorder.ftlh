@@ -13,16 +13,9 @@
         <div id="page-content-wrapper" class="container">
             <div class="d-flex justify-content-between">
                 <div class="center">
-                    <h2 class="orderlist_name">全部订单</h2>
-                </div>
-                <div>
-                    <button class="btn btn-danger my-3" data-toggle="modal" data-target="#confirmModal">
-                        导出订单Excel
-                    </button>
+                    <h2 class="orderlist_name">已取消订单</h2>
                 </div>
             </div>
-            <#--   页数       -->
-            <#include "../header/pagination.ftlh">
 
             <#--  table start-->
             <div class="row clearfix">
@@ -40,36 +33,23 @@
                             <th>创建时间</th>
                             <th>状态</th>
                             <th>详情</th>
-                            <#--                            <th>删除</th>-->
                         </tr>
                         </thead>
-                        <tbody id="loop">
-                        <#list orderlist?sort_by("orderStatus") as order>
-                            <tr class="list-group_name">
-                                <td>${order.orderId}</td>
-                                <td>${order.openId}</td>
-                                <td>${order.order_number}</td>
-                                <td>${order.user_name}</td>
-                                <td>${order.user_address}</td>
-                                <td>${order.user_phone}</td>
-                                <td>${order.order_total_price}</td>
-                                <td>${order.order_create_time}</td>
-
-                                <#if order.orderStatus == 0>
-                                    <td><div class="finish_deliver">订单完成0</div></td>
-                                <#elseif order.orderStatus == 1>
-                                    <td><div class="prepare_deliver">待发货1</div></td>
-                                <#elseif order.orderStatus == 2>
-                                    <td><div class="wait_deliver">待收货2</div></td>
-                                <#elseif order.orderStatus == 3>
-                                    <td><div class="wait_comment">待评价3</div></td>
-                                <#elseif order.orderStatus == 4>
-                                    <td><div class="order_cancel">订单取消4</div></td>
+                        <tbody>
+                        <#list cancelorder?sort_by("orderId")?reverse as order>
+                            <tr>
+                                <#if order.orderStatus == 4>
+                                    <td>${order.orderId}</td>
+                                    <td>${order.openId}</td>
+                                    <td>${order.order_number}</td>
+                                    <td>${order.user_name}</td>
+                                    <td>${order.user_address}</td>
+                                    <td>${order.user_phone}</td>
+                                    <td>${order.order_total_price}</td>
+                                    <td>${order.order_create_time}</td>
+                                    <td><div class="prepare_deliver">订单取消4</div></td>
+                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
                                 </#if>
-
-                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
-
-                                    <#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
                         </#list>
                         </tbody>
@@ -102,10 +82,8 @@
 </div>
 
 <div id="overlay"></div>
-<script type="text/javascript"  src="${path}/js/style.js"></script>
+<script type="text/javascript"  src="${path}/js/addGoodInOrder.js"></script>
 
-<#--分页面（页数）-->
-<script type="text/javascript" src="${path}/js/pagination.js"></script>
 
 </body>
 </html>

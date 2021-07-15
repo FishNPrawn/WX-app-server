@@ -16,6 +16,9 @@
                     <h2 class="orderlist_name">待发货订单</h2>
                 </div>
                 <div>
+                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                        添加订单
+                    </button>
                     <button class="btn btn-danger my-3" data-toggle="modal" data-target="#confirmModal">
                         导出订单Excel
                     </button>
@@ -38,11 +41,11 @@
                             <th>创建时间</th>
                             <th>状态</th>
                             <th>详情</th>
-<#--                            <th>删除</th>-->
+                            <th>删除订单</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <#list orderlist as order>
+                        <#list orderlist?sort_by("orderId")?reverse as order>
                             <tr>
                                 <#if order.orderStatus == 1>
                                     <td>${order.orderId}</td>
@@ -55,11 +58,26 @@
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">待发货1</div></td>
                                     <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
+                                    <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除订单</a></td>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="confirmModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">是否取消订单</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                                    <button type="button" class="btn btn-danger" onclick="window.parent.location.href='/order/cancelOrderServer?orderId=${order.orderId}';">取消订单</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </#if>
-
-
-
-<#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
                         </#list>
                         </tbody>
@@ -73,26 +91,8 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">是否导出订单Excel</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="window.parent.location.href='/order/export';">导出</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div id="overlay"></div>
-<script type="text/javascript"  src="${path}/js/style.js"></script>
+<script type="text/javascript"  src="${path}/js/createorder.js"></script>
 
 
 </body>

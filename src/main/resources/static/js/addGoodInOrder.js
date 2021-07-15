@@ -40,6 +40,7 @@ closeModalButtons.addEventListener('click', () => {
     xhr.setRequestHeader("Content-Type", "application/json");
     let data = JSON.stringify({"catname": cat_input_value, "cat_image": cat_image_value});
     xhr.send(data);
+    window.location.href = url
 
 })
 
@@ -62,6 +63,7 @@ function sendUpdateRequest(catid){
     http.setRequestHeader("Content-Type", "application/json");
     http.send(data);
 }
+
 function sendDeleteRequest(catid){
     let xhr = new XMLHttpRequest();
     let url = ([PREFIX, "deletebyid",`${catid}`]).join("/")
@@ -73,7 +75,7 @@ function sendDeleteRequest(catid){
 
 
 closecat_close_btn.addEventListener('click', ()=>{
-   // delete button todo
+    // delete button todo
     const modals = document.querySelectorAll('.modal-test.active')
     modals.forEach(modal => {
         closeModal(modal)
@@ -106,3 +108,5 @@ $(document).ready(function() {
         }
     });
 });
+
+
