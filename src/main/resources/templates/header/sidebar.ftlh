@@ -103,6 +103,13 @@
             <span class="tooltip">待发货订单</span>
         </li>
         <li>
+            <a href="../cancelorder">
+                <i class='bx bx-list-minus'></i>
+                <span class="links_name">已取消订单</span>
+            </a>
+            <span class="tooltip">已取消订单</span>
+        </li>
+        <li>
             <a href="../allorder">
                 <i class='bx bx-list-check' ></i>
                 <span class="links_name">全部订单</span>

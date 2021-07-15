@@ -1,5 +1,6 @@
 package com.example.fishnprawn.wxorder;
 
+import com.example.fishnprawn.exception.NotFoundException;
 import com.example.fishnprawn.exception.ServiceException;
 import com.example.fishnprawn.exception.ServiceValidationException;
 import com.example.fishnprawn.services.Services;
@@ -68,12 +69,29 @@ public class OrderDetailServices implements Services<WxOrderDetail> {
     }
 
     @Override
-    public WxOrderDetail save(WxOrderDetail anObj) {
-        return null;
+    public WxOrderDetail save(WxOrderDetail wxOrderDetail) {
+        try{
+            orderDetailDao.save(wxOrderDetail);
+            return wxOrderDetail;
+        }catch(RuntimeException e){
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override
-    public WxOrderDetail deleteById(Integer anId) {
-        return null;
+    public WxOrderDetail deleteById(Integer id) {
+
+        if(!orderDetailDao.existsById(id)){
+            throw new NotFoundException();
+        }
+
+        try{
+            WxOrderDetail wxOrderDetail = orderDetailDao.findById(id).orElse(null);
+            orderDetailDao.deleteById(id);
+            return wxOrderDetail;
+        }catch(RuntimeException e){
+            throw new ServiceException(e.getMessage());
+        }
+
     }
 }

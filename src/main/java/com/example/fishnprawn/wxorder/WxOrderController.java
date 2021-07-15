@@ -70,6 +70,15 @@ public class WxOrderController {
         return "success";
     }
 
+
+    // 给某个订单添加订单商品
+    @PostMapping(path="/add", produces="application/json")
+    public ResponseEntity<WxOrderDetail> addGoodInOrderDetail(@Valid @RequestBody WxOrderDetail wxOrderDetail){
+        System.out.println("[add one good]");
+        return new ResponseEntity<>(orderDetailServices.save(wxOrderDetail), HttpStatus.CREATED);
+    }
+
+
     //取消订单
     @PostMapping("/cancel")
     public String cancelOrder(@RequestParam("openid") String openid,
@@ -82,6 +91,30 @@ public class WxOrderController {
         wxOrder.cancelOrder(orderDTO);
 
         return "Cancel Success";
+    }
+
+    //取消订单
+    @GetMapping("/cancelOrderServer")
+    public ModelAndView cancelOrderServer(@RequestParam("orderId") int orderId,  ModelMap map){
+        ModelAndView modelAndView = new ModelAndView();
+
+        WxOrderResponse orderDTO = wxOrder.findOne(orderId);
+        if (orderDTO == null) {
+            log.error("【取消订单】查不到改订单, orderId={}", orderId);
+        }
+
+        wxOrder.cancelOrder(orderDTO);
+
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/orderlist");
+        return modelAndView;
+    }
+
+    //http://localhost:8080/order/deletebyid/{id}
+    @DeleteMapping(path="/deletebyid/{id}", produces = "application/json")
+    public ResponseEntity<WxOrderDetail> deleteOrderDetailById(@PathVariable Integer id){
+        System.out.println("[Delete one Order detail] parameters: "+ id);
+        return new ResponseEntity<>(orderDetailServices.deleteById(id), HttpStatus.OK);
     }
 
     /*订单详情*/
