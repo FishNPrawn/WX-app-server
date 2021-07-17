@@ -5,6 +5,8 @@ import com.example.fishnprawn.admin.Admin;
 import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
+import com.example.fishnprawn.shipment.Shipment;
+import com.example.fishnprawn.shipment.ShipmentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
 import com.example.fishnprawn.swiper.SwiperImgDao;
 import com.example.fishnprawn.userinfo.UserInfo;
@@ -65,6 +67,9 @@ public class FreeMarkerController {
 
     @Autowired
     private WxOrderDetailRemarkDao repositorywxorderDetailRemark;
+
+    @Autowired
+    private ShipmentDao repositoryShipment;
 
     @GetMapping("/")
     public String indexPage(){
@@ -195,6 +200,9 @@ public class FreeMarkerController {
 
         List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
         map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
+
+        List<Shipment> shipments = repositoryShipment.findAll();
+        map.put("shipments", shipments);
 
         return "wxorder/wxorderdetail";
     }

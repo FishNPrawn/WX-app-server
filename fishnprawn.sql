@@ -93,8 +93,17 @@ CREATE TABLE `wx_order_detail_remark`(
      `remark` text not null,
      primary key (`wx_order_detail_remark_id`)
 );
-INSERT INTO wx_order_detail_remark
-VALUES ('1', '40', '大沙发违法额外二娃');
+
+CREATE TABLE `shipment`(
+    `shipment_id` int not null auto_increment,
+    `order_number` text not null,
+    `shipment_number` text not null,
+    `shipment_company` text not null,
+    `shipment_create_time` timestamp not null default current_timestamp,
+    primary key (`shipment_id`)
+);
+INSERT INTO shipment
+VALUES ('1', '15616516516', 'sf123456789', '顺丰', now());
 
 
 CREATE TABLE `swiper_img`
