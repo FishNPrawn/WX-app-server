@@ -15,6 +15,8 @@ import com.example.fishnprawn.category.CategoryDao;
 import com.example.fishnprawn.good.Good;
 import com.example.fishnprawn.good.GoodDao;
 import com.example.fishnprawn.wxorder.*;
+import com.example.fishnprawn.wxorderremark.WxOrderDetailRemark;
+import com.example.fishnprawn.wxorderremark.WxOrderDetailRemarkDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -60,6 +62,9 @@ public class FreeMarkerController {
 
     @Autowired
     private WxOrderUtils wxOrder;
+
+    @Autowired
+    private WxOrderDetailRemarkDao repositorywxorderDetailRemark;
 
     @GetMapping("/")
     public String indexPage(){
@@ -187,6 +192,9 @@ public class FreeMarkerController {
 
         List<Good> menulist = repositoryGood.findAll();
         map.put("menulist", menulist);
+
+        List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
+        map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
 
         return "wxorder/wxorderdetail";
     }

@@ -2,31 +2,25 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
-<body>
+<link rel="stylesheet" href="${path}/css/wxorderdetail.css">
+<body onload="orderStatus()">
 
 
 <div id="wrapper" class="toggled container1">
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
+    <#--  table end-->
     <main>
         <#--主要内容content-->
         <div id="page-content-wrapper" class="container">
             <div class="d-flex justify-content-between">
-                <div class="center">
-                    <h2 class="orderlist_name">订单详情</h2>
+                <div class="center d-flex orderlist_name">
+                    <h2>订单详情</h2>
                 </div>
                 <div>
-                    <a class="btn btn-warning text-white my-3" onclick="history.go(-1)">返回</a>
-                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
-                        添加
-                    </button>
-                    <button class="btn btn-danger text-white my-3">
-                        发货
-                    </button>
+                    <a class="btn btn-secondary text-white my-3" onclick="history.go(-1)">返回</a>
                 </div>
             </div>
-
-            <#--  table end-->
             <#list orderlist as order>
                 <#list orderDTO.orderDetailList as orderdetail>
                     <#if order.orderId == orderDTO.orderId  >
@@ -37,10 +31,56 @@
                         <#assign order_number = order.order_number>
                         <#assign order_id_val = order.orderId>
                         <#assign orderId = order.orderId>
+                        <#assign order_status = order.orderStatus>
                     </#if>
                 </#list>
             </#list>
+            <#--    订单状态（隐藏）        -->
+            <div class="d-none" id="order_status">${order_status}</div>
 
+            <#--     物流信息       -->
+            <div class="pt-4 pb-4 order_status_bar">
+                <div class="rounder_line d-flex align-items-center">
+                    <span class="order_detail_rounder order_detail_rounder1" id="order_detail_rounder1"></span>
+                    <span class="submit_order_text submit_order_text1" id="submit_order_text1">提交订单</span>
+                    <span class="order_detail_line" id="order_detail_line1"></span>
+                </div>
+                <div class="rounder_line d-flex align-items-center pl-4">
+                    <span class="order_detail_rounder" id="order_detail_rounder2"></span>
+                    <span class="submit_order_text" id="submit_order_text2">已发货</span>
+                    <span class="order_detail_line" id="order_detail_line2"></span>
+                </div>
+                <div class="rounder_line d-flex align-items-center pl-4">
+                    <span class="order_detail_rounder" id="order_detail_rounder3"></span>
+                    <span class="submit_order_text" id="submit_order_text3">已签收</span>
+                    <span class="order_detail_line" id="order_detail_line3"></span>
+                </div>
+                <div class="rounder_line pl-4">
+                    <div class="d-flex align-items-center">
+                        <span class="order_detail_rounder" id="order_detail_rounder4"></span>
+                        <span class="submit_order_text" id="submit_order_text4">订单完成</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex orderlist_name">
+                    <span class="orderlist_name_line"></span>
+                    <div class="d-flex align-items-center text-center ml-2">
+                        <h6>订单号: </h6>
+                        <h6 class="pl-2" id="order_number">${order_number}</h6>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                        添加
+                    </button>
+                    <button class="btn btn-danger text-white my-3">
+                        发货
+                    </button>
+                </div>
+            </div>
             <#--  table start-->
             <div class="row clearfix">
                 <div class="col-md-12 column">
@@ -70,9 +110,9 @@
                                 <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
                                 <td>${orderdetail.good_quantity*orderdetail.good_price}</td>
-                                <td><a class="btn btn-danger btn-sm text-white"  data-toggle="modal" data-target="#confirmModal">删除</a>
+                                <td><a class="btn btn-danger btn-sm text-white"  data-toggle="modal" data-target="#confirmModal${orderdetail.order_detail_id}">删除</a>
                                 <!-- Modal -->
-                                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="confirmModal${orderdetail.order_detail_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -96,44 +136,140 @@
                 </div>
             </div>
 
-            <table class="table mt-5 table-striped" style="width: 60%">
-                <tr>
-                    <td class="column" style="width: 20%">订单编号</td>
-                    <td id="order_number">${order_number}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">order_id</td>
-                    <td id="order_id">${orderId}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">姓名</td>
-                    <td id="user_name">${user_name}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">电话</td>
-                    <td>${user_phone}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">配送地址</td>
-                    <td>${user_address}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">备注</td>
-                    <td>${comment}</td>
-                </tr>
-                <tr>
-                    <td class="column" style="width: 20%">总价格</td>
-                    <td>${order_price}</td>
-                </tr>
-            </table>
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex orderlist_name"></div>
+                <div>
+                    <h5>总价格: ${order_price}</h5>
+                </div>
+            </div>
+
+            <div class="userinfo_comment">
+            <#--  --------------------------------------    收件人信息     -------------------------------------- -->
+                <div>
+                    <div class="d-flex">
+                        <div class="center d-flex orderlist_name">
+                            <span class="orderlist_user_info_line"></span>
+                            <h6 class="d-flex align-items-center text-center ml-2 mt-1">收件人信息</h6>
+                        </div>
+                    </div>
+                    <table class="table mt-3" style="width: 80%">
+                        <tr class="d-none">
+                            <td class="column" style="width: 20%">order_id</td>
+                            <td id="order_id">${orderId}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="column" style="width: 20%">姓名</td>
+                            <td id="user_name">${user_name}</td>
+                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
+                        </tr>
+                        <tr>
+                            <td class="column" style="width: 20%">电话</td>
+                            <td>${user_phone}</td>
+                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
+                        </tr>
+                        <tr>
+                            <td class="column" style="width: 20%">配送地址</td>
+                            <td>${user_address}</td>
+                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+            <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
+
+            <#--  --------------------------------------    买家备注     -------------------------------------- -->
+                <div>
+                    <div class="d-flex">
+                        <div class="center d-flex orderlist_name">
+                            <span class="orderlist_user_info_line"></span>
+                            <h6 class="d-flex align-items-center text-center ml-2 mt-1">买家备注</h6>
+                        </div>
+                    </div>
+                    <div class="comment-box mt-3">${comment}的完全打完球端午期间低级趣味父亲节免费么我金佛；偶尔玩家们欺负；抢福利全微分腊味饭你</div>
+                </div>
+            <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
+            </div>
+
+            <#--  --------------------------------------    商家备注     -------------------------------------- -->
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex orderlist_name">
+                    <span class="orderlist_name_line"></span>
+                    <div class="d-flex align-items-center text-center ml-2 mt-1">
+                        <h6>商家备注(订单备注自行添加，仅平台客服可见)</h6>
+                    </div>
+                </div>
+                <div>
+                    <#assign remark_or_not_btn = false >
+                    <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                        <#if wxOrderDetailRemarks.order_id == orderId >
+                            <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
+                                修改备注
+                            </button>
+                            <#assign remark_or_not_btn = true >
+                        </#if>
+                    </#list>
+                    <#if remark_or_not_btn == false >
+                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
+                            添加备注
+                        </button>
+                    </#if>
+                </div>
+            </div>
+
+            <div class="admin_remark mb-4">
+                <h6 class="pl-4">备注详情:</h6>
+                <#assign remark_or_not = false >
+                <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                    <#if wxOrderDetailRemarks.order_id == orderId >
+                        <h6 class="ml-2 remark_value_db">${wxOrderDetailRemarks.remark}</h6>
+                        <h6 class="d-none" id="wx_order_detail_remark_id">${wxOrderDetailRemarks.wx_order_detail_remark_id}</h6>
+                        <#assign remark_or_not = true >
+                    </#if>
+                </#list>
+                <#if remark_or_not == false >
+                    <h6 class="ml-2 remark_value_db">无备注</h6>
+                </#if>
+            </div>
+            <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
+
+            <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
+            <div class="d-flex">
+                <div class="center d-flex orderlist_name">
+                    <span class="orderlist_user_info_line"></span>
+                    <h6 class="d-flex align-items-center text-center ml-2 mt-1">包裹及物流信息</h6>
+                </div>
+            </div>
+
+            <div class="package_info_wrapper mb-4">
+                <div class="package_info">
+                    <h6>包裹信息</h6>
+                    <div class="mt-4">
+                        <div class="deliver_company d-flex">
+                            <h6 class="deliver_company_title">快递公司</h6>
+                            <h6 class="deliver_company_value">顺丰快递</h6>
+                        </div>
+                        <div class="deliver_package d-flex mt-1">
+                            <h6 class="deliver_package_title mt-2">快递单号</h6>
+                            <h6 class="deliver_package_value mt-2" id="deliver_package_number">165165156165165165</h6>
+                            <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="package_info_line"></div>
+                <div class="package_status">
+
+                </div>
+            </div>
+            <#--  --------------------------------------    包裹及物流信息 end  -------------------------------------- -->
+
+
         </div>
     </main>
-
-
 </div>
 
 
-
+<#--添加商品-->
 <div class="modal-test" id="modal-test">
     <div class="modal-header-test">
         <div class="title-test">添加订单商品</div>
@@ -156,6 +292,40 @@
         </div>
         <a href="/detail?orderId=${orderId}" id="add_good_detail" class="btn btn-info btn-dark">添加</a>
     </div>
+</div>
+<#--添加商品end-->
+
+<#--添加备注-->
+<div class="modal-test" id="modal-test-remark">
+    <div class="modal-header-test">
+        <div class="title-test">添加备注</div>
+        <button data-close-button class="close-button-test" id="remark_close" >&times;</button>
+    </div>
+    <div class="modal-body-test d-block">
+        <textarea name="remark" id="remark_value" class="remark_textarea"></textarea>
+        <a href="#" class="btn btn-info btn-dark" id="save_remark">保存</a>
+    </div>
+</div>
+<#--添加备注end-->
+<#--修改备注-->
+<div class="modal-test" id="modal-test-remark-update">
+    <div class="modal-header-test">
+        <div class="title-test">修改备注</div>
+        <button data-close-button class="close-button-test" id="remark_close_update" >&times;</button>
+    </div>
+    <div class="modal-body-test d-block">
+        <textarea name="remark" id="remark_value_update" class="remark_textarea"></textarea>
+        <a href="#" class="btn btn-info btn-dark" id="update_remark">修改</a>
+    </div>
+
+</div>
+<#--修改备注end-->
+
+
+<#--Toast-->
+<div id="toast">
+    <div id="img">复制</div>
+    <div id="desc">复制成功</div>
 </div>
 
 <div id="overlay"></div>

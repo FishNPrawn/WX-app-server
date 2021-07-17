@@ -87,6 +87,15 @@ CREATE TABLE `wx_order_detail` (
     primary key (`order_detail_id`)
 );
 
+CREATE TABLE `wx_order_detail_remark`(
+     `wx_order_detail_remark_id`   int not null auto_increment,
+     `order_id` int not null,
+     `remark` text not null,
+     primary key (`wx_order_detail_remark_id`)
+);
+INSERT INTO wx_order_detail_remark
+VALUES ('1', '40', '大沙发违法额外二娃');
+
 
 CREATE TABLE `swiper_img`
 (
