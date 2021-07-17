@@ -251,19 +251,23 @@ save_remark_btn.addEventListener('click', ()=>{
     let order_id_value = order_id.textContent;
     console.log(order_id_value)
 
-    let xhr = new XMLHttpRequest();
-    let url = ([PREFIX, "remark"]).join("/")
-    url = ([url, "add"]).join("/")
+    if(remark_textarea_value == ""){
+        alert("备注不能为空");
+    }else{
+        let xhr = new XMLHttpRequest();
+        let url = ([PREFIX, "remark"]).join("/")
+        url = ([url, "add"]).join("/")
 
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
 
-    let data = JSON.stringify({
-        "order_id": order_id_value,
-        "remark": remark_textarea_value
-    });
-    xhr.send(data);
-    setTimeout(function(){ location.reload(); }, 1000);
+        let data = JSON.stringify({
+            "order_id": order_id_value,
+            "remark": remark_textarea_value
+        });
+        xhr.send(data);
+        setTimeout(function(){ location.reload(); }, 1000);
+    }
 })
 
 
@@ -278,21 +282,23 @@ function updateRemark(){
         let order_id_value = order_id.textContent;
         let remark_textarea_value = document.getElementById('remark_value_update').value;
 
+        if(remark_textarea_value == ""){
+            alert("备注不能为空");
+        }else{
+            let http = new XMLHttpRequest();
+            let url = ([PREFIX, "remark"]).join("/")
+            url = ([url, "updatebyid",`${wx_order_detail_remark_id}`]).join("/")
 
-        let http = new XMLHttpRequest();
-        let url = ([PREFIX, "remark"]).join("/")
-        url = ([url, "updatebyid",`${wx_order_detail_remark_id}`]).join("/")
-
-        let data = JSON.stringify({
-            "wx_order_detail_remark_id": wx_order_detail_remark_id,
-            "order_id": order_id_value,
-            "remark": remark_textarea_value
-        });
-        http.open("PUT", url);
-        http.setRequestHeader("Content-Type", "application/json");
-        http.send(data);
-        setTimeout(function(){ location.reload(); }, 1000);
-
+            let data = JSON.stringify({
+                "wx_order_detail_remark_id": wx_order_detail_remark_id,
+                "order_id": order_id_value,
+                "remark": remark_textarea_value
+            });
+            http.open("PUT", url);
+            http.setRequestHeader("Content-Type", "application/json");
+            http.send(data);
+            setTimeout(function(){ location.reload(); }, 1000);
+        }
     }
 }
 
