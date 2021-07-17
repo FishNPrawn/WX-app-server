@@ -65,6 +65,19 @@ public class WxOrderUtils {
         return orderDTO;
     }
 
+    @Transactional
+    public WxOrderResponse changeShipmentStatus(WxOrderResponse orderDTO){
+        WxOrderRoot orderMaster = new WxOrderRoot();
+
+        orderDTO.setOrderStatus(2);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        WxOrderRoot updateResult = orderRootDao.save(orderMaster);
+        if (updateResult == null) {
+            log.error("[订单发出]失败, orderMaster={}", orderMaster);
+        }
+        return orderDTO;
+    }
+
     //查询单个订单
     public WxOrderResponse findOne(Integer order_id) {
 

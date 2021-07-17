@@ -76,7 +76,7 @@
                     <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                         添加
                     </button>
-                    <button class="btn btn-danger text-white my-3">
+                    <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
                         发货
                     </button>
                 </div>
@@ -88,7 +88,6 @@
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
                             <th>order_detail_id</th>
-                            <th>订单编号</th>
                             <th>good_id</th>
                             <th>商品图</th>
                             <th>商品名</th>
@@ -103,7 +102,6 @@
                         <#list orderDTO.orderDetailList as orderdetail>
                             <tr>
                                 <td>${orderdetail.order_detail_id}</td>
-                                <td>${orderdetail.order_number}</td>
                                 <td>${orderdetail.good_id}</td>
                                 <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
                                 <td>${orderdetail.good_name}</td>
@@ -247,12 +245,29 @@
                     <div class="mt-4">
                         <div class="deliver_company d-flex">
                             <h6 class="deliver_company_title">快递公司</h6>
-                            <h6 class="deliver_company_value">顺丰快递</h6>
+                            <#assign shipment_or_not = false >
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="deliver_company_value">${shipments.shipment_company}</h6>
+                                    <#assign shipment_or_not = true >
+                                    <#break>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_company_value">暂无快递公司</h6>
+                            </#if>
                         </div>
                         <div class="deliver_package d-flex mt-1">
                             <h6 class="deliver_package_title mt-2">快递单号</h6>
-                            <h6 class="deliver_package_value mt-2" id="deliver_package_number">165165156165165165</h6>
-                            <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="deliver_package_value mt-2" id="deliver_package_number${shipments.shipment_id}">${shipments.shipment_number}</h6>
+                                    <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number${shipments.shipment_id}')">复制</button>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_package_value  mt-2">暂无订单编号</h6>
+                            </#if>
                         </div>
                     </div>
                 </div>
@@ -295,6 +310,36 @@
 </div>
 <#--添加商品end-->
 
+<#--发货-->
+<div class="modal-test" id="modal-test-shipment">
+    <div class="modal-header-test">
+        <div class="title-test">发货</div>
+        <button data-close-button class="close-button-test" id="shipment_close" >&times;</button>
+    </div>
+    <div class="modal-body-test d-block">
+        <div class="d-flex form-group">
+            <h6>订单编号</h6>
+            <h6 class="mx-sm-3">${order_number}</h6>
+        </div>
+        <div class="form-inline">
+            <h6>快递公司</h6>
+            <select class="form-select mx-sm-3 mb-2" id="shipmentSelect">
+                <option value="顺丰速运">顺丰速运</option>
+                <option value="中通速递">中通速递</option>
+                <option value="圆通速递">圆通速递</option>
+                <option value="申通快递">申通快递</option>
+                <option value="韵达速递">韵达速递</option>
+            </select>
+        </div>
+        <div class="form-inline mt-2">
+            <h6>快递单号</h6>
+            <input type="text" class="form-control mx-sm-3 mb-2 w-75" id="shipment_number" required/>
+        </div>
+        <a href="#" class="btn btn-info btn-dark" id="save_shipment">发货</a>
+    </div>
+</div>
+<#--发货-->
+
 <#--添加备注-->
 <div class="modal-test" id="modal-test-remark">
     <div class="modal-header-test">
@@ -307,6 +352,7 @@
     </div>
 </div>
 <#--添加备注end-->
+
 <#--修改备注-->
 <div class="modal-test" id="modal-test-remark-update">
     <div class="modal-header-test">
@@ -317,7 +363,6 @@
         <textarea name="remark" id="remark_value_update" class="remark_textarea"></textarea>
         <a href="#" class="btn btn-info btn-dark" id="update_remark">修改</a>
     </div>
-
 </div>
 <#--修改备注end-->
 

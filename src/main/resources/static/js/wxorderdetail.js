@@ -7,6 +7,8 @@ const cat_image = document.getElementById('category_image');
 const closecat_close_btn = document.getElementById("cat_close_btn")
 const remark_close = document.getElementById("remark_close")
 const remark_close_update = document.getElementById("remark_close_update")
+const shipmentBtn = document.getElementById('shipmentBtn');
+const shipment_close = document.getElementById('shipment_close');
 
 //选择
 var selectGoodTag = document.getElementById('all_good')
@@ -101,6 +103,7 @@ const TABLE = "order"
 const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
 //放上騰訊雲只要改這邊就好
 
+//-----------------------Modal----------------------------
 openModalButtons.forEach(button => {
     button.addEventListener('click', () => {
         const modal = document.querySelector(button.dataset.modalTarget)
@@ -111,13 +114,56 @@ openModalButtons.forEach(button => {
 overlay.addEventListener('click', () => {
     const modals = document.querySelectorAll('.modal-test.active')
     const modals_remark = document.querySelectorAll('.modal-test-remark.active')
+    const modals_shipment = document.querySelectorAll('.modal-test-shipment.active')
     modals.forEach(modal => {
         closeModal(modal)
     })
     modals_remark.forEach(modal => {
         closeModal(modal)
     })
+    modals_shipment.forEach(modal => {
+        closeModal(modal)
+    })
 })
+
+closecat_close_btn.addEventListener('click', ()=>{
+    const modals = document.querySelectorAll('.modal-test.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
+})
+
+remark_close.addEventListener('click', ()=>{
+    const modals_remark_value = document.querySelectorAll('.modal-test.active')
+    modals_remark_value.forEach(modal => {
+        closeModal(modal)
+    })
+})
+remark_close_update.addEventListener('click', ()=>{
+    const modals_remark_update_value = document.querySelectorAll('.modal-test.active')
+    modals_remark_update_value.forEach(modal => {
+        closeModal(modal)
+    })
+})
+shipment_close.addEventListener('click', ()=>{
+    const modals_shipment_value = document.querySelectorAll('.modal-test.active')
+    modals_shipment_value.forEach(modal => {
+        closeModal(modal)
+    })
+})
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
+//-----------------------Modal--end--------------------------
 
 var good_id;
 var good_name;
@@ -194,37 +240,7 @@ function sendDeleteRequest(order_detail_id){
 }
 
 
-closecat_close_btn.addEventListener('click', ()=>{
-    const modals = document.querySelectorAll('.modal-test.active')
-    modals.forEach(modal => {
-        closeModal(modal)
-    })
-})
 
-remark_close.addEventListener('click', ()=>{
-    const modals_remark_value = document.querySelectorAll('.modal-test.active')
-    modals_remark_value.forEach(modal => {
-        closeModal(modal)
-    })
-})
-remark_close_update.addEventListener('click', ()=>{
-    const modals_remark_update_value = document.querySelectorAll('.modal-test.active')
-    modals_remark_update_value.forEach(modal => {
-        closeModal(modal)
-    })
-})
-
-function openModal(modal) {
-    if (modal == null) return
-    modal.classList.add('active')
-    overlay.classList.add('active')
-}
-
-function closeModal(modal) {
-    if (modal == null) return
-    modal.classList.remove('active')
-    overlay.classList.remove('active')
-}
 
 
 // checkbox select all
@@ -270,9 +286,6 @@ save_remark_btn.addEventListener('click', ()=>{
     }
 })
 
-
-
-
 function updateRemark(){
     document.getElementById("remark_value_update").value =  document.querySelector('.remark_value_db').innerHTML;
 
@@ -304,5 +317,37 @@ function updateRemark(){
 
 
 
+//发货
+const save_shipment = document.getElementById('save_shipment');
+const shipment_number = document.getElementById('shipment_number')
+const shipmentSelect = document.getElementById('shipmentSelect')
+save_shipment.addEventListener('click', ()=>{
+    let order_id_value = order_id.textContent;
+    let order_number_value = order_number.textContent   //订单标号
+    let shipment_number_value = shipment_number.value //快递单号
+    var shipment_company_value = shipmentSelect.value;
 
-// remark_value_update
+    if(shipment_number_value == ""){
+        alert("必须填写快递单号")
+    }else{
+        let xhr = new XMLHttpRequest();
+        let url = ([PREFIX, "shipment"]).join("/")
+        url = ([url, "add"]).join("/")
+        url = url + "?orderId=" + `${order_id_value}`
+        console.log(url)
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        let data = JSON.stringify({
+            "order_number": order_number_value,
+            "shipment_number": shipment_number_value,
+            "shipment_company": shipment_company_value
+        });
+        xhr.send(data);
+        setTimeout(function(){ location.reload(); }, 1000);
+    }
+
+
+
+})
