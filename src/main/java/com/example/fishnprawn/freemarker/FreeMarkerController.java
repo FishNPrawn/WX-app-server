@@ -181,6 +181,13 @@ public class FreeMarkerController {
     public String orderlist(ModelMap map){
         List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
         map.put("orderlist", orderlist);
+
+        List<Good> menulist = repositoryGood.findAll();
+        map.put("menulist", menulist);
+
+        List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
+        map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
+
         return "/wxorder/wxorderlist";
     }
 
