@@ -347,7 +347,4 @@ save_shipment.addEventListener('click', ()=>{
         xhr.send(data);
         setTimeout(function(){ location.reload(); }, 1000);
     }
-
-
-
 })

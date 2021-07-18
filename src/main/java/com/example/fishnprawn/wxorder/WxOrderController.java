@@ -70,6 +70,39 @@ public class WxOrderController {
         return "success";
     }
 
+    /* 创建订单 */
+    @PostMapping("/createByOwn")
+    public String createByOwn(@Valid @RequestBody OrderReq orderReq){
+        //数据转换
+        WxOrderResponse orderBean = new WxOrderResponse();
+        orderBean.setOrder_number(orderReq.getOrder_number());
+        orderBean.setOpenId(orderReq.getOpenId());
+        orderBean.setAccess_token(orderReq.getAccess_token());
+        orderBean.setUser_name(orderReq.getUser_name());
+        orderBean.setUser_address(orderReq.getUser_address());
+        orderBean.setUser_phone(orderReq.getUser_phone());
+        orderBean.setOrder_total_price(orderReq.getOrder_total_price());
+        orderBean.setOrder_create_time(LocalDateTime.now());
+        orderBean.setOrder_comment(orderReq.getOrder_comment());
+        orderBean.setOrderStatus(orderReq.getOrderStatus());
+        List<WxOrderDetail> orderDetailList = new ArrayList<>();
+
+        try{
+            orderDetailList = new Gson().fromJson(orderReq.getItems(), new TypeToken<List<WxOrderDetail>>(){}.getType());
+            System.out.println("order_Detail: " +orderDetailList);
+
+        }catch (Exception e){
+            log.error("【对象转换】错误, string={}", orderReq.getItems());
+        }
+
+        orderBean.setOrderDetailList(orderDetailList);
+
+        wxOrder.createOrder(orderBean);
+
+
+        return "success";
+    }
+
 
     // 给某个订单添加订单商品
     @PostMapping(path="/add", produces="application/json")
