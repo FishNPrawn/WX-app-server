@@ -6,9 +6,7 @@ const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const add_good_detail = document.getElementById('add_good_detail')
-const addRemark = document.getElementById('addRemark');
 const overlay = document.getElementById('overlay')
-const category_user_input = document.getElementById('category_user_input')
 const cat_image = document.getElementById('category_image');
 const closecat_close_btn = document.getElementById("cat_close_btn")
 const remark_close = document.getElementById("remark_close")
@@ -22,6 +20,7 @@ const order_number = document.getElementById('order_number')
 
 // 物流信息
 let order_status = document.getElementById('order_status').textContent;
+
 //订单状态条
 function orderStatus(){
     if(order_status == 0){
@@ -68,7 +67,6 @@ function orderStatus(){
         document.getElementById('submit_order_text1').style.color = "red";
         document.getElementById("submit_order_text1").style.fontWeight = "700";
     }
-
 }
 
 // 复制名字
@@ -239,27 +237,6 @@ function sendDeleteRequest(order_detail_id){
     setTimeout(function(){ location.reload(); }, 1000);
 }
 
-
-
-
-
-// checkbox select all
-$(document).ready(function() {
-    $('#selectAllBoxes').click(function(event){
-        if(this.checked){
-            $('.checkBoxes').each(function(){
-                this.checked = true;
-            });
-        }else{
-            $('.checkBoxes').each(function(){
-                this.checked = false;
-            });
-        }
-    });
-});
-
-
-
 // 添加备注
 const save_remark_btn = document.getElementById('save_remark');
 save_remark_btn.addEventListener('click', ()=>{
@@ -317,7 +294,7 @@ function updateRemark(){
 
 
 
-//发货
+//发货按钮
 const save_shipment = document.getElementById('save_shipment');
 const shipment_number = document.getElementById('shipment_number')
 const shipmentSelect = document.getElementById('shipmentSelect')

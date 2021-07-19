@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <#include "../header/top.ftlh">
     <link rel="stylesheet" type="text/css" href="${path}/css/sidebar.css">
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-            crossorigin="anonymous"
-    />
     <title>欢喜食货</title>
 </head>
 <body id="body">
 
-<div class="sidebar">
+<div class="sidebar nav__menu nav" id="nav-menu">
     <ul class="nav_list">
         <li>
             <a href="../home">
@@ -93,9 +87,9 @@
             <a href='../logout'>
                 <i class='bx bx-log-out' id="log_out" ></i>
             </a>
-
         </div>
     </div>
+    <i class="fa fa-times nav__close" id="nav-close"></i>
 </div>
 
 <div class="container1">
@@ -233,5 +227,6 @@
 </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="${path}/js/home.js"></script>
+<script type="text/javascript" src="${path}/js/showmenu.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <nav class="navbar">
-    <div class="nav_icon">
+    <div class="nav_icon" id="nav-toggle">
         <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
     <div class="navbar__left">
-        <h4 class="mt-2"><a href="../home" class="text-decoration-none" style="color: #2e4a66;">欢喜食货</a></h4>
+        <h4 class="mt-2 ml-4"><a href="../home" class="text-decoration-none" style="color: #2e4a66;">欢喜食货</a></h4>
     </div>
     <div class="navbar__right">
         <a href="../home">
