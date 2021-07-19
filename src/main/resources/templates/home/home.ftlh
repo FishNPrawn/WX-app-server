@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <#include "../header/top.ftlh">
     <link rel="stylesheet" type="text/css" href="${path}/css/sidebar.css">
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-            crossorigin="anonymous"
-    />
     <title>欢喜食货</title>
 </head>
 <body id="body">
 
-<div class="sidebar">
+<div class="sidebar nav__menu nav" id="nav-menu">
     <ul class="nav_list">
         <li>
             <a href="../home">
@@ -93,9 +87,9 @@
             <a href='../logout'>
                 <i class='bx bx-log-out' id="log_out" ></i>
             </a>
-
         </div>
     </div>
+    <i class="fa fa-times nav__close" id="nav-close"></i>
 </div>
 
 <div class="container1">
@@ -147,19 +141,35 @@
                 </div>
 
                 <#-- -----------------未发货订单------------------------------->
+                <#assign order_finish = 0>
                 <#assign order_no_deliver = 0>
+                <#assign order_wait_get_number = 0>
+                <#assign order_wait_comment= 0>
+                <#assign order_cancel_number = 0>
                 <#list orderlist as orderlist>
+                    <#if (orderlist.orderStatus) == 0>
+                        <#assign order_finish = order_finish+1 >
+                    </#if>
                     <#if (orderlist.orderStatus) == 1>
                         <#assign order_no_deliver = order_no_deliver+1 >
+                    </#if>
+                    <#if (orderlist.orderStatus) == 2>
+                        <#assign order_wait_get_number = order_wait_get_number+1 >
+                    </#if>
+                    <#if (orderlist.orderStatus) == 3>
+                        <#assign order_wait_comment = order_wait_comment+1 >
+                    </#if>
+                    <#if (orderlist.orderStatus) == 4>
+                        <#assign order_cancel_number = order_cancel_number+1 >
                     </#if>
                 </#list>
                 <div class="card">
                     <i
-                            class="fa fa-cart-plus fa-2x text-yellow"
+                            class="fa fa-calendar-check-o fa-2x text-yellow"
                             aria-hidden="true"
                     ></i>
                     <div class="card_inner">
-                        <p class="text-primary-p mt-3">未发货订单</p>
+                        <p class="text-primary-p mt-3">已完成订单</p>
                         <span class="font-bold text-title">${order_no_deliver}</span>
                     </div>
                 </div>
@@ -198,7 +208,7 @@
                 <div class="charts__right">
                     <div class="charts__right__title">
                         <div>
-                            <h1>Stats Reports</h1>
+                            <h1>订单报告</h1>
                             <p>Cupertino, California, USA</p>
                         </div>
                         <i class="fa fa-usd" aria-hidden="true"></i>
@@ -206,23 +216,23 @@
 
                     <div class="charts__right__cards">
                         <div class="card1">
-                            <h1>Income</h1>
-                            <p>$75,300</p>
+                            <h1>待发货</h1>
+                            <p>${order_no_deliver}</p>
                         </div>
 
                         <div class="card2">
-                            <h1>Sales</h1>
-                            <p>$124,200</p>
+                            <h1>待收货</h1>
+                            <p>${order_wait_get_number}</p>
                         </div>
 
                         <div class="card3">
-                            <h1>Users</h1>
-                            <p>3900</p>
+                            <h1>待评价</h1>
+                            <p>${order_wait_comment}</p>
                         </div>
 
                         <div class="card4">
-                            <h1>Orders</h1>
-                            <p>1881</p>
+                            <h1>订单取消</h1>
+                            <p>${order_cancel_number}</p>
                         </div>
                     </div>
                 </div>
@@ -233,5 +243,6 @@
 </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="${path}/js/home.js"></script>
+<script type="text/javascript" src="${path}/js/showmenu.js"></script>
 </body>
 </html>

@@ -76,9 +76,16 @@
                     <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                         添加
                     </button>
-                    <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
-                        发货
-                    </button>
+                    <#if order_status == 1 || order_status==2 || order_status==3>
+                        <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
+                            发货
+                        </button>
+                        <#else>
+                            <button class="btn btn-secondary text-white my-3 disabled" style="cursor:default;">
+                                发货
+                            </button>
+                    </#if>
+
                 </div>
             </div>
             <#--  table start-->

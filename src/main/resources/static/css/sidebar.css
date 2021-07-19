@@ -115,6 +115,7 @@
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    display: none;
 }
 .sidebar.active .links_name{
     transition: 0s;
@@ -184,4 +185,62 @@
 }
 .sidebar.active .profile #log_out{
     background: none
+}
+.nav__close{
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .nav_icon{
+        display: block;
+    }
+    .sidebar {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 65%;
+        z-index: 100;
+        display: none;
+    }
+    .nav_list{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+    .links_name, .tooltip{
+        display: none;
+    }
+    .nav_list li a{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile_content{
+        display: none;
+    }
+
+    .show-menu{
+        bottom: 0;
+        display: block;
+    }
+    .nav{
+        max-width: 968px;
+        height: 20rem;
+        padding: 2rem 1.5rem 4rem;
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: 0.3s;
+    }
+    .nav__close{
+        display: block;
+        position: absolute;
+        color: white;
+        bottom: 15%;
+        right: 18%;
+        transition: 0.2s;
+    }
+    .nav__close:hover{
+        color: tomato;
+    }
 }

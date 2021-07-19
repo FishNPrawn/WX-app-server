@@ -5,6 +5,7 @@ import com.example.fishnprawn.admin.Admin;
 import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
+import com.example.fishnprawn.global.GlobalConst;
 import com.example.fishnprawn.shipment.Shipment;
 import com.example.fishnprawn.shipment.ShipmentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
@@ -136,13 +137,17 @@ public class FreeMarkerController {
     @GetMapping("/admin")
     public String admin(ModelMap map,
                         @CookieValue(value = JSESSIONID, defaultValue = "No session id") String aToken) {
+
+        // get the get all admin: https://fishnprawn.cn/admin/getall
+        String BASE_DOMAIN = GlobalConst.BASE_DOMAIN;
+        String getAllUrl = BASE_DOMAIN + "/admin/getall";
+
         // create a client
         HttpClient client = HttpClient.newHttpClient();
         System.out.println("session id: " + aToken);
         // create a request
         HttpRequest request = HttpRequest.newBuilder(
-                //https://fishnprawn.cn
-                URI.create("http://localhost:8080/admin/getall"))
+                URI.create(getAllUrl))
                 .headers("accept", "application/json",
                         COOKIE, JSESSIONID + "=" + aToken)
                 .build();

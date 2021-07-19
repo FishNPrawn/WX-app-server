@@ -33,37 +33,40 @@
                     添加用户
                 </button>
             </div>
-            <div class="row clearfix">
+            <div class="row">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr class="table-info  table-hover text-center">
-                            <th>Admin Id</th>
-                            <th>用户名</th>
-                            <th>密码</th>
-                            <th>电话</th>
-                            <th>账号类型</th>
-                            <th>创建时间</th>
-                            <th>修改时间</th>
-                            <th colspan="2">修改/删除</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <#list adminlist as admin>
-                            <tr>
-                                <td>${admin.adminid}</td>
-                                <td contenteditable="true" id="username${admin.adminid}">${admin.username}</td>
-                                <#--                                <td contenteditable="true" id="password${admin.adminid}">${admin.password}</td>-->
-                                <td contenteditable="true" id="password${admin.adminid}" data-hidden-value="${admin.password}">********</td>
-                                <td contenteditable="true" id="phone${admin.adminid}">${admin.phone}</td>
-                                <td contenteditable="true" id="admintype${admin.adminid}">${admin.admintype}</td>
-                                <td>${admin.admin_create_time!''}</td>
-                                <td>${admin.admin_update_time!''}</td>
-                                <td><a onclick="sendUpdateRequest(`${admin.adminid}`)" href = "/admin" >修改</a>
-                                <td><a onclick="sendDeleteRequest(`${admin.adminid}`)" href = "/admin" >删除</a>
+                    <div class="table-wrap">
+                        <table class="table table-responsive-xl">
+                            <thead class="thead-dark">
+                            <tr class="table-info  table-hover text-center">
+    <#--                            <th>Admin Id</th>-->
+                                <th>用户名</th>
+                                <th>密码</th>
+                                <th>电话</th>
+                                <th>账号类型</th>
+                                <th>创建时间</th>
+                                <th>修改时间</th>
+                                <th>修改</th>
+                                <th>删除</th>
                             </tr>
-                        </#list>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <#list adminlist as admin>
+                                <tr>
+    <#--                                <td>${admin.adminid}</td>-->
+                                    <td contenteditable="true" id="username${admin.adminid}">${admin.username}</td>
+                                    <#--                                <td contenteditable="true" id="password${admin.adminid}">${admin.password}</td>-->
+                                    <td contenteditable="true" id="password${admin.adminid}" data-hidden-value="${admin.password}">********</td>
+                                    <td contenteditable="true" id="phone${admin.adminid}">${admin.phone}</td>
+                                    <td contenteditable="true" id="admintype${admin.adminid}">${admin.admintype}</td>
+                                    <td>${admin.admin_create_time!''}</td>
+                                    <td>${admin.admin_update_time!''}</td>
+                                    <td><a class="btn btn-primary" onclick="sendUpdateRequest(`${admin.adminid}`)" href = "/admin/addadminsuccess">修改</a>
+                                    <td><a class="btn btn-danger" onclick="sendDeleteRequest(`${admin.adminid}`)" href = "/admin/addadminsuccess">删除</a>
+                                </tr>
+                            </#list>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

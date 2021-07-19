@@ -2,6 +2,12 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
+<style>
+    .searchInput{
+        border-radius: 20px;
+        font-size: 14px;
+    }
+</style>
 <body>
 
 
@@ -22,21 +28,27 @@
                 </div>
             </div>
             <#--   页数       -->
-            <#include "../header/pagination.ftlh">
+            <div class="d-flex justify-content-between">
+                <#include "../header/pagination.ftlh">
+                <div class="form-outline col-xs-4">
+                    <input class="form-control searchInput" type="text" id="myInput" onkeyup="mySearch()" placeholder="查找订单编号/用户名...">
+                </div>
+            </div>
+
 
             <#--  table start-->
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-responsive-xl" id="myTable">
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
-                            <th>订单id</th>
-                            <th>open id</th>
+<#--                            <th>订单id</th>-->
+<#--                            <th>open id</th>-->
                             <th>订单编号</th>
-                            <th>用户名</th>
+                            <th>姓名</th>
                             <th>地址</th>
                             <th>电话</th>
-                            <th>订单金额</th>
+                            <th>总金额</th>
                             <th>创建时间</th>
                             <th>状态</th>
                             <th>详情</th>
@@ -46,8 +58,8 @@
                         <tbody id="loop">
                         <#list orderlist?sort_by("orderStatus") as order>
                             <tr class="list-group_name">
-                                <td>${order.orderId}</td>
-                                <td>${order.openId}</td>
+<#--                                <td>${order.orderId}</td>-->
+<#--                                <td>${order.openId}</td>-->
                                 <td>${order.order_number}</td>
                                 <td>${order.user_name}</td>
                                 <td>${order.user_address}</td>
@@ -106,6 +118,33 @@
 
 <#--分页面（页数）-->
 <script type="text/javascript" src="${path}/js/pagination.js"></script>
+
+<script>
+    function mySearch() {
+        // Declare variables
+        var input, filter, table, tr, td, td_username, i, txtValue, txtUserNameValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            td_username = tr[i].getElementsByTagName("td")[3];
+            if (td || td_username) {
+                txtValue = td.textContent || td.innerText;
+                txtUserNameValue = td_username.textContent || td_username.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtUserNameValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+
+        }
+    }
+</script>
 
 </body>
 </html>
