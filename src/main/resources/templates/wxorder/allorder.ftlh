@@ -22,12 +22,18 @@
                 </div>
             </div>
             <#--   页数       -->
-            <#include "../header/pagination.ftlh">
+            <div class="d-flex justify-content-between">
+                <#include "../header/pagination.ftlh">
+                <div class="form-outline">
+                    <input class="form-control" type="text" id="myInput" onkeyup="mySearch()" placeholder="查找订单编号/用户名...">
+                </div>
+            </div>
+
 
             <#--  table start-->
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="myTable">
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
                             <th>订单id</th>
@@ -106,6 +112,33 @@
 
 <#--分页面（页数）-->
 <script type="text/javascript" src="${path}/js/pagination.js"></script>
+
+<script>
+    function mySearch() {
+        // Declare variables
+        var input, filter, table, tr, td, td_username, i, txtValue, txtUserNameValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            td_username = tr[i].getElementsByTagName("td")[3];
+            if (td || td_username) {
+                txtValue = td.textContent || td.innerText;
+                txtUserNameValue = td_username.textContent || td_username.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtUserNameValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+
+        }
+    }
+</script>
 
 </body>
 </html>
