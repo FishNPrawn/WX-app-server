@@ -1,15 +1,14 @@
 
+// BASE_DOMAIN
+const TABLE = "order"
+const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
+//放上騰訊雲只要改這邊就好
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const overlay = document.getElementById('overlay')
 const close_btn = document.getElementById("close_btn")
 
 
-//放上騰訊雲只要改這邊就好
-const BASE_DOMAIN = "http://localhost:8080"
-// const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
-const TABLE = "order"
-const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
-//放上騰訊雲只要改這邊就好
 
 // -------------Modal-----------------------------------------------------
 openModalButtons.forEach(button => {

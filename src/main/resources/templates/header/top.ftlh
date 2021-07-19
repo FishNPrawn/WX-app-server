@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="${path}/css/toggle.css">
     <link rel="stylesheet" type="text/css" href="${path}/css/list.css">
     <link rel="stylesheet" href="${path}/css/bootstrap_min.css">
+    <script>
+        const BASE_DOMAIN = "http://localhost:8080"
+        // const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
+    </script>
     <script src="${path}/js/jquery_min.js"></script>
     <script src="${path}/js/bootstrap_min.js"></script>
     <link href="${path}/css/home.css" rel="stylesheet" />

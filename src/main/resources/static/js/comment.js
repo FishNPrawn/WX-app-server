@@ -1,9 +1,5 @@
 
-
-//放上騰訊雲只要改這邊就好
-const BASE_DOMAIN = "http://localhost:8080"
-// const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
-const DB_NAME = "fishnprawn"
+// BASE_DOMAIN
 const TABLE = "comment"
 const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
 

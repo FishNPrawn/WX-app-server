@@ -1,4 +1,9 @@
 
+// BASE_DOMAIN
+// const PREFIX = ([BASE_DOMAIN, DB_NAME]).join("/");
+const PREFIX = BASE_DOMAIN;
+//放上騰訊雲只要改這邊就好
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const overlay = document.getElementById('overlay')
 const good_close_btn = document.getElementById("good_close_btn")
@@ -23,20 +28,7 @@ const good_image_1_input = document.getElementById('good_image_1_input')
 const good_image_description = document.getElementById('good_image_description')
 
 
-// const ADD_FIELD_MAPPING = {
-//     'goodName':'admin_username',
-//     'password':'admin_password',
-//     'phone':'admin_phone',
-//     'admintype':'admin_type'
-// }
 
-//放上騰訊雲只要改這邊就好
-const BASE_DOMAIN = "http://localhost:8080"
-// const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
-const DB_NAME = "fishnprawn"
-// const PREFIX = ([BASE_DOMAIN, DB_NAME]).join("/");
-const PREFIX = BASE_DOMAIN;
-//放上騰訊雲只要改這邊就好
 
 openModalButtons.forEach(button => {
     button.addEventListener('click', () => {

@@ -1,16 +1,15 @@
+
+// BASE_DOMAIN
+const TABLE = "admin"
+const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
+//放上騰訊雲只要改這邊就好
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.getElementById('add_category_btm')
 const overlay = document.getElementById('overlay')
 const category_user_input = document.getElementById('category_user_input')
 const closecat_close_btn = document.getElementById("admin_close_btn")
 
-//放上騰訊雲只要改這邊就好
-const BASE_DOMAIN = "http://localhost:8080"
-// const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
-const DB_NAME = "fishnprawn"
-const TABLE = "admin"
-const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
-//放上騰訊雲只要改這邊就好
 
 const FIELD_MAPPING = {
     'username':'admin_username',

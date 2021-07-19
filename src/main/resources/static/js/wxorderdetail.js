@@ -1,3 +1,9 @@
+
+// BASE_DOMAIN
+const TABLE = "order"
+const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
+//放上騰訊雲只要改這邊就好
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const add_good_detail = document.getElementById('add_good_detail')
 const addRemark = document.getElementById('addRemark');
@@ -95,13 +101,7 @@ function copyDeliverNumber(id){
 }
 
 
-//放上騰訊雲只要改這邊就好
-const BASE_DOMAIN = "http://localhost:8080"
-// const BASE_DOMAIN = "https://fishnprawn.cn"     // For 腾讯云
-const DB_NAME = "fishnprawn"
-const TABLE = "order"
-const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
-//放上騰訊雲只要改這邊就好
+
 
 //-----------------------Modal----------------------------
 openModalButtons.forEach(button => {
