@@ -29,16 +29,16 @@
             <#--  table start-->
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-responsive-xl">
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
-                            <th>订单id</th>
-                            <th>open id</th>
+<#--                            <th>订单id</th>-->
+<#--                            <th>open id</th>-->
                             <th>订单编号</th>
-                            <th>用户名</th>
+                            <th>姓名</th>
                             <th>地址</th>
                             <th>电话</th>
-                            <th>订单金额</th>
+                            <th>总金额</th>
                             <th>创建时间</th>
                             <th>状态</th>
                             <th>详情</th>
@@ -49,8 +49,8 @@
                         <#list orderlist?sort_by("orderId")?reverse as order>
                             <tr>
                                 <#if order.orderStatus == 1>
-                                    <td>${order.orderId}</td>
-                                    <td>${order.openId}</td>
+<#--                                    <td>${order.orderId}</td>-->
+<#--                                    <td>${order.openId}</td>-->
                                     <td>${order.order_number}</td>
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>

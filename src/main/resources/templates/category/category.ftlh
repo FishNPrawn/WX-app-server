@@ -35,7 +35,7 @@
             <form action='/category/deleteCategorySelected' method="post" id="category_form">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <table class="table table-bordered">
+                        <table class="table table-responsive-xl">
                             <thead class="thead-dark">
                             <tr class="table-info table-hover text-center ">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>

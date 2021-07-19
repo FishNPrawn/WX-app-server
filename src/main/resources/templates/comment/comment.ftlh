@@ -21,7 +21,7 @@
 
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-responsive-xl">
                         <thead class="thead-dark">
                         <tr class="table-info table-hover text-center">
                             <th>comment_id</th>

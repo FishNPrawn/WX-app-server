@@ -37,7 +37,7 @@
             <form action='/good/deleteGoodSelected' method="post" id="good_form">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <table class="table table-bordered" id="example" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
+                        <table class="table table-responsive-xl" id="example" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
                             <thead class="thead-dark">
                             <tr class="table-info  table-hover text-center">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
