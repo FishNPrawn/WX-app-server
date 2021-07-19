@@ -59,9 +59,9 @@
         <form role="form">
             <div class="form-group">
                 <label>轮播图url</label>
-                <input id="swiper_user_input" minlength="3" maxlength="20" type="text" class="form-control"/>
+                <input id="swiper_user_input" type="text" class="form-control"/>
             </div>
-            <a href="/allswiper/addsuccess" id="add_swiper_btm" class="btn btn-info btn-dark">添加</a>
+            <a href="/allswiper/addsuccess" id="add_swiper_btn" class="btn btn-info btn-dark">添加</a>
         </form>
 
     </div>
