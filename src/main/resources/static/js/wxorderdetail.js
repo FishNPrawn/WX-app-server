@@ -73,8 +73,13 @@ function orderStatus(){
 function copyText(obj){
     var tmpInput = $("<input>");
     $("body").append(tmpInput);
-    var tdVal = $(obj).parent().prev().text();
-    tmpInput.val(tdVal).select();
+    // var tdVal = $(obj).parent().prev().text();
+    var user_name = document.getElementById('user_name').textContent
+    var user_phone = document.getElementById('user_phone').textContent
+    var user_address = document.getElementById('user_address').textContent
+    var copyTextValue = user_name + '  ' + user_phone + '  ' + user_address
+
+    tmpInput.val(copyTextValue).select();
     document.execCommand("copy");
     tmpInput.remove();
 

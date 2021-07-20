@@ -73,14 +73,18 @@
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
-                        添加
-                    </button>
+
                     <#if order_status == 1 || order_status==2 || order_status==3>
+                        <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                            添加
+                        </button>
                         <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
                             发货
                         </button>
                         <#else>
+                            <button class="btn btn-secondary text-white my-3 disabled" style="cursor:default;">
+                                添加
+                            </button>
                             <button class="btn btn-secondary text-white my-3 disabled" style="cursor:default;">
                                 发货
                             </button>
@@ -148,7 +152,7 @@
                 </div>
             </div>
 
-            <div class="userinfo_comment">
+            <div class="userinfo_comment mb-4">
             <#--  --------------------------------------    收件人信息     -------------------------------------- -->
                 <div>
                     <div class="d-flex">
@@ -157,28 +161,30 @@
                             <h6 class="d-flex align-items-center text-center ml-2 mt-1">收件人信息</h6>
                         </div>
                     </div>
-                    <table class="table mt-3" style="width: 80%">
-                        <tr class="d-none">
-                            <td class="column" style="width: 20%">order_id</td>
-                            <td id="order_id">${orderId}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">姓名</td>
-                            <td id="user_name">${user_name}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">电话</td>
-                            <td>${user_phone}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">配送地址</td>
-                            <td>${user_address}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                    </table>
+                    <div class="userinfo mt-3 d-flex justify-content-between">
+                        <div class="d-block">
+                            <div class="userinfo_row d-none">
+                                <h6>order_id</h6>
+                                <h6 class="userinfo_value" id="order_id">${orderId}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>姓名</h6>
+                                <h6 class="userinfo_value" id="user_name">${user_name}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>电话</h6>
+                                <h6 class="userinfo_value" id="user_phone">${user_phone}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>姓名</h6>
+                                <h6 class="userinfo_value" id="user_address">${user_address}</h6>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success btn-sm mt-4" onclick="copyText(this)">复制</button>
+                        </div>
+
+                    </div>
                 </div>
 
             <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
@@ -196,47 +202,7 @@
             <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
             </div>
 
-            <#--  --------------------------------------    商家备注     -------------------------------------- -->
-            <div class="d-flex justify-content-between">
-                <div class="center d-flex orderlist_name">
-                    <span class="orderlist_name_line"></span>
-                    <div class="d-flex align-items-center text-center ml-2 mt-1">
-                        <h6>商家备注(订单备注自行添加，仅平台客服可见)</h6>
-                    </div>
-                </div>
-                <div>
-                    <#assign remark_or_not_btn = false >
-                    <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
-                        <#if wxOrderDetailRemarks.order_id == orderId >
-                            <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
-                                修改备注
-                            </button>
-                            <#assign remark_or_not_btn = true >
-                        </#if>
-                    </#list>
-                    <#if remark_or_not_btn == false >
-                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
-                            添加备注
-                        </button>
-                    </#if>
-                </div>
-            </div>
 
-            <div class="admin_remark mb-4">
-                <h6 class="pl-4">备注详情:</h6>
-                <#assign remark_or_not = false >
-                <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
-                    <#if wxOrderDetailRemarks.order_id == orderId >
-                        <h6 class="ml-2 remark_value_db">${wxOrderDetailRemarks.remark}</h6>
-                        <h6 class="d-none" id="wx_order_detail_remark_id">${wxOrderDetailRemarks.wx_order_detail_remark_id}</h6>
-                        <#assign remark_or_not = true >
-                    </#if>
-                </#list>
-                <#if remark_or_not == false >
-                    <h6 class="ml-2 remark_value_db">无备注</h6>
-                </#if>
-            </div>
-            <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
 
             <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
             <div class="d-flex">
@@ -284,6 +250,48 @@
                 </div>
             </div>
             <#--  --------------------------------------    包裹及物流信息 end  -------------------------------------- -->
+
+            <#--  --------------------------------------    商家备注     -------------------------------------- -->
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex orderlist_name">
+                    <span class="orderlist_name_line"></span>
+                    <div class="d-flex align-items-center text-center ml-2 mt-1">
+                        <h6>商家备注(订单备注自行添加，仅平台客服可见)</h6>
+                    </div>
+                </div>
+                <div>
+                    <#assign remark_or_not_btn = false >
+                    <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                        <#if wxOrderDetailRemarks.order_id == orderId >
+                            <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
+                                修改备注
+                            </button>
+                            <#assign remark_or_not_btn = true >
+                        </#if>
+                    </#list>
+                    <#if remark_or_not_btn == false >
+                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
+                            添加备注
+                        </button>
+                    </#if>
+                </div>
+            </div>
+
+            <div class="admin_remark mb-4">
+                <h6 class="pl-4">备注详情:</h6>
+                <#assign remark_or_not = false >
+                <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                    <#if wxOrderDetailRemarks.order_id == orderId >
+                        <h6 class="ml-2 remark_value_db">${wxOrderDetailRemarks.remark}</h6>
+                        <h6 class="d-none" id="wx_order_detail_remark_id">${wxOrderDetailRemarks.wx_order_detail_remark_id}</h6>
+                        <#assign remark_or_not = true >
+                    </#if>
+                </#list>
+                <#if remark_or_not == false >
+                    <h6 class="ml-2 remark_value_db">无备注</h6>
+                </#if>
+            </div>
+            <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
 
 
         </div>
@@ -377,7 +385,7 @@
 <#--Toast-->
 <div id="toast">
     <div id="img">复制</div>
-    <div id="desc">复制成功</div>
+    <div id="desc">收货人信息复制成功</div>
 </div>
 
 <div id="overlay"></div>
