@@ -4,7 +4,7 @@ server:
         context-path: /
 ################# For 腾讯云 https #########################################
 #server:
-#    port: 443
+#    port: 8443
 #    ssl:
 #        key-store: classpath:fishnprawn.cn.jks
 #        key-store-password: 9j93756w87
