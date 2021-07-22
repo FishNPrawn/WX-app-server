@@ -73,14 +73,17 @@
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
-                        添加
-                    </button>
                     <#if order_status == 1 || order_status==2 || order_status==3>
+                        <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
+                            添加
+                        </button>
                         <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
                             发货
                         </button>
                         <#else>
+                            <button class="btn btn-secondary text-white my-3 disabled" style="cursor:default;">
+                                添加
+                            </button>
                             <button class="btn btn-secondary text-white my-3 disabled" style="cursor:default;">
                                 发货
                             </button>
@@ -94,11 +97,11 @@
                     <table class="table table-bordered" id="table">
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
-                            <th>order_detail_id</th>
-                            <th>good_id</th>
-                            <th>商品图</th>
+<#--                            <th>order_detail_id</th>-->
+<#--                            <th>good_id</th>-->
                             <th>商品名</th>
-                            <th>商品价格</th>
+                            <th>商品图</th>
+                            <th>商品单价</th>
                             <th>数量</th>
                             <th>总额</th>
                             <th>删除</th>
@@ -108,10 +111,10 @@
                         <#assign order_price = 0>
                         <#list orderDTO.orderDetailList as orderdetail>
                             <tr>
-                                <td>${orderdetail.order_detail_id}</td>
-                                <td>${orderdetail.good_id}</td>
-                                <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
+<#--                                <td>${orderdetail.order_detail_id}</td>-->
+<#--                                <td>${orderdetail.good_id}</td>-->
                                 <td>${orderdetail.good_name}</td>
+                                <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
                                 <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
                                 <td>${orderdetail.good_quantity*orderdetail.good_price}</td>
@@ -148,7 +151,7 @@
                 </div>
             </div>
 
-            <div class="userinfo_comment">
+            <div class="userinfo_comment mb-4">
             <#--  --------------------------------------    收件人信息     -------------------------------------- -->
                 <div>
                     <div class="d-flex">
@@ -157,28 +160,30 @@
                             <h6 class="d-flex align-items-center text-center ml-2 mt-1">收件人信息</h6>
                         </div>
                     </div>
-                    <table class="table mt-3" style="width: 80%">
-                        <tr class="d-none">
-                            <td class="column" style="width: 20%">order_id</td>
-                            <td id="order_id">${orderId}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">姓名</td>
-                            <td id="user_name">${user_name}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">电话</td>
-                            <td>${user_phone}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                        <tr>
-                            <td class="column" style="width: 20%">配送地址</td>
-                            <td>${user_address}</td>
-                            <td><button class="btn btn-success btn-sm" onclick="copyText(this)">复制</button></td>
-                        </tr>
-                    </table>
+                    <div class="userinfo mt-3 d-flex justify-content-between">
+                        <div class="d-block">
+                            <div class="userinfo_row d-none">
+                                <h6>order_id</h6>
+                                <h6 class="userinfo_value" id="order_id">${orderId}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>姓名</h6>
+                                <h6 class="userinfo_value" id="user_name">${user_name}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>电话</h6>
+                                <h6 class="userinfo_value" id="user_phone">${user_phone}</h6>
+                            </div>
+                            <div class="userinfo_row d-flex">
+                                <h6>姓名</h6>
+                                <h6 class="userinfo_value" id="user_address">${user_address}</h6>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success btn-sm mt-4" onclick="copyText(this)">复制</button>
+                        </div>
+
+                    </div>
                 </div>
 
             <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
@@ -195,6 +200,74 @@
                 </div>
             <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
             </div>
+
+
+
+            <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex orderlist_name">
+                    <span class="orderlist_user_info_line mt-2"></span>
+                    <h6 class="d-flex align-items-center text-center ml-2 mt-1">包裹及物流信息</h6>
+                </div>
+                <div>
+                    <#if order_status != 1>
+                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-change-shipment-number" id="changeShipmentNumber">
+                            修改快递单号
+                        </button>
+                    </#if>
+                </div>
+            </div>
+
+            <div class="package_info_wrapper mb-4 ">
+                <div class="package_info">
+                    <h6>包裹信息</h6>
+                    <div class="mt-4">
+                        <div class="deliver_company d-flex">
+                            <h6 class="deliver_company_title">快递公司</h6>
+                            <#assign shipment_or_not = false >
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="d-none" id="shipment_id">${shipments.shipment_id}</h6>
+                                    <h6 class="deliver_company_value" id="deliver_company_value">${shipments.shipment_company}</h6>
+                                    <#assign shipment_or_not = true >
+                                    <#break>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_company_value">暂无快递公司</h6>
+                            </#if>
+                        </div>
+                        <div class="deliver_package d-flex mt-1">
+                            <h6 class="deliver_package_title mt-2">快递单号</h6>
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="deliver_package_value mt-2" id="deliver_package_number">${shipments.shipment_number}</h6>
+                                    <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_package_value  mt-2">暂无订单编号</h6>
+                            </#if>
+                        </div>
+                        <div class="package_weight d-flex mt-1">
+                            <h6 class="package_weight_title mt-2">包裹重量</h6>
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="package_weight_value mt-2" id="package_weight_value">${shipments.package_weight}</h6>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_package_value mt-2">暂无重量信息</h6>
+                            </#if>
+                        </div>
+                    </div>
+                </div>
+                <div class="package_info_line"></div>
+                <div class="package_status">
+
+                </div>
+            </div>
+            <#--  --------------------------------------    包裹及物流信息 end  -------------------------------------- -->
 
             <#--  --------------------------------------    商家备注     -------------------------------------- -->
             <div class="d-flex justify-content-between">
@@ -238,53 +311,6 @@
             </div>
             <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
 
-            <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
-            <div class="d-flex">
-                <div class="center d-flex orderlist_name">
-                    <span class="orderlist_user_info_line"></span>
-                    <h6 class="d-flex align-items-center text-center ml-2 mt-1">包裹及物流信息</h6>
-                </div>
-            </div>
-
-            <div class="package_info_wrapper mb-4">
-                <div class="package_info">
-                    <h6>包裹信息</h6>
-                    <div class="mt-4">
-                        <div class="deliver_company d-flex">
-                            <h6 class="deliver_company_title">快递公司</h6>
-                            <#assign shipment_or_not = false >
-                            <#list shipments as shipments>
-                                <#if shipments.order_number == order_number >
-                                    <h6 class="deliver_company_value">${shipments.shipment_company}</h6>
-                                    <#assign shipment_or_not = true >
-                                    <#break>
-                                </#if>
-                            </#list>
-                            <#if shipment_or_not == false >
-                                <h6 class="deliver_company_value">暂无快递公司</h6>
-                            </#if>
-                        </div>
-                        <div class="deliver_package d-flex mt-1">
-                            <h6 class="deliver_package_title mt-2">快递单号</h6>
-                            <#list shipments as shipments>
-                                <#if shipments.order_number == order_number >
-                                    <h6 class="deliver_package_value mt-2" id="deliver_package_number${shipments.shipment_id}">${shipments.shipment_number}</h6>
-                                    <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number${shipments.shipment_id}')">复制</button>
-                                </#if>
-                            </#list>
-                            <#if shipment_or_not == false >
-                                <h6 class="deliver_package_value  mt-2">暂无订单编号</h6>
-                            </#if>
-                        </div>
-                    </div>
-                </div>
-                <div class="package_info_line"></div>
-                <div class="package_status">
-
-                </div>
-            </div>
-            <#--  --------------------------------------    包裹及物流信息 end  -------------------------------------- -->
-
 
         </div>
     </main>
@@ -307,7 +333,7 @@
             </select>
         </div>
         <div class="form-inline">
-            <label>商品价格</label>
+            <label>商品单价</label>
             <input class="form-control mx-sm-3 mb-2 w-25" type="text" value="价格" id="good_price" readonly>
             <label>数量</label>
             <input type="number" id="good_quantity" class="form-control mx-sm-3 mb-2 w-25" required/>
@@ -331,6 +357,7 @@
         <div class="form-inline">
             <h6>快递公司</h6>
             <select class="form-select mx-sm-3 mb-2" id="shipmentSelect">
+                <option value="京东快递">京东快递</option>
                 <option value="顺丰速运">顺丰速运</option>
                 <option value="中通速递">中通速递</option>
                 <option value="圆通速递">圆通速递</option>
@@ -340,7 +367,9 @@
         </div>
         <div class="form-inline mt-2">
             <h6>快递单号</h6>
-            <input type="text" class="form-control mx-sm-3 mb-2 w-75" id="shipment_number" required/>
+            <input type="text" class="form-control mx-sm-3 mb-2" id="shipment_number" required/>
+            <h6>重量</h6>
+            <input type="number" id="package_weight" class="form-control mx-sm-3 mb-2 w-25" required/>
         </div>
         <a href="#" class="btn btn-info btn-dark" id="save_shipment">发货</a>
     </div>
@@ -372,6 +401,40 @@
     </div>
 </div>
 <#--修改备注end-->
+
+
+<#--发货-->
+<div class="modal-test" id="modal-test-change-shipment-number">
+    <div class="modal-header-test">
+        <div class="title-test">修改快递单号</div>
+        <button data-close-button class="close-button-test" id="change_shipment_close" >&times;</button>
+    </div>
+    <div class="modal-body-test d-block">
+        <div class="d-flex form-group">
+            <h6>订单编号</h6>
+            <h6 class="mx-sm-3">${order_number}</h6>
+        </div>
+        <div class="form-inline">
+            <h6>快递公司</h6>
+            <select class="form-select mx-sm-3 mb-2" id="shipmentChangeSelect">
+                <option value="京东快递">京东快递</option>
+                <option value="顺丰速运">顺丰速运</option>
+                <option value="中通速递">中通速递</option>
+                <option value="圆通速递">圆通速递</option>
+                <option value="申通快递">申通快递</option>
+                <option value="韵达速递">韵达速递</option>
+            </select>
+        </div>
+        <div class="form-inline mt-2">
+            <h6>快递单号</h6>
+            <input type="text" class="form-control mx-sm-3 mb-2" id="shipment_number_change" required/>
+            <h6>重量</h6>
+            <input type="number" id="package_weight_change" class="form-control mx-sm-3 mb-2 w-25" required/>
+        </div>
+        <a href="#" class="btn btn-info btn-dark" id="save_change_shipment">修改</a>
+    </div>
+</div>
+<#--发货-->
 
 
 <#--Toast-->

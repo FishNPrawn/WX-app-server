@@ -1,5 +1,6 @@
 package com.example.fishnprawn.shipment;
 
+import com.example.fishnprawn.exception.NotFoundException;
 import com.example.fishnprawn.exception.ServiceException;
 import com.example.fishnprawn.services.Services;
 import lombok.AllArgsConstructor;
@@ -34,8 +35,18 @@ public class ShipmentServices implements Services<Shipment> {
     }
 
     @Override
-    public Shipment updateById(Integer anId, Shipment anObj) {
-        return null;
+    public Shipment updateById(Integer id, Shipment shipment) {
+        if(!shipmentDao.existsById(id)){
+            throw new NotFoundException();
+        }
+        try {
+            Shipment shipmentId = shipmentDao.findById(id).orElse(null);
+            shipment.setShipment_id(id);
+            save(shipment);
+            return shipment;
+        }catch(RuntimeException e){
+            throw new ServiceException(e.getMessage()); //Exception from repository
+        }
     }
 
     @Override

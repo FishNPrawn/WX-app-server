@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RequestMapping(ShipmentController.BASE_URL)
 @RestController
@@ -40,5 +41,14 @@ public class ShipmentController {
     }
 
 
+    @PutMapping(path="/updatebyid/{id}", produces = "application/json")
+    public ResponseEntity<Shipment> updateShipment(@NotNull @PathVariable Integer id,
+                                                   @Valid @RequestBody Shipment shipment){
+        if(id.equals(shipment.getShipment_id())){
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        System.out.println("[Update one shipment] parameters: " + id);
+        return new ResponseEntity<>(shipmentServices.updateById(id, shipment), HttpStatus.CREATED);
+    }
 
 }

@@ -13,6 +13,7 @@ const remark_close = document.getElementById("remark_close")
 const remark_close_update = document.getElementById("remark_close_update")
 const shipmentBtn = document.getElementById('shipmentBtn');
 const shipment_close = document.getElementById('shipment_close');
+const change_shipment_close = document.getElementById('change_shipment_close');
 
 //选择
 var selectGoodTag = document.getElementById('all_good')
@@ -73,8 +74,13 @@ function orderStatus(){
 function copyText(obj){
     var tmpInput = $("<input>");
     $("body").append(tmpInput);
-    var tdVal = $(obj).parent().prev().text();
-    tmpInput.val(tdVal).select();
+    // var tdVal = $(obj).parent().prev().text();
+    var user_name = document.getElementById('user_name').textContent
+    var user_phone = document.getElementById('user_phone').textContent
+    var user_address = document.getElementById('user_address').textContent
+    var copyTextValue = user_name + '  ' + user_phone + '  ' + user_address
+
+    tmpInput.val(copyTextValue).select();
     document.execCommand("copy");
     tmpInput.remove();
 
@@ -113,6 +119,7 @@ overlay.addEventListener('click', () => {
     const modals = document.querySelectorAll('.modal-test.active')
     const modals_remark = document.querySelectorAll('.modal-test-remark.active')
     const modals_shipment = document.querySelectorAll('.modal-test-shipment.active')
+    const modals_change_shipment_number = document.querySelectorAll('.modal-test-change-shipment-number.active')
     modals.forEach(modal => {
         closeModal(modal)
     })
@@ -120,6 +127,9 @@ overlay.addEventListener('click', () => {
         closeModal(modal)
     })
     modals_shipment.forEach(modal => {
+        closeModal(modal)
+    })
+    modals_change_shipment_number.forEach(modal => {
         closeModal(modal)
     })
 })
@@ -146,6 +156,12 @@ remark_close_update.addEventListener('click', ()=>{
 shipment_close.addEventListener('click', ()=>{
     const modals_shipment_value = document.querySelectorAll('.modal-test.active')
     modals_shipment_value.forEach(modal => {
+        closeModal(modal)
+    })
+})
+change_shipment_close.addEventListener('click', ()=>{
+    const modals_change_shipment_value = document.querySelectorAll('.modal-test.active')
+    modals_change_shipment_value.forEach(modal => {
         closeModal(modal)
     })
 })
@@ -292,20 +308,22 @@ function updateRemark(){
     }
 }
 
-
-
 //发货按钮
 const save_shipment = document.getElementById('save_shipment');
 const shipment_number = document.getElementById('shipment_number')
+const package_weight = document.getElementById('package_weight')
 const shipmentSelect = document.getElementById('shipmentSelect')
 save_shipment.addEventListener('click', ()=>{
     let order_id_value = order_id.textContent;
     let order_number_value = order_number.textContent   //订单标号
     let shipment_number_value = shipment_number.value //快递单号
     var shipment_company_value = shipmentSelect.value;
+    let package_weight_value = package_weight.value;
 
     if(shipment_number_value == ""){
         alert("必须填写快递单号")
+    }else if(package_weight_value == ""){
+        alert("请填写包裹重量")
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "shipment"]).join("/")
@@ -319,9 +337,52 @@ save_shipment.addEventListener('click', ()=>{
         let data = JSON.stringify({
             "order_number": order_number_value,
             "shipment_number": shipment_number_value,
-            "shipment_company": shipment_company_value
+            "shipment_company": shipment_company_value,
+            "package_weight": package_weight_value
         });
         xhr.send(data);
         setTimeout(function(){ location.reload(); }, 1000);
     }
 })
+
+//修改订单号
+const deliver_package_number = document.getElementById('deliver_package_number').textContent
+let shipment_number_change = document.getElementById('shipment_number_change')
+shipment_number_change.value = deliver_package_number
+
+const package_weight_value = document.getElementById('package_weight_value').textContent
+let package_weight_change = document.getElementById('package_weight_change')
+package_weight_change.value = package_weight_value
+
+const deliver_company_value = document.getElementById('deliver_company_value').textContent
+let shipmentChangeSelect = document.getElementById('shipmentChangeSelect')
+shipmentChangeSelect.value = deliver_company_value
+
+const save_change_shipment = document.getElementById('save_change_shipment')
+save_change_shipment.addEventListener('click', ()=>{
+    var shipment_number_change_value = document.getElementById('shipment_number_change').value;
+    var package_weight_change_value = document.getElementById('package_weight_change').value;
+    var shipmentChangeSelect_value = document.getElementById('shipmentChangeSelect').value
+    var shipment_id = document.getElementById('shipment_id').textContent
+    let order_number_value = order_number.textContent   //订单标号
+    if(shipment_number_change_value == ""){
+        alert("必须填写快递单号")
+    }else if(package_weight_change_value == ""){
+        alert("请填写包裹重量")
+    }else{
+        let xhr = new XMLHttpRequest();
+        let url = ([PREFIX, "shipment","updatebyid", shipment_id]).join("/")
+
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        let data = JSON.stringify({
+            "order_number": order_number_value,
+            "shipment_number": shipment_number_change_value,
+            "shipment_company": shipmentChangeSelect_value,
+            "package_weight": package_weight_change_value
+        });
+        xhr.send(data);
+        setTimeout(function(){ location.reload(); }, 1000);
+    }
+})
+

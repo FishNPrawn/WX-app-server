@@ -51,7 +51,6 @@
                             <th>总金额</th>
                             <th>创建时间</th>
                             <th>状态</th>
-                            <th>详情</th>
                             <#--                            <th>删除</th>-->
                         </tr>
                         </thead>
@@ -60,7 +59,7 @@
                             <tr class="list-group_name">
 <#--                                <td>${order.orderId}</td>-->
 <#--                                <td>${order.openId}</td>-->
-                                <td>${order.order_number}</td>
+                                <td><a href="/detail?orderId=${order.orderId}">${order.order_number}</a></td>
                                 <td>${order.user_name}</td>
                                 <td>${order.user_address}</td>
                                 <td>${order.user_phone}</td>
@@ -78,9 +77,6 @@
                                 <#elseif order.orderStatus == 4>
                                     <td><div class="order_cancel">订单取消4</div></td>
                                 </#if>
-
-                                <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
-
                                     <#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
                         </#list>
@@ -130,8 +126,8 @@
 
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            td_username = tr[i].getElementsByTagName("td")[3];
+            td = tr[i].getElementsByTagName("td")[0];
+            td_username = tr[i].getElementsByTagName("td")[1];
             if (td || td_username) {
                 txtValue = td.textContent || td.innerText;
                 txtUserNameValue = td_username.textContent || td_username.innerText;

@@ -99,6 +99,7 @@ CREATE TABLE `shipment`(
     `order_number` text not null,
     `shipment_number` text not null,
     `shipment_company` text not null,
+    `package_weight` float not null,
     `shipment_create_time` timestamp not null default current_timestamp,
     primary key (`shipment_id`)
 );

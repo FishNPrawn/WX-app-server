@@ -32,7 +32,6 @@
                             <th>总金额</th>
                             <th>创建时间</th>
                             <th>状态</th>
-                            <th>详情</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,14 +40,13 @@
                                 <#if order.orderStatus == 4>
 <#--                                    <td>${order.orderId}</td>-->
 <#--                                    <td>${order.openId}</td>-->
-                                    <td>${order.order_number}</td>
+                                    <td><a href="/detail?orderId=${order.orderId}">${order.order_number}</a></td>
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>
                                     <td>${order.order_total_price}</td>
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">订单取消4</div></td>
-                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
                                 </#if>
                             </tr>
                         </#list>

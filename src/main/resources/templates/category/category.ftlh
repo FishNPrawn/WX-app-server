@@ -40,10 +40,12 @@
                             <tr class="table-info table-hover text-center ">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>分类名字</th>
+                                <th>图片链接</th>
                                 <th>分类图片</th>
-                                <th>创建时间</th>
-                                <th>更新时间</th>
-                                <th colspan="2">修改/删除</th>
+<#--                                <th>创建时间</th>-->
+<#--                                <th>更新时间</th>-->
+                                <th>修改</th>
+                                <th>删除</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,11 +58,12 @@
                                         </div>
                                     </td>
                                     <td contenteditable="true" id=${category.cat_id}>${category.catname}</td>
-                                    <td contenteditable="true" id="${category.cat_id}Image">${category.cat_image}</td>
-                                    <td>${category.cat_create_time!''}</td>
-                                    <td>${category.cat_update_time!''}</td>
-                                    <td><a onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
-                                    <td><a onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category/addsuccess">删除</a>
+                                    <td contenteditable="true" id="${category.cat_id}Image" style="width: 70%;">${category.cat_image}</td>
+<#--                                    <td>${category.cat_create_time!''}</td>-->
+<#--                                    <td>${category.cat_update_time!''}</td>-->
+                                    <td><img height="40" width="40" src="${category.cat_image}"></td>
+                                    <td><a class="btn btn-primary btn-sm" onclick="sendUpdateRequest(`${category.cat_id}`)" href = "/category/addsuccess" >修改</a>
+                                    <td><a class="btn btn-danger btn-sm" onclick="sendDeleteRequest(`${category.cat_id}`)" href = "/category/addsuccess">删除</a>
                                 </tr>
                             </#list>
                             </tbody>

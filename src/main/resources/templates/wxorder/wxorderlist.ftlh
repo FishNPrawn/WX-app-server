@@ -51,14 +51,14 @@
                                 <#if order.orderStatus == 1>
 <#--                                    <td>${order.orderId}</td>-->
 <#--                                    <td>${order.openId}</td>-->
-                                    <td>${order.order_number}</td>
+                                    <td><a href="/detail?orderId=${order.orderId}">${order.order_number}</a></td>
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>
                                     <td>${order.order_total_price}</td>
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">待发货1</div></td>
-                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a>
+                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}">详情</a></td>
                                     <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除订单</a></td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="confirmModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

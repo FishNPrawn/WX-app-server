@@ -37,10 +37,10 @@
                             <#list swiperImgList as swiperImg>
                                 <tr>
                                     <td>${swiperImg.swiper_img_id}</td>
-                                    <td contenteditable="true" id=${swiperImg.swiper_img_id}>${swiperImg.image_src}</td>
+                                    <td contenteditable="true" id="${swiperImg.swiper_img_id}" style="width: 70%;">${swiperImg.image_src}</td>
                                     <td><img src="${swiperImg.image_src}" alt="" height="80" width="120" /></td>
-                                    <td><a onclick="sendUpdateRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess" >修改</a>
-                                    <td><a onclick="sendDeleteRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess">删除</a>
+                                    <td><a onclick="sendUpdateRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess" class="btn btn-primary btn-sm">修改</a>
+                                    <td><a onclick="sendDeleteRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess" class="btn btn-danger btn-sm">删除</a>
                                 </tr>
                             </#list>
                             </tbody>
