@@ -28,6 +28,9 @@ public class Shipment {
     @NotNull
     private String shipment_company;
 
+    @NotNull
+    private float package_weight;
+
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     @Generated(GenerationTime.INSERT)
     private LocalDateTime shipment_create_time;

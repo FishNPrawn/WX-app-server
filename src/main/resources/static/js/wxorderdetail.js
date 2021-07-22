@@ -302,15 +302,19 @@ function updateRemark(){
 //发货按钮
 const save_shipment = document.getElementById('save_shipment');
 const shipment_number = document.getElementById('shipment_number')
+const package_weight = document.getElementById('package_weight')
 const shipmentSelect = document.getElementById('shipmentSelect')
 save_shipment.addEventListener('click', ()=>{
     let order_id_value = order_id.textContent;
     let order_number_value = order_number.textContent   //订单标号
     let shipment_number_value = shipment_number.value //快递单号
     var shipment_company_value = shipmentSelect.value;
+    let package_weight_value = package_weight.value;
 
     if(shipment_number_value == ""){
         alert("必须填写快递单号")
+    }else if(package_weight_value == ""){
+        alert("请填写包裹重量")
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "shipment"]).join("/")
@@ -324,7 +328,8 @@ save_shipment.addEventListener('click', ()=>{
         let data = JSON.stringify({
             "order_number": order_number_value,
             "shipment_number": shipment_number_value,
-            "shipment_company": shipment_company_value
+            "shipment_company": shipment_company_value,
+            "package_weight": package_weight_value
         });
         xhr.send(data);
         setTimeout(function(){ location.reload(); }, 1000);

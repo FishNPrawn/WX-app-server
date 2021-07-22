@@ -98,11 +98,11 @@
                     <table class="table table-bordered" id="table">
                         <thead class="thead-dark">
                         <tr class="table-info  table-hover text-center">
-                            <th>order_detail_id</th>
-                            <th>good_id</th>
-                            <th>商品图</th>
+<#--                            <th>order_detail_id</th>-->
+<#--                            <th>good_id</th>-->
                             <th>商品名</th>
-                            <th>商品价格</th>
+                            <th>商品图</th>
+                            <th>商品单价</th>
                             <th>数量</th>
                             <th>总额</th>
                             <th>删除</th>
@@ -112,10 +112,10 @@
                         <#assign order_price = 0>
                         <#list orderDTO.orderDetailList as orderdetail>
                             <tr>
-                                <td>${orderdetail.order_detail_id}</td>
-                                <td>${orderdetail.good_id}</td>
-                                <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
+<#--                                <td>${orderdetail.order_detail_id}</td>-->
+<#--                                <td>${orderdetail.good_id}</td>-->
                                 <td>${orderdetail.good_name}</td>
+                                <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
                                 <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
                                 <td>${orderdetail.good_quantity*orderdetail.good_price}</td>
@@ -242,6 +242,17 @@
                                 <h6 class="deliver_package_value  mt-2">暂无订单编号</h6>
                             </#if>
                         </div>
+                        <div class="package_weight d-flex mt-1">
+                            <h6 class="package_weight_title mt-2">包裹重量</h6>
+                            <#list shipments as shipments>
+                                <#if shipments.order_number == order_number >
+                                    <h6 class="package_weight_value mt-2">${shipments.package_weight}kg</h6>
+                                </#if>
+                            </#list>
+                            <#if shipment_or_not == false >
+                                <h6 class="deliver_package_value mt-2">暂无重量信息</h6>
+                            </#if>
+                        </div>
                     </div>
                 </div>
                 <div class="package_info_line"></div>
@@ -315,7 +326,7 @@
             </select>
         </div>
         <div class="form-inline">
-            <label>商品价格</label>
+            <label>商品单价</label>
             <input class="form-control mx-sm-3 mb-2 w-25" type="text" value="价格" id="good_price" readonly>
             <label>数量</label>
             <input type="number" id="good_quantity" class="form-control mx-sm-3 mb-2 w-25" required/>
@@ -339,6 +350,7 @@
         <div class="form-inline">
             <h6>快递公司</h6>
             <select class="form-select mx-sm-3 mb-2" id="shipmentSelect">
+                <option value="京东快递">京东快递</option>
                 <option value="顺丰速运">顺丰速运</option>
                 <option value="中通速递">中通速递</option>
                 <option value="圆通速递">圆通速递</option>
@@ -348,7 +360,9 @@
         </div>
         <div class="form-inline mt-2">
             <h6>快递单号</h6>
-            <input type="text" class="form-control mx-sm-3 mb-2 w-75" id="shipment_number" required/>
+            <input type="text" class="form-control mx-sm-3 mb-2" id="shipment_number" required/>
+            <h6>重量</h6>
+            <input type="number" id="package_weight" class="form-control mx-sm-3 mb-2 w-25" required/>
         </div>
         <a href="#" class="btn btn-info btn-dark" id="save_shipment">发货</a>
     </div>
@@ -385,7 +399,7 @@
 <#--Toast-->
 <div id="toast">
     <div id="img">复制</div>
-    <div id="desc">收货人信息复制成功</div>
+    <div id="desc">复制成功</div>
 </div>
 
 <div id="overlay"></div>

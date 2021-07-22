@@ -115,11 +115,11 @@
     align-items: center;
     text-align: center;
 }
-.deliver_company_title, .deliver_package_title{
+.deliver_company_title, .deliver_package_title, .package_weight_title{
     font-weight: 350;
     font-size: 14px;
 }
-.deliver_company_value, .deliver_package_value{
+.deliver_company_value, .deliver_package_value, .package_weight_value{
     font-weight: 350;
     font-size: 14px;
     margin-left: 20px;
