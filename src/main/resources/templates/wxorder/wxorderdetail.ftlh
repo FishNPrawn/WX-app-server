@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div>
-                    <#if order_status == 1 || order_status==2 || order_status==3>
+                    <#if order_status == 1 || order_status==2>
                         <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                             添加
                         </button>
@@ -88,7 +88,6 @@
                                 发货
                             </button>
                     </#if>
-
                 </div>
             </div>
             <#--  table start-->

@@ -30,7 +30,15 @@
             <#--   页数       -->
             <div class="d-flex justify-content-between">
                 <#include "../header/pagination.ftlh">
-                <div class="form-outline col-xs-4">
+                <div class="form-inline col-xs-4">
+                    <select class="form-select mr-2" name="date" class="date" onchange="dateSearch()">
+                        <option value="">显示全部</option>
+                        <option value="订单完成">订单完成</option>
+                        <option value="待发货">待发货</option>
+                        <option value="待收货">待收货</option>
+                        <option value="待评价">待评价</option>
+                        <option value="订单取消">订单取消</option>
+                    </select>
                     <input class="form-control searchInput" type="text" id="myInput" onkeyup="mySearch()" placeholder="查找订单编号/用户名...">
                 </div>
             </div>
@@ -109,38 +117,11 @@
     </div>
 </div>
 
-<div id="overlay"></div>
-<script type="text/javascript"  src="${path}/js/style.js"></script>
+<script type="text/javascript"  src="${path}/js/allorder.js"></script>
 
 <#--分页面（页数）-->
 <script type="text/javascript" src="${path}/js/pagination.js"></script>
 
-<script>
-    function mySearch() {
-        // Declare variables
-        var input, filter, table, tr, td, td_username, i, txtValue, txtUserNameValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            td_username = tr[i].getElementsByTagName("td")[1];
-            if (td || td_username) {
-                txtValue = td.textContent || td.innerText;
-                txtUserNameValue = td_username.textContent || td_username.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtUserNameValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-
-        }
-    }
-</script>
 
 </body>
 </html>
