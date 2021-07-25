@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
+<title>欢喜食货(已取消订单)</title>
 <body>
 
 
@@ -40,7 +41,7 @@
                                 <#if order.orderStatus == 4>
 <#--                                    <td>${order.orderId}</td>-->
 <#--                                    <td>${order.openId}</td>-->
-                                    <td><a href="/detail?orderId=${order.orderId}">${order.order_number}</a></td>
+                                    <td><a href="/detail?orderId=${order.orderId}" target="_blank">${order.order_number}</a></td>
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>

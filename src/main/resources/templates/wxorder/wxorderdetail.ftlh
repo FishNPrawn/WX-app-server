@@ -3,6 +3,7 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <link rel="stylesheet" href="${path}/css/wxorderdetail.css">
+<title>欢喜食货(订单详情信息)</title>
 <body onload="orderStatus()">
 
 
@@ -17,9 +18,9 @@
                 <div class="center d-flex orderlist_name">
                     <h2>订单详情</h2>
                 </div>
-                <div>
-                    <a class="btn btn-secondary text-white my-3" onclick="history.go(-1)">返回</a>
-                </div>
+<#--                <div>-->
+<#--                    <a class="btn btn-secondary text-white my-3" onclick="history.go(-1)">返回</a>-->
+<#--                </div>-->
             </div>
             <#list orderlist as order>
                 <#list orderDTO.orderDetailList as orderdetail>

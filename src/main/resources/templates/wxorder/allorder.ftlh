@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
+<title>欢喜食货(全部订单)</title>
 <style>
     .searchInput{
         border-radius: 20px;
@@ -67,7 +68,7 @@
                             <tr class="list-group_name">
 <#--                                <td>${order.orderId}</td>-->
 <#--                                <td>${order.openId}</td>-->
-                                <td><a href="/detail?orderId=${order.orderId}">${order.order_number}</a></td>
+                                <td><a href="/detail?orderId=${order.orderId}" target="_blank">${order.order_number}</a></td>
                                 <td>${order.user_name}</td>
                                 <td>${order.user_address}</td>
                                 <td>${order.user_phone}</td>
