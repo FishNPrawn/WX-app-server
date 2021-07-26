@@ -305,6 +305,13 @@ public class FreeMarkerController {
     public String userinfo(ModelMap map){
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();
         map.put("userInfoList", userInfoList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/userinfo/userinfo";
     }
 

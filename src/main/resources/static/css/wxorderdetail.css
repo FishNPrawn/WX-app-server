@@ -38,7 +38,6 @@
 }
 .orderlist_name_line{
     display: flex;
-    margin-top: 10px;
     width: 3px;
     height: 25px;
     background-color: #576EE0;
@@ -57,17 +56,19 @@
     background-color:#576EE0;
     border-radius: 25% 10%;
     height: 150px;
-    width: 400px;
+    /*width: 350px;*/
     padding: 15px 10px 10px 15px;
     color: white;
 }
 .userinfo_comment{
     display: grid;
     width: 100%;
-    grid-template-columns: 2fr 1fr;
+    /*grid-template-columns: 3fr 1fr;*/
+    grid-template-columns: repeat(3, 33%);
+    grid-column-gap: 10px;
 }
 .userinfo{
-    width: 80%;
+    /*width: 50%;*/
     height: 150px;
     border: 2px solid #d9d9d9;
     padding: 30px 30px 30px 30px;
@@ -84,12 +85,20 @@
     margin-left: 20px;
 }
 .admin_remark{
-    width: 100%;
-    height: 100px;
+    /*width: 50%;*/
+    height: 150px;
     border: 2px solid #d9d9d9;
     display: flex;
-    align-items: center;
-    text-align: center;
+    /*align-items: center;*/
+    padding: 30px 30px 10px 10px;
+}
+.admin_remark_title{
+    width: 80px;
+}
+
+.admin_remark h6{
+    font-weight: 350;
+    font-size: 14px;
 }
 .remark_textarea{
     width: 100%;
@@ -131,6 +140,13 @@
     width: 1px;
     height: 95%;
     background-color: #d9d9d9;
+}
+.orderlist_number_line{
+    display: flex;
+    width: 3px;
+    height: 25px;
+    background-color: #576EE0;
+    margin-top: 9px;
 }
 
 

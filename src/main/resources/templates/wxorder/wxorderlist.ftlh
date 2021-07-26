@@ -60,7 +60,7 @@
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">待发货1</div></td>
                                     <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}" target="_blank">详情</a></td>
-                                    <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除订单</a></td>
+                                    <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除</a></td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="confirmModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="center d-flex orderlist_name">
-                        <span class="orderlist_name_line"></span>
+                        <span class="orderlist_name_line mt-2"></span>
                         <div class="d-flex align-items-center text-center ml-2 mt-1">
                             <h6>商品详情</h6>
                         </div>

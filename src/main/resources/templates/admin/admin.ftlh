@@ -21,8 +21,6 @@
                 </div>
             </div>
         </main>
-
-
     <#else >
     <main>
         <div id="page-content-wrapper" class="container">

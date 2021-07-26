@@ -14,13 +14,13 @@
     <div class="login-content">
         <form method="POST" th:action="@{/login}">
             <img src="${path}/img/avatar.svg">
-            <h2 class="title">Welcome</h2>
+            <h3 class="title">欢喜食货</h3>
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
-                    <h5>Username</h5>
+                    <h5>用户名</h5>
                     <input type="text" class="input" id="username" name="username" required autofocus>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <i class="fas fa-lock"></i>
                 </div>
                 <div class="div">
-                    <h5>Password</h5>
+                    <h5>密码</h5>
                     <input type="password" class="input" id="password" name="password" required>
                 </div>
             </div>
