@@ -17,6 +17,9 @@
     <script src="${path}/js/bootstrap_min.js"></script>
     <link href="${path}/css/home.css" rel="stylesheet" />
 
+    <#--    favicon-->
+    <link rel="shortcut icon" type="image/jpg" href="${path}/img/favicon.png"/>
+
     <#--    font awersome-->
     <script src="https://kit.fontawesome.com/d463772734.js" crossorigin="anonymous"></script>
 

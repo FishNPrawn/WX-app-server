@@ -39,10 +39,12 @@
                             <th>姓名</th>
                             <th>地址</th>
                             <th>电话</th>
+                            <th>总重量(g)</th>
+                            <th>运费</th>
                             <th>总金额</th>
                             <th>创建时间</th>
                             <th>状态</th>
-                            <th>详情</th>
+<#--                            <th>详情</th>-->
                             <th>删除订单</th>
                         </tr>
                         </thead>
@@ -56,10 +58,12 @@
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>
+                                    <td>${order.order_total_weight}</td>
+                                    <td>${order.order_express_fee}</td>
                                     <td>${order.order_total_price}</td>
                                     <td>${order.order_create_time}</td>
-                                    <td><div class="prepare_deliver">待发货1</div></td>
-                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}" target="_blank">详情</a></td>
+                                    <td><div class="prepare_deliver">待发货</div></td>
+<#--                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}" target="_blank">详情</a></td>-->
                                     <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除</a></td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="confirmModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,6 +140,13 @@
                         </thead>
                         <tbody id="goods_list">
 <#--                            <tr class="list-group_name" id="list-group_name">-->
+<#--                                <td class="cat_name">-->
+<#--                                    <select class="form-select form-select-sm" name="all_cat_name" id="cat_name">-->
+<#--                                        <#list categoryList as categoryList>-->
+<#--                                            <option value='${categoryList.catname}'>${categoryList.catname}</option>-->
+<#--                                        </#list>-->
+<#--                                    </select>-->
+<#--                                </td>-->
 <#--                                <td class="good_name">-->
 <#--                                    <select class="form-select form-select-sm" name="all_good" id="all_good">-->
 <#--                                        <#list menulist as good>-->

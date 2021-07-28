@@ -33,6 +33,8 @@
                         <#assign order_id_val = order.orderId>
                         <#assign orderId = order.orderId>
                         <#assign order_status = order.orderStatus>
+                        <#assign order_express_fee = order.order_express_fee>
+                        <#assign order_total_weight = order.order_total_weight>
                     </#if>
                 </#list>
             </#list>
@@ -144,15 +146,41 @@
                     </table>
                 </div>
             </div>
-
-            <div class="d-flex justify-content-between">
-                <div class="center d-flex orderlist_name"></div>
-                <div>
-                    <h5>总价格: ${order_price}</h5>
+            <#assign order_price_with_express_fee = order_price + order_express_fee>
+<#--            <div class="d-flex justify-content-between">-->
+<#--                <div class="center d-flex orderlist_name"></div>-->
+<#--                <div class="d-flex">-->
+<#--                    <h5 class="mr-2">运费: ${order_express_fee}</h5>-->
+<#--                    <h5 class="mr-2">总价格: ${order_price}</h5>-->
+<#--                    <h5 class="text-danger">含运费价格: ${order_price_with_express_fee}</h5>-->
+<#--                </div>-->
+<#--            </div>-->
+            <div class="price_info">
+                <div class="price_info_title">价格详情</div>
+                <div class="d-flex justify-content-around">
+                    <span class="line"></span>
+                    <div class="d-flex mt-1">
+                        <i class='bx bxs-info-circle iconsize'></i>
+                        <div class="mt-1 price_info_value">总重量: ${order_total_weight}</div>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <i class='bx bxs-truck iconsize'></i>
+                        <div class="mt-1 price_info_value">运费: ${order_express_fee}</div>
+                    </div>
+                    <div  class="d-flex mt-1">
+                        <i class='bx bx-money iconsize' ></i>
+                        <div class="mt-1 price_info_value">物品价格: ${order_price}</div>
+                    </div>
+                    <span class="line"></span>
                 </div>
+                <div class="order_price_with_express_fee">
+                    <h5>￥</h5>
+                    <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
+                </div>
+
             </div>
 
-            <div class="userinfo_comment mb-4">
+            <div class="userinfo_comment mb-4 mt-4">
                 <#--  --------------------------------------    收件人信息     -------------------------------------- -->
                 <div>
                     <div class="d-flex">

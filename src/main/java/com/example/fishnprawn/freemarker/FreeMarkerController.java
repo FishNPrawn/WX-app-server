@@ -193,6 +193,9 @@ public class FreeMarkerController {
         List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
         map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
 
+        List<Category> categoryList = repositoryCat.findAll();
+        map.put("categoryList", categoryList);
+
         return "/wxorder/wxorderlist";
     }
 

@@ -149,6 +149,44 @@
     margin-top: 9px;
 }
 
+.price_info{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.3fr 1.4fr 0.3fr;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0 15px 0;
+    background-color: white;
+    border-radius: 25px;
+}
+.price_info_title{
+    color: #545454;
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+.line{
+    height: 37px;
+    width: 2px;
+    background-color: grey;
+}
+.iconsize{
+    font-size: 30px;
+    padding: 0 5px 0 5px;
+    color: #576EE0;
+}
+.price_info_value{
+    color: #6d6d6d;
+}
+.order_price_with_express_fee{
+    display: flex;
+    align-items: flex-end;
+}
+.order_price_with_express_fee_value{
+    font-weight: 700;
+    font-size: 30px;
+}
 
 
 /*toast*/
