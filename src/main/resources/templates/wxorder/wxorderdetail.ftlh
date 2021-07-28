@@ -161,15 +161,15 @@
                     <span class="line"></span>
                     <div class="d-flex mt-1">
                         <i class='bx bxs-info-circle iconsize'></i>
-                        <div class="mt-1 price_info_value">总重量: ${order_total_weight}</div>
+                        <div class="mt-1 price_info_value">总重量: ${order_total_weight}g</div>
                     </div>
                     <div class="d-flex mt-1">
                         <i class='bx bxs-truck iconsize'></i>
-                        <div class="mt-1 price_info_value">运费: ${order_express_fee}</div>
+                        <div class="mt-1 price_info_value">运费: ￥${order_express_fee}</div>
                     </div>
                     <div  class="d-flex mt-1">
                         <i class='bx bx-money iconsize' ></i>
-                        <div class="mt-1 price_info_value">物品价格: ${order_price}</div>
+                        <div class="mt-1 price_info_value">物品价格: ￥${order_price}</div>
                     </div>
                     <span class="line"></span>
                 </div>
