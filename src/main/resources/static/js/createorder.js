@@ -59,15 +59,22 @@ function show(e,id){
     const good_price = e.value.split("\"")[7]; //good_price
     const good_image = e.value.split("\"")[11];
     const good_name = e.value.split("\"")[15];
+    const good_weight = e.value.split("\"")[19];
 
     let good_price_idx = 'good_price' + id;
     let good_prive_value = document.getElementById(good_price_idx);
     good_prive_value.value = good_price;
-    total_price();
+
+    let good_weight_idx = 'good_weight' + id;
+    let good_weight_value = document.getElementById(good_weight_idx);
+    good_weight_value.value = good_weight;
 }
 
-function total_price(){
+
+// 计算总重量 运费 总价格
+function calculate_price_weight_express(){
     var order_total_price = document.getElementById('order_total_price');
+    var order_total_weight = document.getElementById('order_total_weight');
 
     var totalRowCount = 0;
     var rowCount = 0;
@@ -80,25 +87,20 @@ function total_price(){
         }
     }
     var total_price = 0;
+    var total_good_weight_value = 0;
     for (var j = 0; j < rowCount; j++) {
-        //good id
-        var all_good_id = 'all_good'+j;
-        var e = document.getElementById(all_good_id);
-        var good_arr = e.options[e.selectedIndex].value;
-        var good_price = good_arr.split("\"")[7]; //good_price
-
-        // good_quantity
-        var good_quantity_id = 'good_quantity'+j;
-        var good_quantity_value = document.getElementById(good_quantity_id).value;
-
-
-        //total price
-        total_price = total_price + good_quantity_value*good_price;
+        var good_price = document.getElementsByClassName('good_price')[j].value;
+        var good_quantity_value = document.getElementsByClassName('good_quantity')[j].value;
+        total_price = parseFloat(total_price) +  parseFloat(good_quantity_value)*parseFloat(good_price);
+        var good_weight = document.getElementsByClassName('good_weight')[j].value;
+        total_good_weight_value = total_good_weight_value + parseFloat(good_weight)* parseFloat(good_quantity_value);
+        console.log(total_good_weight_value)
     }
     order_total_price.value = total_price;
-
+    order_total_weight.value = total_good_weight_value;
 }
 
+// 创建订单
 const add_good_btn = document.getElementById('add_good_btn');
 add_good_btn.addEventListener('click', ()=>{
     // 订单编号
@@ -148,26 +150,29 @@ add_good_btn.addEventListener('click', ()=>{
     else{
         let goods_array = [];
         var total_price = 0;
+        var total_good_weight_value = 0;
         for (var j = 0; j < rowCount; j++) {
             //good id
             var all_good_id = 'all_good'+j;
-            var e = document.getElementById(all_good_id);
+            // var e = document.getElementById(all_good_id);
+            var e = document.getElementsByClassName("all_good")[j];
             var good_arr = e.options[e.selectedIndex].value;
             var good_id = good_arr.split("\"")[3];
             var good_price = good_arr.split("\"")[7]; //good_price
             var good_image = good_arr.split("\"")[11];
             var good_name = good_arr.split("\"")[15];
 
-            //good price
-            var good_price_id= 'good_price'+j;
-            var good_price_value = document.getElementById(good_price_id).value;
 
-            // good_quantity
-            var good_quantity_id = 'good_quantity'+j;
-            var good_quantity_value = document.getElementById(good_quantity_id).value;
+            //good price
+            var good_price = document.getElementsByClassName('good_price')[j].value;
+            var good_quantity_value = document.getElementsByClassName('good_quantity')[j].value;
 
             //total price
-            total_price = total_price + good_quantity_value*good_price;
+            total_price = parseFloat(total_price) +  parseFloat(good_quantity_value)*parseFloat(good_price);
+
+            // total weight
+            var good_weight = document.getElementsByClassName('good_weight')[j].value;
+            total_good_weight_value = total_good_weight_value + parseFloat(good_weight)* parseFloat(good_quantity_value);
 
 
             var goods = new Object();
@@ -199,14 +204,15 @@ add_good_btn.addEventListener('click', ()=>{
             "order_total_price": total_price,
             "order_comment": "无备注",
             "orderStatus": orderStatus,
-            "order_total_weight": 123,
+            "order_total_weight": total_good_weight_value,
             "order_express_fee": 18,
             "items": good_json,
         });
         xhr.send(data);
-        setTimeout(function(){ location.reload(); }, 2000);
+        // setTimeout(function(){ location.reload(); }, 2000);
     }
 })
+
 
 function deleteRow(id){
     var rowIdx = 'list-group_name' + id;

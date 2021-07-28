@@ -257,6 +257,12 @@ public class FreeMarkerController {
         return "/wxorder/allorder";
     }
 
+    //----------------------------------------下单成功---------------------------------------------------//
+    @GetMapping("/order/createOrderSuccess")
+    public String createOrderSuccess(ModelMap map){
+        map.put("url", "/orderlist");
+        return "/operation/success";
+    }
 
     //----------------------------------------Page---------------------------------------------------//
 

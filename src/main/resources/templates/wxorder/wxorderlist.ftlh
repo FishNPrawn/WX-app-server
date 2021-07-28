@@ -101,7 +101,7 @@
         <button data-close-button class="close-button-test" id="close_btn" >&times;</button>
     </div>
     <div class="modal-body-test" id="good-window">
-        <form action="#" autocomplete="on">
+        <form action="/order/createOrderSuccess" autocomplete="on">
             <div class="form-group">
                 <div class="form-inline">
                     <label>姓名</label>
@@ -114,12 +114,21 @@
                     <input class="form-control mx-sm-3 mb-2 mt-2" type="text" value="" style="width: 84%;" id="user_address" autocomplete="on" required oninvalid="this.setCustomValidity('填写地址')">
                 </div>
                 <div class="form-inline">
-                    <label>总价</label>
-                    <input class="form-control mx-sm-3 mb-2 w-25 mt-2" type="text" value="" id="order_total_price" readonly>
+                    <label>总重量(g)</label>
+                    <input class="form-control mx-sm-3 w-25" id="order_total_weight" type="text" value="" readonly>
+                    <label>运费</label>
+                    <input class="form-control mx-sm-3 w-25" id="express_fee" type="text" value="" readonly>
                 </div>
+                <div class="form-inline">
+                    <label>价格(不含运费)</label>
+                    <input type="text" class="form-control mx-sm-3" style="width: 25%;" id="order_total_price"  readonly>
+                    <label>总价格(包含运费)</label>
+                    <input class="form-control mx-sm-3 mb-2 w-25 mt-2" type="text" value="" id="order_total_price_with_express_fee" readonly>
+                </div>
+                <button class="btn btn-primary" type="button" onclick="calculate_price_weight_express()">计算</button>
                 <div class="d-flex justify-content-between">
                     <div class="center d-flex orderlist_name">
-                        <span class="orderlist_name_line mt-2"></span>
+                        <span class="orderlist_name_line1"></span>
                         <div class="d-flex align-items-center text-center ml-2 mt-1">
                             <h6>商品详情</h6>
                         </div>
@@ -134,6 +143,7 @@
                         <tr class="text-center">
                             <th>商品名</th>
                             <th>单价</th>
+                            <th>重量(g)</th>
                             <th>数量</th>
                             <th>删除</th>
                         </tr>
@@ -170,7 +180,7 @@
             </div>
 
 <#--            <a href="#" id="add_good_btn" class="btn btn-info btn-dark add_good_btn" type="submit">添加</a>-->
-            <input id="add_good_btn" class="btn btn-info btn-dark add_good_btn" type="submit" value="添加">
+            <input id="add_good_btn" class="btn btn-info btn-dark add_good_btn" onclick="window.parent.location.href='/order/createOrderSuccess';" type="submit" value="添加">
         </form>
     </div>
 </div>
@@ -179,6 +189,7 @@
 <#assign first_good_price = "">
 <#list menulist as good>
     <#assign first_good_price = good.good_price>
+    <#assign first_good_weight = good.good_weight>
     <#break >
 </#list>
 <div id="overlay"></div>
@@ -187,22 +198,26 @@
 <script type="text/javascript">
     var myvariable = ${answer};
     var first_good_price = ${first_good_price};
+    var first_good_weight = ${first_good_weight};
 
     $(document).ready(function(){
         $("#addGoodList").click(function(){
             $("#goods_list").append(
                 " <tr class=\"list-group_name\" id=\"list-group_name" + myvariable + "\">\n" +
                 "                                <td class=\"good_name\">\n" +
-                "                                    <select class=\"form-select form-select-sm\" name=\"all_good\" id=\"all_good" + myvariable +"\" onchange=\"show(this," + myvariable + ")\">\n" +
+                "                                    <select class=\"form-select form-select-sm all_good\" name=\"all_good\" id=\"all_good" + myvariable +"\" onchange=\"show(this," + myvariable + ")\">\n" +
                 "                                        <#list menulist as good>\n" +
-                "                                            <option value='{\"good_id\":\"${good.good_id}\",\"good_price\":\"${good.good_price}\", \"good_image\": \"${good.good_image}\",\"good_name\":\"${good.good_name}\",}'>${good.good_name}</option>\n" +
+                "                                            <option value='{\"good_id\":\"${good.good_id}\",\"good_price\":\"${good.good_price}\", \"good_image\": \"${good.good_image}\",\"good_name\":\"${good.good_name}\",\"good_weight\":\"${good.good_weight}\"}'>${good.good_name}</option>\n" +
                 "                                        </#list>\n" +
                 "                                    </select>\n" +
                 "                                </td>\n" +
-                "                                <td class=\"good_price\">\n" +
+                "                                <td class=\"good_price_class\">\n" +
                 "                                    <input class=\"form-control form-control-sm mx-sm-3 good_price\" type=\"text\" value=\"" + first_good_price +"\" id=\"good_price" + myvariable +  "\" readonly>\n" +
                 "                                </td>\n" +
-                "                                <td class=\"good_quantity\">\n" +
+                "                                <td class=\"good_weight_class\">\n" +
+                "                                    <input class=\"form-control form-control-sm mx-sm-3 good_weight\" type=\"text\" value=\"" + first_good_weight +"\" id=\"good_weight" + myvariable +  "\" readonly>\n" +
+                "                                </td>\n" +
+                "                                <td class=\"good_quantity_class\">\n" +
                 "                                    <input class=\"form-control form-control-sm mx-sm-3 good_quantity\" type=\"number\" min=\"1\" value=\"1\" id=\"good_quantity" + myvariable + "\">\n" +
                 "                                </td>\n" +
                 "                                <td onclick=\"deleteRow(" + myvariable + ")\">\n" +

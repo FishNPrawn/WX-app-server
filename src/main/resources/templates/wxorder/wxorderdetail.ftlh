@@ -177,7 +177,6 @@
                     <h5>￥</h5>
                     <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
                 </div>
-
             </div>
 
             <div class="userinfo_comment mb-4 mt-4">
