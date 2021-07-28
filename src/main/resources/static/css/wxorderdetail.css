@@ -42,6 +42,13 @@
     height: 25px;
     background-color: #576EE0;
 }
+.orderlist_name_line1{
+    display: flex;
+    width: 3px;
+    height: 25px;
+    background-color: #576EE0;
+    margin-top: 12px;
+}
 .orderlist_user_info_line{
     display: flex;
     width: 3px;
@@ -158,7 +165,8 @@
     text-align: center;
     padding: 20px 0 15px 0;
     background-color: white;
-    border-radius: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .price_info_title{
     color: #545454;
