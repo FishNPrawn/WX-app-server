@@ -3,6 +3,7 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <link rel="stylesheet" href="${path}/css/wxorderdetail.css">
+<title>欢喜食货(订单详情信息)</title>
 <body onload="orderStatus()">
 
 
@@ -17,9 +18,9 @@
                 <div class="center d-flex orderlist_name">
                     <h2>订单详情</h2>
                 </div>
-                <div>
-                    <a class="btn btn-secondary text-white my-3" onclick="history.go(-1)">返回</a>
-                </div>
+<#--                <div>-->
+<#--                    <a class="btn btn-secondary text-white my-3" onclick="history.go(-1)">返回</a>-->
+<#--                </div>-->
             </div>
             <#list orderlist as order>
                 <#list orderDTO.orderDetailList as orderdetail>
@@ -32,6 +33,8 @@
                         <#assign order_id_val = order.orderId>
                         <#assign orderId = order.orderId>
                         <#assign order_status = order.orderStatus>
+                        <#assign order_express_fee = order.order_express_fee>
+                        <#assign order_total_weight = order.order_total_weight>
                     </#if>
                 </#list>
             </#list>
@@ -66,14 +69,15 @@
 
             <div class="d-flex justify-content-between">
                 <div class="center d-flex orderlist_name">
-                    <span class="orderlist_name_line"></span>
+                    <span class="orderlist_number_line"></span>
                     <div class="d-flex align-items-center text-center ml-2">
                         <h6>订单号: </h6>
                         <h6 class="pl-2" id="order_number">${order_number}</h6>
                     </div>
                 </div>
+
                 <div>
-                    <#if order_status == 1 || order_status==2 || order_status==3>
+                    <#if order_status == 1 || order_status==2>
                         <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                             添加
                         </button>
@@ -88,7 +92,6 @@
                                 发货
                             </button>
                     </#if>
-
                 </div>
             </div>
             <#--  table start-->
@@ -143,16 +146,42 @@
                     </table>
                 </div>
             </div>
-
-            <div class="d-flex justify-content-between">
-                <div class="center d-flex orderlist_name"></div>
-                <div>
-                    <h5>总价格: ${order_price}</h5>
+            <#assign order_price_with_express_fee = order_price + order_express_fee>
+<#--            <div class="d-flex justify-content-between">-->
+<#--                <div class="center d-flex orderlist_name"></div>-->
+<#--                <div class="d-flex">-->
+<#--                    <h5 class="mr-2">运费: ${order_express_fee}</h5>-->
+<#--                    <h5 class="mr-2">总价格: ${order_price}</h5>-->
+<#--                    <h5 class="text-danger">含运费价格: ${order_price_with_express_fee}</h5>-->
+<#--                </div>-->
+<#--            </div>-->
+            <div class="price_info">
+                <div class="price_info_title">价格详情</div>
+                <div class="d-flex justify-content-around">
+                    <span class="line"></span>
+                    <div class="d-flex mt-1">
+                        <i class='bx bxs-info-circle iconsize'></i>
+                        <div class="mt-1 price_info_value">总重量: ${order_total_weight}g</div>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <i class='bx bxs-truck iconsize'></i>
+                        <div class="mt-1 price_info_value">运费: ￥${order_express_fee}</div>
+                    </div>
+                    <div  class="d-flex mt-1">
+                        <i class='bx bx-money iconsize' ></i>
+                        <div class="mt-1 price_info_value">物品价格: ￥${order_price}</div>
+                    </div>
+                    <span class="line"></span>
                 </div>
+                <div class="order_price_with_express_fee">
+                    <h5>￥</h5>
+                    <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
+                </div>
+
             </div>
 
-            <div class="userinfo_comment mb-4">
-            <#--  --------------------------------------    收件人信息     -------------------------------------- -->
+            <div class="userinfo_comment mb-4 mt-4">
+                <#--  --------------------------------------    收件人信息     -------------------------------------- -->
                 <div>
                     <div class="d-flex">
                         <div class="center d-flex orderlist_name">
@@ -185,10 +214,9 @@
 
                     </div>
                 </div>
+                <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
 
-            <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
-
-            <#--  --------------------------------------    买家备注     -------------------------------------- -->
+                <#--  --------------------------------------    买家备注     -------------------------------------- -->
                 <div>
                     <div class="d-flex">
                         <div class="center d-flex orderlist_name">
@@ -196,9 +224,53 @@
                             <h6 class="d-flex align-items-center text-center ml-2 mt-1">买家备注</h6>
                         </div>
                     </div>
-                    <div class="comment-box mt-3">${comment}的完全打完球端午期间低级趣味父亲节免费么我金佛；偶尔玩家们欺负；抢福利全微分腊味饭你</div>
+                    <div class="comment-box mt-3">${comment}</div>
                 </div>
-            <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
+                <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
+
+                <#--  --------------------------------------    商家备注     -------------------------------------- -->
+                <div>
+                    <div class="d-flex justify-content-between align-content-center align-items-center">
+                        <div class="center d-flex orderlist_name">
+                            <span class="orderlist_name_line"></span>
+                            <div class="d-flex text-center ml-2 mt-1">
+                                <h6>商家备注(仅平台客服可见)</h6>
+                            </div>
+                        </div>
+                        <div>
+                            <#assign remark_or_not_btn = false >
+                            <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                                <#if wxOrderDetailRemarks.order_id == orderId >
+                                    <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
+                                        修改备注
+                                    </button>
+                                    <#assign remark_or_not_btn = true >
+                                </#if>
+                            </#list>
+                            <#if remark_or_not_btn == false >
+                                <button class="btn btn-primary text-white btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
+                                    添加备注
+                                </button>
+                            </#if>
+                        </div>
+                    </div>
+
+                    <div class="admin_remark mt-3">
+                        <h6 class="pl-3 admin_remark_title">备注详情:</h6>
+                        <#assign remark_or_not = false >
+                        <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
+                            <#if wxOrderDetailRemarks.order_id == orderId >
+                                <h6 class="ml-2 remark_value_db">${wxOrderDetailRemarks.remark}</h6>
+                                <h6 class="d-none" id="wx_order_detail_remark_id">${wxOrderDetailRemarks.wx_order_detail_remark_id}</h6>
+                                <#assign remark_or_not = true >
+                            </#if>
+                        </#list>
+                        <#if remark_or_not == false >
+                            <h6 class="ml-2 remark_value_db">无备注</h6>
+                        </#if>
+                    </div>
+                </div>
+                <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
             </div>
 
 
@@ -206,8 +278,8 @@
             <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
             <div class="d-flex justify-content-between">
                 <div class="center d-flex orderlist_name">
-                    <span class="orderlist_user_info_line mt-2"></span>
-                    <h6 class="d-flex align-items-center text-center ml-2 mt-1">包裹及物流信息</h6>
+                    <span class="orderlist_user_info_line"></span>
+                    <h6 class="d-flex align-items-center text-center ml-2">包裹及物流信息</h6>
                 </div>
                 <div>
                     <#if order_status != 1>
@@ -218,7 +290,7 @@
                 </div>
             </div>
 
-            <div class="package_info_wrapper mb-4 ">
+            <div class="package_info_wrapper mb-4 mt-3">
                 <div class="package_info">
                     <h6>包裹信息</h6>
                     <div class="mt-4">
@@ -268,49 +340,6 @@
                 </div>
             </div>
             <#--  --------------------------------------    包裹及物流信息 end  -------------------------------------- -->
-
-            <#--  --------------------------------------    商家备注     -------------------------------------- -->
-            <div class="d-flex justify-content-between">
-                <div class="center d-flex orderlist_name">
-                    <span class="orderlist_name_line"></span>
-                    <div class="d-flex align-items-center text-center ml-2 mt-1">
-                        <h6>商家备注(订单备注自行添加，仅平台客服可见)</h6>
-                    </div>
-                </div>
-                <div>
-                    <#assign remark_or_not_btn = false >
-                    <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
-                        <#if wxOrderDetailRemarks.order_id == orderId >
-                            <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
-                                修改备注
-                            </button>
-                            <#assign remark_or_not_btn = true >
-                        </#if>
-                    </#list>
-                    <#if remark_or_not_btn == false >
-                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
-                            添加备注
-                        </button>
-                    </#if>
-                </div>
-            </div>
-
-            <div class="admin_remark mb-4">
-                <h6 class="pl-4">备注详情:</h6>
-                <#assign remark_or_not = false >
-                <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
-                    <#if wxOrderDetailRemarks.order_id == orderId >
-                        <h6 class="ml-2 remark_value_db">${wxOrderDetailRemarks.remark}</h6>
-                        <h6 class="d-none" id="wx_order_detail_remark_id">${wxOrderDetailRemarks.wx_order_detail_remark_id}</h6>
-                        <#assign remark_or_not = true >
-                    </#if>
-                </#list>
-                <#if remark_or_not == false >
-                    <h6 class="ml-2 remark_value_db">无备注</h6>
-                </#if>
-            </div>
-            <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
-
 
         </div>
     </main>

@@ -35,6 +35,12 @@ public class OrderReq {
     @Column(name = "order_status")
     private int orderStatus;
 
+    @NotNull
+    private double order_total_weight;
+
+    @NotNull
+    private double order_express_fee;
+
     private String items;   //购物车
 
     public OrderReq(){}
@@ -50,6 +56,8 @@ public class OrderReq {
         this.setOrder_total_price(wxOrderRoot.getOrder_total_price());
         this.setOrder_comment(wxOrderRoot.getOrder_comment());
         this.setOrderStatus(wxOrderRoot.getOrderStatus());
+        this.setOrder_total_weight(wxOrderRoot.getOrder_total_weight());
+        this.setOrder_express_fee(wxOrderRoot.getOrder_express_fee());
     }
 
 }

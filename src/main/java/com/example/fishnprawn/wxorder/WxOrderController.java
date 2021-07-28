@@ -52,6 +52,8 @@ public class WxOrderController {
         orderBean.setOrder_create_time(LocalDateTime.now());
         orderBean.setOrder_comment(orderReq.getOrder_comment());
         orderBean.setOrderStatus(orderReq.getOrderStatus());
+        orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
+        orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -85,6 +87,8 @@ public class WxOrderController {
         orderBean.setOrder_create_time(LocalDateTime.now());
         orderBean.setOrder_comment(orderReq.getOrder_comment());
         orderBean.setOrderStatus(orderReq.getOrderStatus());
+        orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
+        orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{

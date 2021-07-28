@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
+<title>欢喜食货(管理员)</title>
 <body>
 
 
@@ -20,8 +21,6 @@
                 </div>
             </div>
         </main>
-
-
     <#else >
     <main>
         <div id="page-content-wrapper" class="container">

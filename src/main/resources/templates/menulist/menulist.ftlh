@@ -3,6 +3,7 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <link href="${path}/css/menulist.css" rel="stylesheet" />
+<title>欢喜食货(商品列表)</title>
 
 <body>
 <div id="wrapper" class="toggled container1">

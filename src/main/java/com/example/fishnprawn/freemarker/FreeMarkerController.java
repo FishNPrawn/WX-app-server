@@ -193,6 +193,9 @@ public class FreeMarkerController {
         List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
         map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
 
+        List<Category> categoryList = repositoryCat.findAll();
+        map.put("categoryList", categoryList);
+
         return "/wxorder/wxorderlist";
     }
 
@@ -305,6 +308,13 @@ public class FreeMarkerController {
     public String userinfo(ModelMap map){
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();
         map.put("userInfoList", userInfoList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/userinfo/userinfo";
     }
 

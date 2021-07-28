@@ -199,10 +199,12 @@ add_good_btn.addEventListener('click', ()=>{
             "order_total_price": total_price,
             "order_comment": "无备注",
             "orderStatus": orderStatus,
+            "order_total_weight": 123,
+            "order_express_fee": 18,
             "items": good_json,
         });
         xhr.send(data);
-        setTimeout(function(){ location.reload(); }, 1000);
+        setTimeout(function(){ location.reload(); }, 2000);
     }
 })
 

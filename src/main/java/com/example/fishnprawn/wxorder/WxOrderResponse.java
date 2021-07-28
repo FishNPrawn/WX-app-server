@@ -37,6 +37,12 @@ public class WxOrderResponse {
     @Column(name = "order_status")
     private int orderStatus;
 
+    @Column(name = "order_total_weight")
+    private double order_total_weight;
+
+    @Column(name = "order_express_fee")
+    private double order_express_fee;
+
     List<WxOrderDetail> orderDetailList;
 
 }

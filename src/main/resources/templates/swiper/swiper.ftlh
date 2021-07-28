@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <#include "../header/top.ftlh">
+<title>欢喜食货(轮播图)</title>
 <body>
 
 
