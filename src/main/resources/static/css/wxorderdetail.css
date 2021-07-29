@@ -49,63 +49,107 @@
     background-color: #576EE0;
     margin-top: 12px;
 }
+
+.copyTextBtn{
+    margin-top: 13px;
+}
+
+/*-----------------   line   -----------------------*/
 .orderlist_user_info_line{
     display: flex;
     width: 3px;
     height: 25px;
-    background-color: #576EE0;
 }
+.orderlist_user_info_line_red{
+    background-color: hsl(0, 78%, 62%);
+}
+.orderlist_user_info_line_blue{
+    background-color: hsl(212, 86%, 64%);
+}
+.orderlist_user_info_line_orange{
+    background-color: hsl(34, 97%, 64%);
+}
+.orderlist_user_info_line_cyan{
+    background-color: hsl(208, 43%, 69%);
+}
+/*-----------------   line   -----------------------*/
+
 .copyText{
     border: none;
     background: none;
-}
-.comment-box{
-    background-color:#576EE0;
-    border-radius: 25% 10%;
-    height: 150px;
-    /*width: 350px;*/
-    padding: 15px 10px 10px 15px;
-    color: white;
-}
-.userinfo_comment{
-    display: grid;
-    width: 100%;
-    /*grid-template-columns: 3fr 1fr;*/
-    grid-template-columns: repeat(3, 33%);
-    grid-column-gap: 10px;
-}
-.userinfo{
-    /*width: 50%;*/
-    height: 150px;
-    border: 2px solid #d9d9d9;
-    padding: 30px 30px 30px 30px;
 }
 .userinfo_row{
     padding: 5px 0 0 0;
 }
 .userinfo_row h6{
     font-weight: 350;
-    font-size: 14px;
+    font-size: 15px;
 }
 .userinfo_value{
     font-size: 14px;
     margin-left: 20px;
 }
-.admin_remark{
-    /*width: 50%;*/
-    height: 150px;
-    border: 2px solid #d9d9d9;
-    display: flex;
-    /*align-items: center;*/
-    padding: 30px 30px 10px 10px;
+
+.remark_change_wrapper{
+    margin-top: 10px;
 }
+/*----------------------card--------------------------------*/
+/*收件人信息*/
+.userinfo{
+    height: 150px;
+    padding: 20px 10px 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+    border-top: 3px solid hsl(0, 78%, 62%);
+}
+/*商家备注(仅平台客服可见)*/
+.admin_remark{
+    height: 150px;
+    display: flex;
+    padding: 20px 10px 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+    border-top: 3px solid hsl(34, 97%, 64%);
+}
+/*买家备注*/
+.comment-box{
+    height: 150px;
+    padding: 20px 10px 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+    border-top: 3px solid hsl(212, 86%, 64%);
+    font-weight: 350;
+    font-size: 15px;
+}
+/*包裹及物流信息*/
+.package_info_wrapper{
+    display: grid;
+    grid-template-columns: 1fr 0 1fr;
+    width: 100%;
+    height: 220px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+    border-top: 3px solid hsl(208, 43%, 69%);
+    font-weight: 350;
+    font-size: 15px;
+}
+/*----------------------card--------------------------------*/
+
+.userinfo_comment{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 32%);
+    grid-column-gap: 25px;
+}
+
 .admin_remark_title{
     width: 80px;
 }
 
 .admin_remark h6{
     font-weight: 350;
-    font-size: 14px;
+    font-size: 15px;
 }
 .remark_textarea{
     width: 100%;
@@ -118,14 +162,6 @@
     border: 1px solid #ccc;
 
 }
-.package_info_wrapper{
-    display: grid;
-    grid-template-columns: 1fr 0 1fr;
-    width: 100%;
-    height: 200px;
-    border: 2px solid #d9d9d9;
-    padding: 30px 30px 30px 30px;
-}
 .deliver_package{
     display: flex;
     align-items: center;
@@ -133,16 +169,14 @@
 }
 .deliver_company_title, .deliver_package_title, .package_weight_title{
     font-weight: 350;
-    font-size: 14px;
+    font-size: 15px;
 }
 .deliver_company_value, .deliver_package_value, .package_weight_value{
     font-weight: 350;
-    font-size: 14px;
+    font-size: 15px;
     margin-left: 20px;
 }
-.copy_deliver_package{
-    font-size: 12px;
-}
+
 .package_info_line{
     width: 1px;
     height: 95%;
@@ -159,11 +193,11 @@
 .price_info{
     display: grid;
     width: 100%;
-    grid-template-columns: 0.3fr 1.4fr 0.3fr;
+    grid-template-columns: 0.3fr 1.4fr 0.2fr 0.2fr;
     align-content: center;
     justify-content: center;
     text-align: center;
-    padding: 20px 0 15px 0;
+    padding: 15px 0 15px 0;
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -172,10 +206,18 @@
     color: #545454;
     font-weight: 500;
     font-size: 25px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.price_info_all_value{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .line{
-    height: 37px;
+    height: 44px;
     width: 2px;
     background-color: grey;
 }
@@ -195,9 +237,55 @@
     font-weight: 700;
     font-size: 30px;
 }
+.change_total_price_wrapper{
+    color: white;
+}
+.change_total_price_btn{
+    display: inline-block;
+    width: 110px;
+    background-color: hsl(230, 69%, 61%);;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.left-arrow-color{
+    color: white;
+    padding-right: 6px;
+    transition: 0.5s;
+}
+.change_total_price_btn:hover, .left-arrow-color:hover{
+    background-color: hsl(230, 57%, 53%);
+}
+.change_total_price_btn:hover .left-arrow-color{
+    transform: translateX(-0.25rem);
+}
 
+.change_express_number_wrapper{
+    margin-top: 10px;
+}
+.change_express_number_btn{
+    background-color: hsl(208, 43%, 69%);
+    transition: 0.3s;
+}
+.change_express_number_btn:hover{
+    background-color: hsl(208, 22%, 54%);
+}
 
-/*toast*/
+.copy_deliver_package{
+    font-size: 12px;
+    background-color: hsl(208, 43%, 69%);
+    transition: 0.3s;
+    color: white;
+}
+.copy_deliver_package:hover{
+    background-color: hsl(208, 22%, 54%);
+    color: white;
+}
+/*---------------------------toast---------------------------*/
 #toast {
     visibility: hidden;
     max-width: 50px;
@@ -284,3 +372,4 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 60px; opacity: 0;}
 }
+/*---------------------------toast---------------------------*/
