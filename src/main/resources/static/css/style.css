@@ -9,6 +9,10 @@ body{
     background: #fafafa;
 }
 
+.container{
+    max-width: 90%;
+}
+
 .checkbox, .checkBoxes {
     width:15px;
     height:15px;

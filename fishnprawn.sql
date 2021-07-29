@@ -71,6 +71,8 @@ create table `wx_order_root` (
      `order_create_time` timestamp not null comment '订单创造时间',
      `order_comment` text comment '备注',
      `order_status` int not null,
+     `order_total_weight` double not null,
+     "order_express_fee" double not null,
      primary key (`order_id`)
 );
 

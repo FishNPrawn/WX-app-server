@@ -99,10 +99,10 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered" id="table">
                         <thead class="thead-dark">
-                        <tr class="table-info  table-hover text-center">
+                        <tr class="table-info text-center">
 <#--                            <th>order_detail_id</th>-->
 <#--                            <th>good_id</th>-->
-                            <th>商品名</th>
+                            <th>商品信息</th>
                             <th>商品图</th>
                             <th>商品单价</th>
                             <th>数量</th>
