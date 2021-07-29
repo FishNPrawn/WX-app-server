@@ -9,6 +9,10 @@ body{
     overflow: hidden;
 }
 
+.login_icon_size{
+    font-size: 18px;
+}
+
 .wave{
     position: fixed;
     bottom: 0;

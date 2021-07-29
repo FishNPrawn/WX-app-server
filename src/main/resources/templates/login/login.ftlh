@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <#include "../header/top.ftlh">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="${path}/css/login.css">
 <body>
 <img class="wave" src="img/wave.png">
@@ -17,7 +14,7 @@
             <h3 class="title">欢喜食货</h3>
             <div class="input-div one">
                 <div class="i">
-                    <i class="fas fa-user"></i>
+                    <i class="fa fa-user login_icon_size"></i>
                 </div>
                 <div class="div">
                     <h5>用户名</h5>
@@ -26,7 +23,7 @@
             </div>
             <div class="input-div pass">
                 <div class="i">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa fa-lock login_icon_size"></i>
                 </div>
                 <div class="div">
                     <h5>密码</h5>

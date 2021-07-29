@@ -116,7 +116,7 @@
                 <#list userInfoList as userInfoList>
                     <#assign userCount = userCount +  1 >
                 </#list>
-                <div class="card">
+                <div class="card_wrapper">
                     <i
                             class="fa fa-user-o fa-2x text-lightblue"
                             aria-hidden="true"
@@ -132,7 +132,7 @@
                 <#list orderlist as orderlist>
                     <#assign totol_order = totol_order+1 >
                 </#list>
-                <div class="card">
+                <div class="card_wrapper">
                     <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                     <div class="card_inner">
                         <p class="text-primary-p mt-3">总订单</p>
@@ -163,7 +163,7 @@
                         <#assign order_cancel_number = order_cancel_number+1 >
                     </#if>
                 </#list>
-                <div class="card">
+                <div class="card_wrapper">
                     <i
                             class="fa fa-calendar-check-o fa-2x text-yellow"
                             aria-hidden="true"
@@ -179,7 +179,7 @@
                 <#list orderdetailist as orderdetailist>
                     <#assign totol_order_money = totol_order_money +  orderdetailist.good_price*orderdetailist.good_quantity >
                 </#list>
-                <div class="card">
+                <div class="card_wrapper">
                     <i
                             class="fa fa-money fa-2x text-green"
                             aria-hidden="true"
