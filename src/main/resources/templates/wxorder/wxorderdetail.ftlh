@@ -157,7 +157,7 @@
 <#--            </div>-->
             <div class="price_info">
                 <div class="price_info_title">价格详情</div>
-                <div class="d-flex justify-content-around">
+                <div class="d-flex justify-content-around price_info_all_value">
                     <span class="line"></span>
                     <div class="d-flex mt-1">
                         <i class='bx bxs-info-circle iconsize'></i>
@@ -177,15 +177,23 @@
                     <h5>￥</h5>
                     <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
                 </div>
+                <div class="change_total_price_wrapper">
+                    <a class="change_total_price_btn">
+                        <i class="fa fa-arrow-left left-arrow-color" aria-hidden="true"></i>改价格
+                    </a>
+                </div>
             </div>
 
             <div class="userinfo_comment mb-4 mt-4">
                 <#--  --------------------------------------    收件人信息     -------------------------------------- -->
                 <div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                         <div class="center d-flex orderlist_name">
-                            <span class="orderlist_user_info_line"></span>
+                            <span class="orderlist_user_info_line orderlist_user_info_line_red"></span>
                             <h6 class="d-flex align-items-center text-center ml-2 mt-1">收件人信息</h6>
+                        </div>
+                        <div class="copyTextBtn">
+                            <button class="btn btn-danger btn-sm" onclick="copyText(this)">复制</button>
                         </div>
                     </div>
                     <div class="userinfo mt-3 d-flex justify-content-between">
@@ -207,47 +215,31 @@
                                 <h6 class="userinfo_value" id="user_address">${user_address}</h6>
                             </div>
                         </div>
-                        <div>
-                            <button class="btn btn-success btn-sm mt-4" onclick="copyText(this)">复制</button>
-                        </div>
-
                     </div>
                 </div>
                 <#--  --------------------------------------    收件人信息  end   -------------------------------------- -->
 
-                <#--  --------------------------------------    买家备注     -------------------------------------- -->
-                <div>
-                    <div class="d-flex">
-                        <div class="center d-flex orderlist_name">
-                            <span class="orderlist_user_info_line"></span>
-                            <h6 class="d-flex align-items-center text-center ml-2 mt-1">买家备注</h6>
-                        </div>
-                    </div>
-                    <div class="comment-box mt-3">${comment}</div>
-                </div>
-                <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
-
                 <#--  --------------------------------------    商家备注     -------------------------------------- -->
                 <div>
-                    <div class="d-flex justify-content-between align-content-center align-items-center">
+                    <div class="d-flex justify-content-between align-content-center">
                         <div class="center d-flex orderlist_name">
-                            <span class="orderlist_name_line"></span>
+                            <span class="orderlist_name_line orderlist_user_info_line_orange"></span>
                             <div class="d-flex text-center ml-2 mt-1">
                                 <h6>商家备注(仅平台客服可见)</h6>
                             </div>
                         </div>
-                        <div>
+                        <div class="remark_change_wrapper">
                             <#assign remark_or_not_btn = false >
                             <#list wxOrderDetailRemarks as wxOrderDetailRemarks>
                                 <#if wxOrderDetailRemarks.order_id == orderId >
-                                    <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
+                                    <button class="btn btn-warning text-white btn-sm" data-modal-target="#modal-test-remark-update" id="updateRemark" onclick="updateRemark()">
                                         修改备注
                                     </button>
                                     <#assign remark_or_not_btn = true >
                                 </#if>
                             </#list>
                             <#if remark_or_not_btn == false >
-                                <button class="btn btn-primary text-white btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
+                                <button class="btn btn-warning text-white btn-sm" data-modal-target="#modal-test-remark" id="addRemark">
                                     添加备注
                                 </button>
                             </#if>
@@ -270,6 +262,19 @@
                     </div>
                 </div>
                 <#--  --------------------------------------    商家备注  end   -------------------------------------- -->
+
+                <#--  --------------------------------------    买家备注     -------------------------------------- -->
+                <div>
+                    <div class="d-flex">
+                        <div class="center d-flex orderlist_name">
+                            <span class="orderlist_user_info_line orderlist_user_info_line_blue"></span>
+                            <h6 class="d-flex align-items-center text-center ml-2 mt-1">买家备注</h6>
+                        </div>
+                    </div>
+<#--                    <div class="comment-box mt-3">买家备注: ${comment}</div>-->
+                    <h6 class="ml-2 comment-box mt-3">买家备注: ${comment}</h6>
+                </div>
+                <#--  --------------------------------------    买家备注  end   -------------------------------------- -->
             </div>
 
 
@@ -277,12 +282,12 @@
             <#--  --------------------------------------    包裹及物流信息  -------------------------------------- -->
             <div class="d-flex justify-content-between">
                 <div class="center d-flex orderlist_name">
-                    <span class="orderlist_user_info_line"></span>
-                    <h6 class="d-flex align-items-center text-center ml-2">包裹及物流信息</h6>
+                    <span class="orderlist_user_info_line orderlist_user_info_line_cyan"></span>
+                    <h6 class="d-flex align-items-center text-center ml-2 mt-1">包裹及物流信息</h6>
                 </div>
-                <div>
+                <div class="change_express_number_wrapper">
                     <#if order_status != 1>
-                        <button class="btn btn-primary text-white my-3 btn-sm" data-modal-target="#modal-test-change-shipment-number" id="changeShipmentNumber">
+                        <button class="btn text-white btn-sm change_express_number_btn" data-modal-target="#modal-test-change-shipment-number" id="changeShipmentNumber">
                             修改快递单号
                         </button>
                     </#if>
@@ -313,7 +318,7 @@
                             <#list shipments as shipments>
                                 <#if shipments.order_number == order_number >
                                     <h6 class="deliver_package_value mt-2" id="deliver_package_number">${shipments.shipment_number}</h6>
-                                    <button class="btn btn-success btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
+                                    <button class="btn btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
                                 </#if>
                             </#list>
                             <#if shipment_or_not == false >
@@ -372,7 +377,7 @@
 <#--添加商品end-->
 
 <#--发货-->
-<div class="modal-test" id="modal-test-shipment">
+<div class="modal-test" id="modal-test-shipment" style="width: 44%;">
     <div class="modal-header-test">
         <div class="title-test">发货</div>
         <button data-close-button class="close-button-test" id="shipment_close" >&times;</button>
