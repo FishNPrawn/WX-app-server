@@ -73,9 +73,6 @@ function show(e,id){
 
 // 计算总重量 运费 总价格
 function calculate_price_weight_express(){
-    var order_total_price = document.getElementById('order_total_price');
-    var order_total_weight = document.getElementById('order_total_weight');
-
     var totalRowCount = 0;
     var rowCount = 0;
     var table = document.getElementById("new_order_table");
@@ -86,18 +83,35 @@ function calculate_price_weight_express(){
             rowCount++;
         }
     }
-    var total_price = 0;
-    var total_good_weight_value = 0;
-    for (var j = 0; j < rowCount; j++) {
-        var good_price = document.getElementsByClassName('good_price')[j].value;
-        var good_quantity_value = document.getElementsByClassName('good_quantity')[j].value;
-        total_price = parseFloat(total_price) +  parseFloat(good_quantity_value)*parseFloat(good_price);
-        var good_weight = document.getElementsByClassName('good_weight')[j].value;
-        total_good_weight_value = total_good_weight_value + parseFloat(good_weight)* parseFloat(good_quantity_value);
-        console.log(total_good_weight_value)
+
+    if(rowCount == 0){
+        alert("请添加商品")
+    }else{
+
+        var order_total_price = document.getElementById('order_total_price');
+        var order_total_weight = document.getElementById('order_total_weight');
+        var order_express_fee = document.getElementById('express_fee');
+        var order_total_price_with_express_fee = document.getElementById('order_total_price_with_express_fee');
+
+        var total_price = 0;
+        var total_good_weight_value = 0;
+        for (var j = 0; j < rowCount; j++) {
+            var good_price = document.getElementsByClassName('good_price')[j].value;
+            var good_quantity_value = document.getElementsByClassName('good_quantity')[j].value;
+            total_price = parseFloat(total_price) +  parseFloat(good_quantity_value)*parseFloat(good_price);
+            var good_weight = document.getElementsByClassName('good_weight')[j].value;
+            total_good_weight_value = total_good_weight_value + parseFloat(good_weight)* parseFloat(good_quantity_value);
+            console.log(total_good_weight_value)
+        }
+
+        var express_fee  = calculateExpressFee(total_good_weight_value, total_price);
+        var order_total_price_with_express_fee_value = parseFloat(express_fee) + parseFloat(total_price);
+
+        order_total_price.value = parseFloat(total_price);
+        order_total_weight.value = parseFloat(total_good_weight_value);
+        order_express_fee.value = parseFloat(express_fee);
+        order_total_price_with_express_fee.value = parseFloat(order_total_price_with_express_fee_value);
     }
-    order_total_price.value = total_price;
-    order_total_weight.value = total_good_weight_value;
 }
 
 // 创建订单
@@ -117,7 +131,6 @@ add_good_btn.addEventListener('click', ()=>{
     var date = year + '' + month + '' + day;
     var time = hour + '' + minute + ''+ second;
     var randomNumber = Math.floor(1000 + Math.random() * 9000);
-
 
     const openId = "自己添加的openId";
     const order_number = date + '' + time + '' + randomNumber;
@@ -151,6 +164,8 @@ add_good_btn.addEventListener('click', ()=>{
         let goods_array = [];
         var total_price = 0;
         var total_good_weight_value = 0;
+        var order_express_fee_value = 0;
+        var order_total_price_with_express_fee_value = 0;
         for (var j = 0; j < rowCount; j++) {
             //good id
             var all_good_id = 'all_good'+j;
@@ -185,7 +200,13 @@ add_good_btn.addEventListener('click', ()=>{
             goods_array.push(goods)
         }
 
-        let good_json = JSON.stringify(goods_array);
+        // 运费
+        order_express_fee_value  = parseFloat(calculateExpressFee(total_good_weight_value, total_price));
+
+        //总价格+运费
+        order_total_price_with_express_fee_value = parseFloat(order_express_fee_value) + parseFloat(total_price);
+
+            let good_json = JSON.stringify(goods_array);
 
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "createByOwn"]).join("/")
@@ -205,7 +226,8 @@ add_good_btn.addEventListener('click', ()=>{
             "order_comment": "无备注",
             "orderStatus": orderStatus,
             "order_total_weight": total_good_weight_value,
-            "order_express_fee": 18,
+            "order_express_fee": order_express_fee_value,
+            "order_total_price_with_express_fee": order_total_price_with_express_fee_value,
             "items": good_json,
         });
         xhr.send(data);
@@ -221,6 +243,43 @@ function deleteRow(id){
 
 
 
+
+
+function calculateExpressFee(weight, order_total_price){
+    var express_fee = 18;
+    if(weight>0 && weight<=1000){
+        express_fee = 18;
+    }else if(weight > 1000 && weight <= 2000){
+        express_fee = 18;
+    }else if(weight > 2000 && weight <= 3000){
+        express_fee = 21;
+    }else if(weight > 3000 && weight <= 4000){
+        express_fee = 24;
+    }else if(weight > 4000 && weight <= 5000){
+        express_fee = 27;
+    }else if(weight > 5000 && weight <= 6000){
+        express_fee = 30;
+    }else if(weight > 6000 && weight <= 7000){
+        express_fee = 33;
+    }else if(weight > 7000 && weight <= 8000){
+        express_fee = 36;
+    }else if(weight > 8000 && weight <= 9000){
+        express_fee = 39;
+    }else if(weight > 9000 && weight <= 10000){
+        express_fee = 42;
+    }else{
+        express_fee = 45;
+    }
+
+    if(order_total_price>=88 && order_total_price<188){
+        express_fee = express_fee - 5;
+    }else if(order_total_price>=188 && order_total_price<268){
+        express_fee = express_fee - 12;
+    }else if(order_total_price>=268){
+        express_fee = 0;
+    }
+    return express_fee;
+}
 
 
 

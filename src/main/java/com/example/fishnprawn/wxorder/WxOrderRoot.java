@@ -27,7 +27,7 @@ public class WxOrderRoot {
     private String user_name;
     private String user_address;
     private String user_phone;
-    private BigDecimal order_total_price;
+    private double order_total_price;
     private LocalDateTime order_create_time;
     private String order_comment;
 
@@ -39,4 +39,7 @@ public class WxOrderRoot {
 
     @Column(name = "order_express_fee")
     private double order_express_fee;
+
+    @Column(name = "order_total_price_with_express_fee")
+    private double order_total_price_with_express_fee;
 }

@@ -28,7 +28,7 @@ public class OrderReq {
     private String user_phone;
 
     @NotNull
-    private BigDecimal order_total_price;
+    private double order_total_price;
 
     private String order_comment;
 
@@ -40,6 +40,9 @@ public class OrderReq {
 
     @NotNull
     private double order_express_fee;
+
+    @NotNull
+    private double order_total_price_with_express_fee;
 
     private String items;   //购物车
 
@@ -58,6 +61,7 @@ public class OrderReq {
         this.setOrderStatus(wxOrderRoot.getOrderStatus());
         this.setOrder_total_weight(wxOrderRoot.getOrder_total_weight());
         this.setOrder_express_fee(wxOrderRoot.getOrder_express_fee());
+        this.setOrder_total_price_with_express_fee(wxOrderRoot.getOrder_total_price_with_express_fee());
     }
 
 }

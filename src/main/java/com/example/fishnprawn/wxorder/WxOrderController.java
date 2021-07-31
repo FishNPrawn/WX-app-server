@@ -4,6 +4,7 @@ import com.example.fishnprawn.exception.ServiceException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,9 @@ public class WxOrderController {
     @Autowired
     private OrderDetailServices orderDetailServices;
 
+    @Autowired
+    private OrderRootDao orderRootDao;
+
     /* 创建订单 */
     @PostMapping("/create")
     public String create(@Valid OrderReq orderReq){
@@ -54,6 +58,7 @@ public class WxOrderController {
         orderBean.setOrderStatus(orderReq.getOrderStatus());
         orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
+        orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -89,6 +94,7 @@ public class WxOrderController {
         orderBean.setOrderStatus(orderReq.getOrderStatus());
         orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
+        orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -110,8 +116,25 @@ public class WxOrderController {
 
     // 给某个订单添加订单商品
     @PostMapping(path="/add", produces="application/json")
-    public ResponseEntity<WxOrderDetail> addGoodInOrderDetail(@Valid @RequestBody WxOrderDetail wxOrderDetail){
+    public ResponseEntity<WxOrderDetail> addGoodInOrderDetail(@RequestParam("order_id") int order_id,
+                                                              @RequestParam("good_quantity") double good_quantity,
+                                                              @RequestParam("good_price") double good_price,
+                                                              @Valid @RequestBody WxOrderDetail wxOrderDetail){
         System.out.println("[add one good]");
+
+        WxOrderResponse orderDTO = wxOrder.findOne(order_id);
+        double order_total_price_with_express_fee = orderDTO.getOrder_total_price_with_express_fee();
+        double order_total_price = orderDTO.getOrder_total_price();
+
+        order_total_price_with_express_fee = order_total_price_with_express_fee + good_quantity * good_price;
+        order_total_price = order_total_price + good_quantity * good_price;
+        orderDTO.setOrder_total_price_with_express_fee(order_total_price_with_express_fee);
+        orderDTO.setOrder_total_price(order_total_price);
+
+        WxOrderRoot orderMaster = new WxOrderRoot();
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderRootDao.save(orderMaster);
+
         return new ResponseEntity<>(orderDetailServices.save(wxOrderDetail), HttpStatus.CREATED);
     }
 
@@ -149,7 +172,23 @@ public class WxOrderController {
 
     //http://localhost:8080/order/deletebyid/{id}
     @DeleteMapping(path="/deletebyid/{id}", produces = "application/json")
-    public ResponseEntity<WxOrderDetail> deleteOrderDetailById(@PathVariable Integer id){
+    public ResponseEntity<WxOrderDetail> deleteOrderDetailById(@PathVariable Integer id,
+                                                               @RequestParam("order_id") int order_id,
+                                                               @RequestParam("good_price") double good_price){
+
+        WxOrderResponse orderDTO = wxOrder.findOne(order_id);
+        double order_total_price_with_express_fee = orderDTO.getOrder_total_price_with_express_fee();
+        double order_total_price = orderDTO.getOrder_total_price();
+
+        order_total_price_with_express_fee = order_total_price_with_express_fee - good_price;
+        order_total_price = order_total_price - good_price;
+        orderDTO.setOrder_total_price_with_express_fee(order_total_price_with_express_fee);
+        orderDTO.setOrder_total_price(order_total_price);
+
+        WxOrderRoot orderMaster = new WxOrderRoot();
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderRootDao.save(orderMaster);
+
         System.out.println("[Delete one Order detail] parameters: "+ id);
         return new ResponseEntity<>(orderDetailServices.deleteById(id), HttpStatus.OK);
     }
@@ -267,6 +306,25 @@ public class WxOrderController {
         });
 
         return list;
+    }
+
+    //修改wxOrderRoot 的运费和价格
+    @PutMapping("/updateExpressFeeAndTotalPrice")
+    public String updateExpressFeeAndTotalPrice(@RequestParam("order_id") int order_id,
+                                                @RequestParam("order_express_fee") double order_express_fee,
+                                                @RequestParam("order_total_price") double order_total_price){
+
+        double order_total_price_with_express_fee = order_express_fee + order_total_price;
+        WxOrderResponse orderDTO = wxOrder.findOne(order_id);
+        orderDTO.setOrder_express_fee(order_express_fee);
+        orderDTO.setOrder_total_price(order_total_price);
+        orderDTO.setOrder_total_price_with_express_fee((order_total_price_with_express_fee));
+
+        WxOrderRoot orderMaster = new WxOrderRoot();
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        WxOrderRoot updateResult = orderRootDao.save(orderMaster);
+
+        return "success";
     }
 
 
