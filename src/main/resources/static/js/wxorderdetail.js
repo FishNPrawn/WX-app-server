@@ -14,6 +14,7 @@ const remark_close_update = document.getElementById("remark_close_update")
 const shipmentBtn = document.getElementById('shipmentBtn');
 const shipment_close = document.getElementById('shipment_close');
 const change_shipment_close = document.getElementById('change_shipment_close');
+const update_price_express_fee_close = document.getElementById('update_price_express_fee_close');
 
 //选择
 var selectGoodTag = document.getElementById('all_good')
@@ -165,6 +166,12 @@ change_shipment_close.addEventListener('click', ()=>{
         closeModal(modal)
     })
 })
+update_price_express_fee_close.addEventListener('click', ()=>{
+    const update_price_express_fee_close_value = document.querySelectorAll('.modal-test.active')
+    update_price_express_fee_close_value.forEach(modal => {
+        closeModal(modal)
+    })
+})
 
 function openModal(modal) {
     if (modal == null) return
@@ -211,6 +218,7 @@ add_good_detail.addEventListener('click', () => {
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "add"]).join("/")
+        url = url + "?order_id=" + order_id_value + "&good_quantity=" + good_quantity_value + "&good_price=" + good_price_value;
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -230,7 +238,11 @@ add_good_detail.addEventListener('click', () => {
 })
 
 
-function sendDeleteRequest(order_detail_id){
+function sendDeleteRequest(order_detail_id, curr){
+    let order_id_value = order_id.textContent;
+    var order_total_price_id = 'order_total_price'+order_detail_id;
+    let order_total_price = document.getElementById(order_total_price_id).textContent
+
     var totalRowCount = 0;
     var rowCount = 0;
     var table = document.getElementById("table");
@@ -246,6 +258,9 @@ function sendDeleteRequest(order_detail_id){
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "deletebyid",`${order_detail_id}`]).join("/")
+        url = url + "?order_id=" + order_id_value  + "&good_price=" + order_total_price;
+
+
         xhr.open("DELETE", url);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
@@ -341,8 +356,31 @@ save_shipment.addEventListener('click', ()=>{
             "package_weight": package_weight_value
         });
         xhr.send(data);
-        setTimeout(function(){ location.reload(); }, 1000);
+        setTimeout(function(){ location.reload(); }, 1500);
     }
+})
+
+// 修改价格
+const update_price_express_fee = document.getElementById('update_price_express_fee');
+update_price_express_fee.addEventListener('click', ()=>{
+    var update_express_fee = document.getElementById('update_express_fee').value;
+    var update_total_price = document.getElementById('update_total_price').value;
+    var order_id_value = order_id.textContent;
+
+    if(update_express_fee == ''){
+        alert("请输入运费");
+    }else if(update_total_price == ''){
+        alert("请输入总价格");
+    }else{
+        let xhr = new XMLHttpRequest();
+        let url = ([PREFIX,"updateExpressFeeAndTotalPrice"]).join("/")
+        url = url + "?order_id=" + order_id_value + "&order_express_fee=" + update_express_fee + "&order_total_price=" + update_total_price
+        console.log(url)
+        xhr.open("PUT", url, true);
+        xhr.send();
+        setTimeout(function(){ location.reload(); }, 1500);
+    }
+
 })
 
 //修改订单号

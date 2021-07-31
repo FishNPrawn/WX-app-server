@@ -35,9 +35,11 @@
                         <#assign order_status = order.orderStatus>
                         <#assign order_express_fee = order.order_express_fee>
                         <#assign order_total_weight = order.order_total_weight>
+                        <#assign order_total_price = order.order_total_price>
                     </#if>
                 </#list>
             </#list>
+            <#assign order_price_with_express_fee = order_total_price + order_express_fee>
             <#--    订单状态（隐藏）        -->
             <div class="d-none" id="order_status">${order_status}</div>
 
@@ -120,7 +122,7 @@
                                 <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
                                 <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
-                                <td>${orderdetail.good_quantity*orderdetail.good_price}</td>
+                                <td id="order_total_price${orderdetail.order_detail_id}">${orderdetail.good_quantity*orderdetail.good_price}</td>
                                 <td><a class="btn btn-danger btn-sm text-white"  data-toggle="modal" data-target="#confirmModal${orderdetail.order_detail_id}">删除</a>
                                 <!-- Modal -->
                                 <div class="modal fade" id="confirmModal${orderdetail.order_detail_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,7 +136,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">否</button>
-                                                <a type="button" class="btn btn-danger" href="./detail?orderId=${order_id_val}" onclick="sendDeleteRequest(`${orderdetail.order_detail_id}`)">删除</a>
+                                                <a type="button" class="btn btn-danger" href="./detail?orderId=${order_id_val}" onclick="sendDeleteRequest(`${orderdetail.order_detail_id}`,this)">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +148,7 @@
                     </table>
                 </div>
             </div>
-            <#assign order_price_with_express_fee = order_price + order_express_fee>
+
 <#--            <div class="d-flex justify-content-between">-->
 <#--                <div class="center d-flex orderlist_name"></div>-->
 <#--                <div class="d-flex">-->
@@ -169,7 +171,7 @@
                     </div>
                     <div  class="d-flex mt-1">
                         <i class='bx bx-money iconsize' ></i>
-                        <div class="mt-1 price_info_value">物品价格: ￥${order_price}</div>
+                        <div class="mt-1 price_info_value">物品价格: ￥${order_total_price}</div>
                     </div>
                     <span class="line"></span>
                 </div>
@@ -178,7 +180,7 @@
                     <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
                 </div>
                 <div class="change_total_price_wrapper">
-                    <a class="change_total_price_btn">
+                    <a class="change_total_price_btn" data-modal-target="#modal-test-update-price-express-fee">
                         <i class="fa fa-arrow-left left-arrow-color" aria-hidden="true"></i>改价格
                     </a>
                 </div>
@@ -377,7 +379,7 @@
 <#--添加商品end-->
 
 <#--发货-->
-<div class="modal-test" id="modal-test-shipment" style="width: 44%;">
+<div class="modal-test" id="modal-test-shipment" style="width: 35%;">
     <div class="modal-header-test">
         <div class="title-test">发货</div>
         <button data-close-button class="close-button-test" id="shipment_close" >&times;</button>
@@ -437,7 +439,7 @@
 
 
 <#--发货-->
-<div class="modal-test" id="modal-test-change-shipment-number">
+<div class="modal-test" id="modal-test-change-shipment-number" style="width: 35%;">
     <div class="modal-header-test">
         <div class="title-test">修改快递单号</div>
         <button data-close-button class="close-button-test" id="change_shipment_close" >&times;</button>
@@ -468,6 +470,25 @@
     </div>
 </div>
 <#--发货-->
+
+<#--修改价格和运费-->
+<div class="modal-test" id="modal-test-update-price-express-fee" style="width: 35%;">
+    <div class="modal-header-test">
+        <div class="title-test">修改总价和运费</div>
+        <button data-close-button class="close-button-test" id="update_price_express_fee_close" >&times;</button>
+    </div>
+    <div class="modal-body-test d-block">
+        <div class="form-inline">
+            <label>运费</label>
+            <input type="number" id="update_express_fee" class="form-control mx-sm-3 mb-2 w-25"/>
+            <label>总价格(不包含运费)</label>
+            <input type="number" id="update_total_price" class="form-control mx-sm-3 mb-2 w-25"/>
+        </div>
+        <button class="btn btn-info btn-dark" id="update_price_express_fee">修改</button>
+    </div>
+</div>
+<#--修改价格和运费-->
+
 
 
 <#--Toast-->
