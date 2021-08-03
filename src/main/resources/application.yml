@@ -1,7 +1,7 @@
-server:
-    port: 8080
-    servlet:
-        context-path: /
+#server:
+#    port: 8080
+#    servlet:
+#        context-path: /
 ################# For 腾讯云 https #########################################
 #server:
 #    port: 443
@@ -11,6 +11,16 @@ server:
 #        key-store-type: JKS
 #    servlet:
 #        context-path: /
+
+server:
+    port: 443
+    ssl:
+        key-store: classpath:joynfish.com.jks
+        key-store-password: 05d1h01i21d53he
+        key-store-type: JKS
+    servlet:
+        context-path: /
+
 
 
 spring:
@@ -31,6 +41,8 @@ spring:
             hibernate:
                 ddl-auto: update
         database-platform: org.hibernate.dialect.MySQL5Dialect
+    jmx:
+        default-domain: joynfish
 
 jasypt:
     encryptor:
