@@ -72,7 +72,8 @@ create table `wx_order_root` (
      `order_comment` text comment '备注',
      `order_status` int not null,
      `order_total_weight` double not null,
-     "order_express_fee" double not null,
+     `order_express_fee` double not null,
+     `order_total_price_with_express_fee` double not null,
      primary key (`order_id`)
 );
 
@@ -138,6 +139,23 @@ CREATE TABLE `userinfo`
   `user_create_time` text not null,
   primary key (`openid`)
 );
+
+CREATE TABLE `promo_code`
+(
+    `promo_code_header_id` int not null auto_increment,
+    `username` varchar(64) not null,
+    `phone` varchar(64) not null,
+    `address` text not null,
+    `city` varchar(32) not null,
+    `remark` text not null,
+    `promo_code` varchar(64) not null,
+    `commission_rate` double not null,
+    `discount_rate` double not null,
+    primary key (`promo_code_header_id`)
+);
+INSERT INTO promo_code
+VALUES (1, '杨洋', '139222610000', '广州市花都区工业区', '广州', '无备注', 'yy123', 0.1, 0.02);
+
 INSERT INTO userinfo
 VALUES ('1561651awef', 'wafwqfeqgaergae==', 'jaying', 'gz', '13952556310',now());
 
@@ -157,7 +175,7 @@ VALUES (2, 'jaying', '$2a$10$.E9XFBwG7kcCqAqSIbSml.ga6KrZ01SOt6y0gJl3vhllP6yBxmY
 
 
 INSERT INTO category
-VALUES (1, 'fish1', now(), now());
+VALUES (1, 'fish1','https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80', now(), now());
 INSERT INTO category
 VALUES (2, 'fish2', now(), now());
 INSERT INTO category
