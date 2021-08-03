@@ -6,6 +6,8 @@ import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.global.GlobalConst;
+import com.example.fishnprawn.promocode.PromoCode;
+import com.example.fishnprawn.promocode.PromoCodeDao;
 import com.example.fishnprawn.shipment.Shipment;
 import com.example.fishnprawn.shipment.ShipmentDao;
 import com.example.fishnprawn.swiper.SwiperImg;
@@ -71,6 +73,9 @@ public class FreeMarkerController {
 
     @Autowired
     private ShipmentDao repositoryShipment;
+
+    @Autowired
+    private PromoCodeDao repositoryPromoCode;
 
     @GetMapping("/")
     public String indexPage(){
@@ -324,6 +329,19 @@ public class FreeMarkerController {
         return "/userinfo/userinfo";
     }
 
+//    promo code
+    @GetMapping("/promocode")
+    public String promocode(ModelMap map){
+        List<PromoCode> promocode = repositoryPromoCode.findAll();
+        map.put("promocode", promocode);
+        return "/promocode/promocode";
+    }
+
+    @GetMapping("/promocode/addsuccess")
+    public String addPromoCodeSuccess(ModelMap map){
+        map.put("url", "/promocode");
+        return "/operation/success";
+    }
 
 
 

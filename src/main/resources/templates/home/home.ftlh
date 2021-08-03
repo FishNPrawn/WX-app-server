@@ -33,6 +33,13 @@
             <span class="tooltip">微信用户</span>
         </li>
         <li>
+            <a href="../promocode">
+                <i class='bx bxs-coupon'></i>
+                <span class="links_name">团长码</span>
+            </a>
+            <span class="tooltip">团长码</span>
+        </li>
+        <li>
             <a href="../category">
                 <i class='bx bx-category'></i>
                 <span class="links_name">食品分类</span>
