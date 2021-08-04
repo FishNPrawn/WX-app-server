@@ -51,13 +51,13 @@ public class Good{
     private String good_production;
 
     @NotNull
-    private double good_size;
+    private String good_size;
 
     @NotNull
     private String good_expiration;
 
     @NotNull
-    private int good_optimal_period;
+    private String good_optimal_period;
 
     @NotNull
     private String good_image_description;

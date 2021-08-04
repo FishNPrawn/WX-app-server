@@ -131,7 +131,7 @@ public class ExcelImport {
                         }
                         //column: 8. good_size-规格
                         else if(j == 6){
-                            goodInfo.setGood_size(Double.parseDouble(data));
+                            goodInfo.setGood_size(data);
                         }
                         //column: 5. good_supplier-供应商
                         else if(j == 7){
@@ -147,7 +147,7 @@ public class ExcelImport {
                         }
                         //column: 10. good_optimal_period-品味最佳期
                         else if(j == 10){
-                            goodInfo.setGood_optimal_period(Integer.parseInt(data));
+                            goodInfo.setGood_optimal_period(data);
                         }
                         //column: 11. good_publish_date-发布日期
                         else if(j == 11){
