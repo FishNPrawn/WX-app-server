@@ -46,6 +46,9 @@ public class WxOrderResponse {
     @Column(name = "order_total_price_with_express_fee")
     private double order_total_price_with_express_fee;
 
+    @Column(name = "promo_code_header_id")
+    private int promo_code_header_id;
+
     List<WxOrderDetail> orderDetailList;
 
 }
