@@ -1,25 +1,16 @@
 package com.example.fishnprawn.utils;
 
 import com.example.fishnprawn.category.Category;
-import com.example.fishnprawn.category.CategoryDao;
+import java.lang.*;
 import com.example.fishnprawn.good.Good;
-import freemarker.template.SimpleDate;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,35 +113,35 @@ public class ExcelImport {
                         else if(j == 1){
                             goodInfo.setCat_name(data);
                         }
-                        //column: 2. good_price-价格
+                        //column: 2. good_origin_price-原价格
                         else if(j == 2){
-                            goodInfo.setGood_price(Integer.parseInt(data));
+                            goodInfo.setGood_origin_price(Double.parseDouble(data));
                         }
-                        //column: 3. good_stock-库存
+                        //column: 3. good_price-优惠价格
                         else if(j == 3){
-                            goodInfo.setGood_weight(Double.parseDouble(data));
+                            goodInfo.setGood_price(Double.parseDouble(data));
                         }
-                        //column: 4. good_weight-重量
+                        //column: 4. good_weight-库存
                         else if(j == 4){
                             goodInfo.setGood_stock(Integer.parseInt(data));
                         }
-                        //column: 5. good_supplier-供应商
+                        //column: 3. good_stock-重量
                         else if(j == 5){
-                            goodInfo.setGood_supplier(data);
-                        }
-                        //column: 6. good_description-商品详情
-                        else if(j == 6){
-                            goodInfo.setGood_description(data);
-                        }
-                        //column: 7. good_production-产地
-                        else if(j == 7){
-                            goodInfo.setGood_production(data);
+                            goodInfo.setGood_weight(Double.parseDouble(data));
                         }
                         //column: 8. good_size-规格
-                        else if(j == 8){
+                        else if(j == 6){
                             goodInfo.setGood_size(Double.parseDouble(data));
                         }
-                        //column: 9. good_expiration-过期
+                        //column: 5. good_supplier-供应商
+                        else if(j == 7){
+                            goodInfo.setGood_supplier(data);
+                        }
+                        //column: 7. good_production-产地
+                        else if(j == 8){
+                            goodInfo.setGood_production(data);
+                        }
+                        //column: 9. good_expiration-销量
                         else if(j == 9){
                             goodInfo.setGood_expiration(data);
                         }
@@ -163,20 +154,24 @@ public class ExcelImport {
 
                             goodInfo.setGood_publish_date(new Date(1996-05-26));
                         }
-                        //column: 12. good_status-status
+                        //column: 6. good_description-商品详情
                         else if(j == 12){
+                            goodInfo.setGood_description(data);
+                        }
+                        //column: 12. good_status-status
+                        else if(j == 13){
                             goodInfo.setGood_status(Integer.parseInt(data));
                         }
                         //column: 13. good_image-图片1
-                        else if(j == 13){
+                        else if(j == 14){
                             goodInfo.setGood_image(data);
                         }
                         //column: 14. good_image1-图片2
-                        else if(j == 14){
+                        else if(j == 15){
                             goodInfo.setGood_image_1(data);
                         }
                         //column: 15. good_image_description-长图片
-                        else if(j == 15){
+                        else if(j == 16){
                             goodInfo.setGood_image_description(data);
                         }
                     }

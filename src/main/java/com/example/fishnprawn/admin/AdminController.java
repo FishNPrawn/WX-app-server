@@ -14,6 +14,7 @@ import java.util.Map;
 @RequestMapping(AdminController.BASE_URL)
 @RestController
 @Slf4j
+@CrossOrigin
 public class AdminController {
     public static final String BASE_URL = "/admin";
 
