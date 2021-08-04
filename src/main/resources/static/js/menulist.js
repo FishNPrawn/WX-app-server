@@ -13,6 +13,7 @@ const good_close_btn1 = document.getElementById("good_close_btn1")
 const good_name_input = document.getElementById('good_name_input')
 const good_category_input = document.getElementById('good_category_input')
 const good_price_input = document.getElementById('good_price_input')
+const good_origin_price_input = document.getElementById('good_origin_price_input')
 const good_stock_input = document.getElementById('good_stock_input')
 const good_weight_input = document.getElementById('good_weight_input')
 const good_supplier_input = document.getElementById('good_supplier_input')
@@ -97,6 +98,7 @@ addGood_Btm.addEventListener('click', ()=>{
     data = JSON.stringify({
         "good_name": good_name_input.value,
         "good_price": good_price_input.value,
+        "good_origin_price": good_origin_price_input.value,
         "good_stock": good_stock_input.value,
         "good_weight": good_weight_input.value,
         "good_status":good_status_input.value,
@@ -142,6 +144,7 @@ function updateMenulist(r){
     document.getElementById("update_good_optimal_period").value = li.querySelector('.optimal_period_text').innerHTML;
     document.getElementById("update_good_publish_date").value = li.querySelector('.publish_text').innerHTML;
     document.getElementById("update_good_image_description").value =  li.querySelector('.image_description_text').src;
+    document.getElementById("update_good_origin_price_input").value = li.querySelector('.priceorigintext').innerHTML;
     let content_id = li.querySelector('.idtext').value;
 
     updateBtn.onclick = function(){
@@ -161,6 +164,7 @@ function updateMenulist(r){
         let optimaltext = document.getElementById("update_good_optimal_period").value;
         let publishtext = document.getElementById("update_good_publish_date").value;
         let img_descriptiontext = document.getElementById("update_good_image_description").value;
+        let originpricetext =document.getElementById("update_good_origin_price_input").value;
 
         let http = new XMLHttpRequest();
         let data = JSON.stringify({
@@ -169,6 +173,7 @@ function updateMenulist(r){
             "good_price": pricetext,
             "good_stock": stocktext,
             "good_weight": weighttext,
+            "good_origin_price": originpricetext,
             "good_status":statustext,
             "good_image":imagetext,
             "cat_name":catnametext,

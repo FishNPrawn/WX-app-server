@@ -36,6 +36,7 @@ import java.net.http.HttpRequest;
 import java.util.*;
 
 @Controller
+@CrossOrigin
 public class FreeMarkerController {
     private final String COOKIE = "Cookie";
     private final String JSESSIONID = "JSESSIONID";
