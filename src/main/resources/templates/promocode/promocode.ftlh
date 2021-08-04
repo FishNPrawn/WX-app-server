@@ -46,7 +46,7 @@
                             <tr>
                                 <td>${promocode.promoCodeHeaderId}</td>
                                 <td>${promocode.username}</td>
-                                <td>${promocode.promo_code}</td>
+                                <td>${promocode.promoCode}</td>
                                 <td>${promocode.commission_rate}</td>
                                 <td>${promocode.discount_rate}</td>
                                 <td>${promocode.phone}</td>

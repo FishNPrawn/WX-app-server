@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,22 +24,26 @@ public class PromoCodeController {
     @Autowired
     private PromoCodeServices promoCodeServices;
 
-//    @GetMapping("/getAll")
-//    public List getAll(){
-//        List all = promocodeDao.findAll();
-//        return all;
-//    }
+    @Autowired
+    private PromoCodeDao promoCodeDao;
 
-    @GetMapping(path="getAllPromoCode")
-    public List getAllPromoCode(@RequestParam(required = false) Map<String, String> filter){
+    @GetMapping(path="/checkPromoCode", produces = "application/json")
+    public Map<String, Object> checkPromoCode(@RequestParam("promocode") String promocode){
+        Map<String, Object> map = new HashMap<>();
 
-        Map<String, String> filterLowercaseKey = new HashMap<>();
-        for (Map.Entry<String,String> entry : filter.entrySet()) {
-            filterLowercaseKey.put(entry.getKey().toLowerCase(), entry.getValue().toLowerCase());
+        PromoCode promoCode = promoCodeDao.findByPromoCode(promocode);
+
+        if(promoCode == null){
+            map.put("success", false);
+        }else{
+            map.put("success", true);
+            map.put("promoCodeHeaderId", promoCode.getPromoCodeHeaderId());
+            map.put("promo_code", promoCode.getPromoCode());
+            map.put("discount_rate", promoCode.getDiscount_rate());
+            log.info("[找到团长]");
         }
 
-        List result = promoCodeServices.getAll(filterLowercaseKey);
-        return result;
+        return map;
     }
 
     @PostMapping(path="/add", produces = "application/json")
