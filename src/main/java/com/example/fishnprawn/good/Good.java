@@ -27,7 +27,7 @@ public class Good{
     private String good_name;
 
     @NotNull
-    private int good_price;
+    private double good_price;
 
     @NotNull
     private int good_stock;
@@ -51,13 +51,13 @@ public class Good{
     private String good_production;
 
     @NotNull
-    private double good_size;
+    private String good_size;
 
     @NotNull
     private String good_expiration;
 
     @NotNull
-    private int good_optimal_period;
+    private String good_optimal_period;
 
     @NotNull
     private String good_image_description;
@@ -70,6 +70,9 @@ public class Good{
 
     @NotNull
     private String cat_name;
+
+    @NotNull
+    private double good_origin_price;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     @Generated(GenerationTime.INSERT)

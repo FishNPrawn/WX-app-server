@@ -4,7 +4,7 @@
 #        context-path: /
 ################# For 腾讯云 https #########################################
 #server:
-#    port: 443
+#    port: 8443
 #    ssl:
 #        key-store: classpath:fishnprawn.cn.jks
 #        key-store-password: 9j93756w87
@@ -26,7 +26,7 @@ server:
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/fishnprawn?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/joynfish?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
         username: root
         password: Jaying.1996
 
