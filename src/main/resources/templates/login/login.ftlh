@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>欢喜食货</title>
 <#include "../header/top.ftlh">
 <link rel="stylesheet" type="text/css" href="${path}/css/login.css">
 <body>

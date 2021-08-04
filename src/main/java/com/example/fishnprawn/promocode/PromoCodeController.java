@@ -47,7 +47,7 @@ public class PromoCodeController {
     }
 
     @PostMapping(path="/add", produces = "application/json")
-    public ResponseEntity<PromoCode> saveGood(@Valid @RequestBody PromoCode promoCode){ //if any attribute in v is not valid type, it will return 400
+    public ResponseEntity<PromoCode> savePromoCode(@Valid @RequestBody PromoCode promoCode){ //if any attribute in v is not valid type, it will return 400
         log.info("[Create one promo code]");
         return new ResponseEntity<>(promoCodeServices.save(promoCode), HttpStatus.CREATED);
     }

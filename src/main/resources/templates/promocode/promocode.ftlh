@@ -33,9 +33,9 @@
                             <th>团长码</th>
                             <th>团长佣金率</th>
                             <th>客户折扣率</th>
-                            <th>电话</th>
-                            <th>地址</th>
-                            <th>城市</th>
+<#--                            <th>电话</th>-->
+<#--                            <th>地址</th>-->
+<#--                            <th>城市</th>-->
                             <th>备注</th>
                             <th>修改</th>
                             <th>删除</th>
@@ -44,14 +44,14 @@
                         <tbody>
                         <#list promocode as promocode>
                             <tr>
-                                <td>${promocode.promoCodeHeaderId}</td>
+                                <td><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}">${promocode.promoCodeHeaderId}</a></td>
                                 <td>${promocode.username}</td>
                                 <td>${promocode.promoCode}</td>
                                 <td>${promocode.commission_rate}</td>
                                 <td>${promocode.discount_rate}</td>
-                                <td>${promocode.phone}</td>
-                                <td>${promocode.address}</td>
-                                <td>${promocode.city}</td>
+<#--                                <td>${promocode.phone}</td>-->
+<#--                                <td>${promocode.address}</td>-->
+<#--                                <td>${promocode.city}</td>-->
                                 <td>${promocode.remark}</td>
                                 <td><a class="btn btn-primary btn-sm" href = "" >修改</a>
                                 <td><a class="btn btn-danger btn-sm" onclick="sendDeleteRequest(`${promocode.promoCodeHeaderId}`)" href = "/promocode/addsuccess">删除</a>
