@@ -35,7 +35,8 @@ public class PromoCode {
     private String remark;
 
     @NotNull
-    private String promo_code;
+    @Column(name = "promo_code")
+    private String promoCode;
 
     @NotNull
     private double commission_rate;

@@ -87,15 +87,15 @@ add_promo_code.addEventListener('click', ()=>{
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(
-            {"username": username,
-                "promo_code": promo_code,
-                "commission_rate": commission_rate,
-                "discount_rate": discount_rate,
-                "phone": phone,
-                "address": address,
-                "city": city,
-                "remark": remark
-            });
+        {"username": username,
+            "promoCode": promo_code,
+            "commission_rate": commission_rate,
+            "discount_rate": discount_rate,
+            "phone": phone,
+            "address": address,
+            "city": city,
+            "remark": remark
+        });
         xhr.send(data);
     }
 })

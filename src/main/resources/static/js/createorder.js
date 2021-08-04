@@ -228,6 +228,7 @@ add_good_btn.addEventListener('click', ()=>{
             "order_total_weight": total_good_weight_value,
             "order_express_fee": order_express_fee_value,
             "order_total_price_with_express_fee": order_total_price_with_express_fee_value,
+            "promo_code_header_id": 1,
             "items": good_json,
         });
         xhr.send(data);

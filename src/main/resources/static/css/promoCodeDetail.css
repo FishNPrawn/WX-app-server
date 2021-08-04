@@ -1,0 +1,55 @@
+.commander_wrapper{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 32%);
+    grid-column-gap: 25px;
+    padding: 20px 0 40px 0;
+}
+.commander_box{
+    height: 150px;
+    padding: 20px 20px 10px 30px;
+    border-radius: 10px;
+    color: white;
+    display: grid;
+    column-gap: 20px;
+    /*box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);*/
+}
+.commander_box1{
+    background-color: rgb(17, 211, 250);
+    box-shadow: 0px 30px 40px -20px rgb(116, 222, 243);
+    display: grid;
+    grid-template-columns: 0.1fr 0.3fr 1.8fr;
+}
+.commander_box_info_title, .commander_box_info_value{
+    font-size: 16px;
+}
+.commander_box2{
+    background-color: rgb(245,223,93);
+    box-shadow: 0px 30px 40px -20px rgb(239, 235, 168);
+}
+.commander_box2_info{
+    display: flex;
+}
+.commander_box2_info_value{
+    margin-left: 45%;
+}
+.commander_box2_info_value div{
+    letter-spacing: 2px;
+}
+.commander_box3{
+    background-color: rgb(12,213,158);
+    box-shadow: 0px 30px 40px -20px rgb(94, 203, 172);
+}
+.commander_box_info{
+    font-size: 20px;
+    font-weight: 500;
+}
+.commander_box3_info{
+    display: flex;
+}
+.commander_box3_info_value{
+    margin-left: 45%;
+}
+.commander_box3_info_value div{
+    letter-spacing: 2px;
+}

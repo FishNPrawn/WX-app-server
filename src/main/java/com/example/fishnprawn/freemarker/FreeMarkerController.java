@@ -344,6 +344,29 @@ public class FreeMarkerController {
         return "/operation/success";
     }
 
+    // http://localhost:8080/promocode/detail?promoCodeHeaderId=...
+    @GetMapping("/promocode/detail")
+    public String promoCodeDetail(@RequestParam("promoCodeHeaderId") int promo_code_header_id,
+                         ModelMap map) {
+        List<PromoCode> promocode = repositoryPromoCode.findAll();
+        map.put("promocode", promocode);
+        map.put("promo_code_header_id", promo_code_header_id);
+
+        List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
+        map.put("orderlist", orderlist);
+
+        List<Good> menulist = repositoryGood.findAll();
+        map.put("menulist", menulist);
+
+        List<WxOrderDetailRemark> wxOrderDetailRemarks = repositorywxorderDetailRemark.findAll();
+        map.put("wxOrderDetailRemarks", wxOrderDetailRemarks);
+
+        List<Category> categoryList = repositoryCat.findAll();
+        map.put("categoryList", categoryList);
+
+        return "/promocode/promoCodeDetail";
+    }
+
 
 
 }

@@ -44,6 +44,9 @@ public class OrderReq {
     @NotNull
     private double order_total_price_with_express_fee;
 
+    @NotNull
+    private int promo_code_header_id;
+
     private String items;   //购物车
 
     public OrderReq(){}
