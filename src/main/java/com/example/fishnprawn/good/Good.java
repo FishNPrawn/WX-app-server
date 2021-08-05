@@ -74,6 +74,9 @@ public class Good{
     @NotNull
     private double good_origin_price;
 
+    @NotNull
+    private String good_cat_image;
+
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     @Generated(GenerationTime.INSERT)
     private LocalDateTime good_create_time;

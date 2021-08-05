@@ -27,6 +27,7 @@ const good_status_input = document.getElementById('good_status_input')
 const good_image_input = document.getElementById('good_image_input')
 const good_image_1_input = document.getElementById('good_image_1_input')
 const good_image_description = document.getElementById('good_image_description')
+const good_cat_image = document.getElementById('good_cat_image')
 
 
 
@@ -113,7 +114,8 @@ addGood_Btm.addEventListener('click', ()=>{
         "good_expiration":good_expiration_input.value,
         "good_optimal_period":good_optimal_period.value,
         "good_publish_date":good_publish_date.value,
-        "good_image_description":good_image_description.value
+        "good_image_description":good_image_description.value,
+        "good_cat_image": good_cat_image.value
     });
     xhr.send(data);
 })
@@ -145,6 +147,7 @@ function updateMenulist(r){
     document.getElementById("update_good_publish_date").value = li.querySelector('.publish_text').innerHTML;
     document.getElementById("update_good_image_description").value =  li.querySelector('.image_description_text').src;
     document.getElementById("update_good_origin_price_input").value = li.querySelector('.priceorigintext').innerHTML;
+    document.getElementById("update_good_cat_image_input").value = li.querySelector('.cat_image_text').src;
     let content_id = li.querySelector('.idtext').value;
 
     updateBtn.onclick = function(){
@@ -165,6 +168,7 @@ function updateMenulist(r){
         let publishtext = document.getElementById("update_good_publish_date").value;
         let img_descriptiontext = document.getElementById("update_good_image_description").value;
         let originpricetext =document.getElementById("update_good_origin_price_input").value;
+        let goodcatimagetext = document.getElementById('update_good_cat_image_input').value;
 
         let http = new XMLHttpRequest();
         let data = JSON.stringify({
@@ -185,7 +189,8 @@ function updateMenulist(r){
             "good_expiration":expiretext,
             "good_optimal_period":optimaltext,
             "good_publish_date":publishtext,
-            "good_image_description":img_descriptiontext
+            "good_image_description":img_descriptiontext,
+            "good_cat_image": goodcatimagetext
         });
         let url = ([PREFIX, "good/updatebyid", `${content_id}` ]).join("/")
         // let url = `https://fishnprawn.cn/good/updatebyid/${goodid}`     // For 腾讯云
@@ -210,6 +215,32 @@ function sendDeleteRequest(goodid){
     xhr.open("DELETE", url);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
+}
+
+
+function mySearch() {
+    // Declare variables
+    var input, filter, table, tr, td_good_name, td_cat, i, txtGoodName, txtCat, td_createTime, txtCreateTimeValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td_good_name = tr[i].getElementsByTagName("td")[1];
+        td_cat = tr[i].getElementsByTagName("td")[2];
+        if (td_good_name || td_cat) {
+            txtGoodName = td_good_name.textContent || td_good_name.innerText;
+            txtCat = td_cat.textContent || td_cat.innerText;
+            if (txtGoodName.toUpperCase().indexOf(filter) > -1 || txtCat.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+
+    }
 }
 
 function process_url(src){
