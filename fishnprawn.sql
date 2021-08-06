@@ -56,6 +56,7 @@ create table `good`
   `good_optimal_period` double not null,
   `good_publish_date` date not null,
   `good_image_description` text not null,
+  `good_cat_image` text not null,
   primary key (`good_id`)
 );
 

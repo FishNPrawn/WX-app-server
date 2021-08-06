@@ -125,19 +125,19 @@ public class ExcelImport {
                         else if(j == 4){
                             goodInfo.setGood_stock(Integer.parseInt(data));
                         }
-                        //column: 3. good_stock-重量
+                        //column: 5. good_stock-重量
                         else if(j == 5){
                             goodInfo.setGood_weight(Double.parseDouble(data));
                         }
-                        //column: 8. good_size-规格
+                        //column: 6. good_size-规格
                         else if(j == 6){
                             goodInfo.setGood_size(data);
                         }
-                        //column: 5. good_supplier-供应商
+                        //column: 7. good_supplier-供应商
                         else if(j == 7){
                             goodInfo.setGood_supplier(data);
                         }
-                        //column: 7. good_production-产地
+                        //column: 8. good_production-产地
                         else if(j == 8){
                             goodInfo.setGood_production(data);
                         }
@@ -154,25 +154,29 @@ public class ExcelImport {
 
                             goodInfo.setGood_publish_date(new Date(1996-05-26));
                         }
-                        //column: 6. good_description-商品详情
+                        //column: 12. good_description-商品详情
                         else if(j == 12){
                             goodInfo.setGood_description(data);
                         }
-                        //column: 12. good_status-status
+                        //column: 13. good_status-status
                         else if(j == 13){
                             goodInfo.setGood_status(Integer.parseInt(data));
                         }
-                        //column: 13. good_image-图片1
+                        //column: 14. good_image-图片1
                         else if(j == 14){
                             goodInfo.setGood_image(data);
                         }
-                        //column: 14. good_image1-图片2
+                        //column: 15. good_image1-图片2
                         else if(j == 15){
                             goodInfo.setGood_image_1(data);
                         }
-                        //column: 15. good_image_description-长图片
+                        //column: 16. good_image_description-长图片
                         else if(j == 16){
                             goodInfo.setGood_image_description(data);
+                        }
+                        //column: 16. good_cat_image-分类图片
+                        else if(j == 17){
+                            goodInfo.setGood_cat_image(data);
                         }
                     }
                 }

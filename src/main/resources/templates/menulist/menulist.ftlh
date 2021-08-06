@@ -33,12 +33,19 @@
                 </div>
             </div>
 
-            <#include "../header/pagination.ftlh">
+            <#--   页数       -->
+            <div class="d-flex justify-content-between">
+                <#include "../header/pagination.ftlh">
+                <div class="form-inline col-xs-4">
+                    <input class="form-control searchInput" type="text" id="myInput" onkeyup="mySearch()" placeholder="查找商品/分类">
+                </div>
+            </div>
+
 
             <form action='/good/deleteGoodSelected' method="post" id="good_form">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <table class="table table-responsive-xl" id="example" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
+                        <table class="table table-responsive-xl" id="myTable" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
                             <thead class="thead-dark">
                             <tr class="table-info  table-hover text-center">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
@@ -59,6 +66,7 @@
                                 <th>图片1</th>
                                 <th>图片2</th>
                                 <th>长图片</th>
+                                <th>分类图片</th>
                                 <th>修改</th>
                                 <th>删除</th>
                             </tr>
@@ -88,6 +96,7 @@
                                     <td><img class="imagetext" height="40" width="40" src="${good.good_image}"></td>
                                     <td><img class="image1text" height="40" width="40" src="${good.good_image_1}"></td>
                                     <td><img class="image_description_text" height="40" width="40" src="${good.good_image_description}"></td>
+                                    <td><img class="cat_image_text" height="40" width="40" src="${good.good_cat_image}"></td>
                                     <td><button type="button" data-modal-target="#modal-test1" onclick="updateMenulist(this)" class="btn btn-primary btn-sm">修改</button>
                                     <td><a onclick="sendDeleteRequest(`${good.good_id}`)" href="/goodlist/deletesuccess" class="btn btn-danger btn-sm">删除</a>
                                 </tr>
@@ -160,6 +169,9 @@
 
                 <label class="label_image_description">长图片</label>
                 <input id="good_image_description"  type="text" class="form-control"/>
+
+                <label class="label_image_description">分类图片</label>
+                <input id="good_cat_image"  type="text" class="form-control"/>
             </div>
             <a href="/goodlist/addgoodsuccess" id="add_good_btm" class="btn btn-info btn-dark">添加</a>
         </form>
@@ -224,6 +236,9 @@
 
                 <label class="label_image_description">长图片</label>
                 <input id="update_good_image_description"  type="text" class="form-control"/>
+
+                <label class="label_image_description">分类图片</label>
+                <input id="update_good_cat_image_input"  type="text" class="form-control"/>
             </div>
             <a href="/goodlist/addgoodsuccess" id="updateBtn" class="btn btn-info btn-dark">更改</a>
         </form>
