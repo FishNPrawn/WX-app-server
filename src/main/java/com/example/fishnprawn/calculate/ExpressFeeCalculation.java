@@ -1,5 +1,6 @@
 package com.example.fishnprawn.calculate;
 
+import com.lly835.bestpay.rest.type.Get;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExpressFeeCalculation {
     public static final String BASE_URL = "/calculate";
 
+    @GetMapping("/total_price_with_promo_code")
+    public double total_price_with_promo_code(@RequestParam("order_total_price") double order_total_price,
+                                              @RequestParam(value = "discount_rate",required = false, defaultValue = "1") double discount_rate){
+        double order_total_price_with_promo_code = order_total_price*discount_rate;
+
+        return order_total_price_with_promo_code;
+    }
+
     // 计算运费根据重量和总价格
     @GetMapping("/express_fee_with_weight_and_total_price")
-    public double express_fee_with_weight_total_price(@RequestParam("weight") double weight, @RequestParam("order_total_price") double order_total_price){
+    public double express_fee_with_weight_total_price(@RequestParam("weight") double weight,
+                                                      @RequestParam("order_total_price") double order_total_price){
         double express_fee = 18;
         if(weight>0 && weight<=1000){
             express_fee = 18;
