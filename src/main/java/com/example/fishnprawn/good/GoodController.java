@@ -52,7 +52,9 @@ public class GoodController {
             element.put("cat_name", cat);
             element.put("array", allGood);
             for(Good g: goods.get(cat)){
-                allGood.add(g);
+                if(g.getGood_status()==1){
+                    allGood.add(g);
+                }
             }
             current.add(element);
         }
