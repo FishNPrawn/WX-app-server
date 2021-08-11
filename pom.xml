@@ -67,6 +67,14 @@
             <version>2.2.0.RELEASE</version>
         </dependency>
 
+        <!--    json-utils    -->
+        <dependency>
+            <groupId>com.bazaarvoice.jolt</groupId>
+            <artifactId>json-utils</artifactId>
+            <version>0.0.10</version>
+        </dependency>
+
+
         <!--        for logging-->
         <dependency>
             <groupId>org.projectlombok</groupId>

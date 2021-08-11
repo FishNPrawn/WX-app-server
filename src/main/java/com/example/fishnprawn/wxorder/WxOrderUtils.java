@@ -51,6 +51,20 @@ public class WxOrderUtils {
         return orderBean;
     }
 
+    //确认收货
+    @Transactional
+    public WxOrderResponse confirmOrder(WxOrderResponse orderDTO){
+        WxOrderRoot orderMaster = new WxOrderRoot();
+
+        orderDTO.setOrderStatus(3);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        WxOrderRoot updateResult = orderRootDao.save(orderMaster);
+        if (updateResult == null) {
+            log.error("[取消订单]失败, orderMaster={}", orderMaster);
+        }
+        return orderDTO;
+    }
+
     //取消订单
     @Transactional
     public WxOrderResponse cancelOrder(WxOrderResponse orderDTO){

@@ -60,6 +60,7 @@ public class WxOrderController {
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
         orderBean.setPromo_code_header_id(orderReq.getPromo_code_header_id());
+        orderBean.setOrder_total_discount(orderReq.getOrder_total_discount());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -97,6 +98,7 @@ public class WxOrderController {
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
         orderBean.setPromo_code_header_id(orderReq.getPromo_code_header_id());
+        orderBean.setOrder_total_discount(orderReq.getOrder_total_discount());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
         try{
@@ -140,6 +142,19 @@ public class WxOrderController {
         return new ResponseEntity<>(orderDetailServices.save(wxOrderDetail), HttpStatus.CREATED);
     }
 
+    //取消订单
+    @PostMapping("/confirm")
+    public String confirmOrder(@RequestParam("openid") String openid,
+                              @RequestParam("orderId") int orderId){
+        WxOrderResponse orderDTO = wxOrder.findOne(orderId);
+        if (orderDTO == null) {
+            log.error("【取消订单】查不到改订单, orderId={}", orderId);
+        }
+        //判断是否是自己的订单
+        wxOrder.confirmOrder(orderDTO);
+
+        return "Confirm Success";
+    }
 
     //取消订单
     @PostMapping("/cancel")

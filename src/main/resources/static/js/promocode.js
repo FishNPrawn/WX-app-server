@@ -9,6 +9,7 @@ const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.getElementById('add_promo_code')
 const overlay = document.getElementById('overlay')
 const promo_code_close_btn = document.getElementById("promo_code_close_btn")
+const updatePromoCode = document.getElementById('updatePromoCode');
 
 // =======================modal===========================================
 openModalButtons.forEach(button => {

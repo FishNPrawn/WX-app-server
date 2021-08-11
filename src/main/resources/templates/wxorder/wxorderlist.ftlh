@@ -40,8 +40,9 @@
                             <th>地址</th>
                             <th>电话</th>
                             <th>总重量(g)</th>
+                            <th>优惠</th>
                             <th>运费</th>
-                            <th>总金额</th>
+                            <th>总金额(含运费)</th>
                             <th>创建时间</th>
                             <th>状态</th>
 <#--                            <th>详情</th>-->
@@ -59,8 +60,9 @@
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>
                                     <td>${order.order_total_weight}</td>
+                                    <td>${order.order_total_discount}</td>
                                     <td>${order.order_express_fee}</td>
-                                    <td>${order.order_total_price}</td>
+                                    <td>${order.order_total_price_with_express_fee}</td>
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">待发货</div></td>
 <#--                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}" target="_blank">详情</a></td>-->

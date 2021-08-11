@@ -206,7 +206,11 @@ add_good_btn.addEventListener('click', ()=>{
         //总价格+运费
         order_total_price_with_express_fee_value = parseFloat(order_express_fee_value) + parseFloat(total_price);
 
-            let good_json = JSON.stringify(goods_array);
+
+        var ExpressFeeForWeight = parseFloat(calculateExpressFeeForWeight(total_good_weight_value));
+        var order_total_discount = ExpressFeeForWeight - order_express_fee_value;
+
+        let good_json = JSON.stringify(goods_array);
 
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "createByOwn"]).join("/")
@@ -229,6 +233,7 @@ add_good_btn.addEventListener('click', ()=>{
             "order_express_fee": order_express_fee_value,
             "order_total_price_with_express_fee": order_total_price_with_express_fee_value,
             "promo_code_header_id": 1,
+            "order_total_discount":order_total_discount,
             "items": good_json,
         });
         xhr.send(data);
@@ -243,7 +248,33 @@ function deleteRow(id){
 }
 
 
-
+function calculateExpressFeeForWeight(weight){
+    var express_fee = 18;
+    if(weight>0 && weight<=1000){
+        express_fee = 18;
+    }else if(weight > 1000 && weight <= 2000){
+        express_fee = 18;
+    }else if(weight > 2000 && weight <= 3000){
+        express_fee = 21;
+    }else if(weight > 3000 && weight <= 4000){
+        express_fee = 24;
+    }else if(weight > 4000 && weight <= 5000){
+        express_fee = 27;
+    }else if(weight > 5000 && weight <= 6000){
+        express_fee = 30;
+    }else if(weight > 6000 && weight <= 7000){
+        express_fee = 33;
+    }else if(weight > 7000 && weight <= 8000){
+        express_fee = 36;
+    }else if(weight > 8000 && weight <= 9000){
+        express_fee = 39;
+    }else if(weight > 9000 && weight <= 10000){
+        express_fee = 42;
+    }else{
+        express_fee = 45;
+    }
+    return express_fee;
+}
 
 
 function calculateExpressFee(weight, order_total_price){

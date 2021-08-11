@@ -53,7 +53,7 @@
 <#--                                <td>${promocode.address}</td>-->
 <#--                                <td>${promocode.city}</td>-->
                                 <td>${promocode.remark}</td>
-                                <td><a class="btn btn-primary btn-sm" href = "" >修改</a>
+                                <td><button class="btn btn-primary btn-sm" data-modal-target="#update_promo_code_modal-test" id="updatePromoCode">修改</button>
                                 <td><a class="btn btn-danger btn-sm" onclick="sendDeleteRequest(`${promocode.promoCodeHeaderId}`)" href = "/promocode/addsuccess">删除</a>
                             </tr>
                         </#list>
@@ -65,13 +65,12 @@
     </main>
 </div>
 
+<#--添加-->
 <div class="modal-test" id="promo_code_modal-test">
     <div class="modal-header-test">
         <div class="title-test">添加团长</div>
         <button data-close-button class="close-button-test" id="promo_code_close_btn" >&times;</button>
     </div>
-
-
     <div class="modal-body-test" id="cat-window">
         <form role="form">
             <div class="form-group">
@@ -82,6 +81,7 @@
                 <label>团长码</label>
                 <input id="promo_code" type="text" class="form-control"/>
             </div>
+
             <div class="form-group">
                 <label>团长佣金率</label>
                 <input id="commission_rate" type="number" class="form-control"/>
@@ -108,9 +108,56 @@
             </div>
             <a href="/promocode/addsuccess" id="add_promo_code" class="btn btn-info btn-dark">添加</a>
         </form>
-
     </div>
 </div>
+
+<#--修改-->
+<div class="modal-test" id="update_promo_code_modal-test">
+    <div class="modal-header-test">
+        <div class="title-test">添加团长</div>
+        <button data-close-button class="close-button-test" id="promo_code_close_btn" >&times;</button>
+    </div>
+    <div class="modal-body-test" id="cat-window">
+        <form role="form">
+            <div class="form-group">
+                <label>团长姓名</label>
+                <input id="username" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>团长码</label>
+                <input id="promo_code" type="text" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label>团长佣金率</label>
+                <input id="commission_rate" type="number" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>客户折扣率</label>
+                <input id="discount_rate" type="number" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>电话</label>
+                <input id="phone" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>地址</label>
+                <input id="address" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>城市</label>
+                <input id="city" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>备注(可不填)</label>
+                <input id="remark" type="text" class="form-control"/>
+            </div>
+            <a href="/promocode/addsuccess" id="add_promo_code" class="btn btn-info btn-dark">添加</a>
+        </form>
+    </div>
+</div>
+
+
 <div id="overlay"></div>
 <script type="text/javascript"  src="${path}/js/promocode.js"></script>
 
