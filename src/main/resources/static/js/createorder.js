@@ -278,7 +278,7 @@ function calculateExpressFeeForWeight(weight){
 
 
 function calculateExpressFee(weight, order_total_price){
-    var express_fee = 28;
+    var express_fee = 20;
     if(weight>0 && weight<=1000){
         express_fee = 20;
     }else if(weight > 1000 && weight <= 2000){
