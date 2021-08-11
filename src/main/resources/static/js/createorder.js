@@ -249,65 +249,64 @@ function deleteRow(id){
 
 
 function calculateExpressFeeForWeight(weight){
-    var express_fee = 18;
+    var express_fee = 20;
     if(weight>0 && weight<=1000){
-        express_fee = 18;
+        express_fee = 20;
     }else if(weight > 1000 && weight <= 2000){
-        express_fee = 18;
+        express_fee = 20;
     }else if(weight > 2000 && weight <= 3000){
-        express_fee = 21;
+        express_fee = 23;
     }else if(weight > 3000 && weight <= 4000){
-        express_fee = 24;
+        express_fee = 26;
     }else if(weight > 4000 && weight <= 5000){
-        express_fee = 27;
+        express_fee = 29;
     }else if(weight > 5000 && weight <= 6000){
-        express_fee = 30;
+        express_fee = 32;
     }else if(weight > 6000 && weight <= 7000){
-        express_fee = 33;
+        express_fee = 35;
     }else if(weight > 7000 && weight <= 8000){
-        express_fee = 36;
+        express_fee = 38;
     }else if(weight > 8000 && weight <= 9000){
-        express_fee = 39;
+        express_fee = 41;
     }else if(weight > 9000 && weight <= 10000){
-        express_fee = 42;
+        express_fee = 44;
     }else{
-        express_fee = 45;
+        express_fee = 47;
     }
     return express_fee;
 }
 
 
 function calculateExpressFee(weight, order_total_price){
-    var express_fee = 18;
+    var express_fee = 28;
     if(weight>0 && weight<=1000){
-        express_fee = 18;
+        express_fee = 20;
     }else if(weight > 1000 && weight <= 2000){
-        express_fee = 18;
+        express_fee = 20;
     }else if(weight > 2000 && weight <= 3000){
-        express_fee = 21;
+        express_fee = 23;
     }else if(weight > 3000 && weight <= 4000){
-        express_fee = 24;
+        express_fee = 26;
     }else if(weight > 4000 && weight <= 5000){
-        express_fee = 27;
+        express_fee = 29;
     }else if(weight > 5000 && weight <= 6000){
-        express_fee = 30;
+        express_fee = 32;
     }else if(weight > 6000 && weight <= 7000){
-        express_fee = 33;
+        express_fee = 35;
     }else if(weight > 7000 && weight <= 8000){
-        express_fee = 36;
+        express_fee = 38;
     }else if(weight > 8000 && weight <= 9000){
-        express_fee = 39;
+        express_fee = 41;
     }else if(weight > 9000 && weight <= 10000){
-        express_fee = 42;
+        express_fee = 44;
     }else{
-        express_fee = 45;
+        express_fee = 47;
     }
-
-    if(order_total_price>=88 && order_total_price<188){
+    if(order_total_price>=99 && order_total_price<199){
         express_fee = express_fee - 5;
-    }else if(order_total_price>=188 && order_total_price<268){
+    }else if(order_total_price>=199 && order_total_price<298){
         express_fee = express_fee - 12;
-    }else if(order_total_price>=268){
+    }else if(order_total_price>=298){
         express_fee = 0;
     }
     return express_fee;
