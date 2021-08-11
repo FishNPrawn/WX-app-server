@@ -47,6 +47,9 @@ public class OrderReq {
     @NotNull
     private int promo_code_header_id;
 
+    @NotNull
+    private double order_total_discount;
+
     private String items;   //购物车
 
     public OrderReq(){}

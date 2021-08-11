@@ -30,7 +30,8 @@
                             <th>姓名</th>
                             <th>地址</th>
                             <th>电话</th>
-                            <th>总金额</th>
+                            <th>运费</th>
+                            <th>总金额(含运费)</th>
                             <th>创建时间</th>
                             <th>状态</th>
                         </tr>
@@ -45,7 +46,8 @@
                                     <td>${order.user_name}</td>
                                     <td>${order.user_address}</td>
                                     <td>${order.user_phone}</td>
-                                    <td>${order.order_total_price}</td>
+                                    <td>${order.order_express_fee}</td>
+                                    <td>${order.order_total_price_with_express_fee}</td>
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">订单取消4</div></td>
                                 </#if>

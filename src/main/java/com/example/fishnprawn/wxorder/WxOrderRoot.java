@@ -45,4 +45,7 @@ public class WxOrderRoot {
 
     @Column(name = "promo_code_header_id")
     private int promo_code_header_id;
+
+    @Column(name = "order_total_discount")
+    private double order_total_discount;
 }
