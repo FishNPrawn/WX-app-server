@@ -1,7 +1,7 @@
-server:
-    port: 8080
-    servlet:
-        context-path: /
+#server:
+#    port: 8080
+#    servlet:
+#        context-path: /
 ################# For 腾讯云 https #########################################
 #server:
 #    port: 8443
@@ -12,11 +12,21 @@ server:
 #    servlet:
 #        context-path: /
 
+server:
+    port: 443
+    ssl:
+        key-store: classpath:joynfish.com.jks
+        key-store-password: 05d1h01i21d53he
+        key-store-type: JKS
+    servlet:
+        context-path: /
+
+
 
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/fishnprawn?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/joynfish?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
         username: root
         password: Jaying.1996
 
@@ -32,7 +42,7 @@ spring:
                 ddl-auto: update
         database-platform: org.hibernate.dialect.MySQL5Dialect
     jmx:
-        default-domain: fishnprawn
+        default-domain: joynfish
 
 jasypt:
     encryptor:
