@@ -65,7 +65,7 @@
                         </tr>
                         </thead>
                         <tbody id="loop">
-                        <#list orderlist?sort_by("orderStatus") as order>
+                        <#list orderlist?sort_by("orderId")?reverse as order>
                             <tr class="list-group_name">
 <#--                                <td>${order.orderId}</td>-->
 <#--                                <td>${order.openId}</td>-->

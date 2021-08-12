@@ -32,11 +32,11 @@ public class GoodController {
     @GetMapping(path = "/getAllgood", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllGood(){
         log.info("[Get All goods]");
-        Map<String, String> filter = new HashMap<>();
+        Map<String, String> filter = new LinkedHashMap<>();
         filter.put("filter", "");
         List<Good> all = goodServices.getAll(filter);
-        Map<String, List<Map<String, Object>>> result = new HashMap<>();
-        Map<String, List<Good>> goods = new HashMap<>();
+        Map<String, List<Map<String, Object>>> result = new LinkedHashMap<>();
+        Map<String, List<Good>> goods = new LinkedHashMap<>();
         //Object
         for(Good g: all){
             String cat = g.getCat_name();
@@ -47,7 +47,7 @@ public class GoodController {
         result.put("data", new ArrayList<>());
         List<Map<String, Object>> current = result.get("data");
         for(String cat: goods.keySet()){
-            Map<String, Object> element = new HashMap<>();
+            Map<String, Object> element = new LinkedHashMap<>();
             ArrayList<Good> allGood = new ArrayList<>();
             element.put("cat_name", cat);
             element.put("array", allGood);
