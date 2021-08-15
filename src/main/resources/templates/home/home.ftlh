@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <#include "../header/top.ftlh">
     <link rel="stylesheet" type="text/css" href="${path}/css/sidebar.css">
+    <style>
+        .sidebar ul li .homeIcon{
+            color: #11101d;
+            background: #fff;
+        }
+    </style>
     <title>欢喜食货</title>
 </head>
 <body id="body">
@@ -12,8 +18,8 @@
 <div class="sidebar nav__menu nav" id="nav-menu">
     <ul class="nav_list">
         <li>
-            <a href="../home">
-                <i class='bx bx-grid-alt'></i>
+            <a href="../home" class="homeIcon">
+                <i class='bx bx-home-alt'></i>
                 <span class="links_name">主页面</span>
             </a>
             <span class="tooltip">主页面</span>
@@ -48,7 +54,7 @@
         </li>
         <li>
             <a href="../menulist">
-                <i class='bx bx-pie-chart-alt-2' ></i>
+                <i class="fa fa-cutlery"></i>
                 <span class="links_name">商品列表</span>
             </a>
             <span class="tooltip">商品列表</span>
@@ -82,7 +88,7 @@
             <span class="tooltip">用户评论</span>
         </li>
         <li>
-            <a href="../allswiper">
+            <a href="../swiper">
                 <i class='fa fa-picture-o' ></i>
                 <span class="links_name">轮播图</span>
             </a>

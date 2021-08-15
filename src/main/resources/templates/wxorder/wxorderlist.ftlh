@@ -4,6 +4,12 @@
 <#include "../header/top.ftlh">
 <link rel="stylesheet" href="${path}/css/wxorderdetail.css">
 <title>欢喜食货(待发货订单)</title>
+<style>
+    .sidebar ul li .orderlistIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 

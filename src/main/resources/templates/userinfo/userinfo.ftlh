@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(微信用户)</title>
+<style>
+    .sidebar ul li .userInfoListIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 

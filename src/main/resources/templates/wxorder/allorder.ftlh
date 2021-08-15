@@ -8,6 +8,10 @@
         border-radius: 20px;
         font-size: 14px;
     }
+    .sidebar ul li .allorderIcon{
+        color: #11101d;
+        background: #fff;
+    }
 </style>
 <body>
 
