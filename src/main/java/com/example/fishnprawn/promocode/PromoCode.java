@@ -44,4 +44,8 @@ public class PromoCode {
     @NotNull
     private double discount_rate;
 
+    @NotNull
+    @Column(name = "open_id")
+    private String openId;
+
 }

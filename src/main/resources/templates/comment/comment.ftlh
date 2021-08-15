@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(用户评论)</title>
+<style>
+    .sidebar ul li .commentListIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 <div id="wrapper" class="toggled container1">

@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(已取消订单)</title>
+<style>
+    .sidebar ul li .cancelorderIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 

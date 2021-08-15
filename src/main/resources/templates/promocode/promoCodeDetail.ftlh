@@ -18,14 +18,14 @@
 
 <#assign order_number = 0>
 <#list orderlist as order>
-    <#if order.promo_code_header_id == promo_code_header_id>
+    <#if order.promoCodeHeaderId == promo_code_header_id>
         <#assign order_number = order_number + 1>
     </#if>
 </#list>
 
 <#assign total_price_without_express_fee = 0>
 <#list orderlist as order>
-    <#if order.promo_code_header_id == promo_code_header_id>
+    <#if order.promoCodeHeaderId == promo_code_header_id>
         <#assign total_price_without_express_fee = total_price_without_express_fee + order.order_total_price>
     </#if>
 </#list>
@@ -104,7 +104,7 @@
                         <tbody>
                         <#list orderlist?sort_by("orderId")?reverse as order>
                             <tr>
-                                <#if order.promo_code_header_id == promo_code_header_id>
+                                <#if order.promoCodeHeaderId == promo_code_header_id>
                                     <td><a href="/detail?orderId=${order.orderId}" target="_blank">${order.order_number}</a></td>
                                     <td>${order.user_name}</td>
                                     <td>${order.order_total_weight}</td>
