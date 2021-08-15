@@ -59,7 +59,7 @@ public class WxOrderController {
         orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
-        orderBean.setPromo_code_header_id(orderReq.getPromo_code_header_id());
+        orderBean.setPromoCodeHeaderId(orderReq.getPromoCodeHeaderId());
         orderBean.setOrder_total_discount(orderReq.getOrder_total_discount());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class WxOrderController {
         orderBean.setOrder_total_weight(orderReq.getOrder_total_weight());
         orderBean.setOrder_express_fee(orderReq.getOrder_express_fee());
         orderBean.setOrder_total_price_with_express_fee(orderReq.getOrder_total_price_with_express_fee());
-        orderBean.setPromo_code_header_id(orderReq.getPromo_code_header_id());
+        orderBean.setPromoCodeHeaderId(orderReq.getPromoCodeHeaderId());
         orderBean.setOrder_total_discount(orderReq.getOrder_total_discount());
         List<WxOrderDetail> orderDetailList = new ArrayList<>();
 

@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(管理员)</title>
+<style>
+    .sidebar ul li .adminIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 

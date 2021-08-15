@@ -1,5 +1,7 @@
 package com.example.fishnprawn.promocode;
 
+import com.example.fishnprawn.wxorder.OrderRootDao;
+import com.example.fishnprawn.wxorder.WxOrderRoot;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,10 @@ public class PromoCodeController {
     @Autowired
     private PromoCodeDao promoCodeDao;
 
+    @Autowired
+    private OrderRootDao orderRootDao;
+
+    // 查询是否存在团长码
     @GetMapping(path="/checkPromoCode", produces = "application/json")
     public Map<String, Object> checkPromoCode(@RequestParam("promocode") String promocode){
         Map<String, Object> map = new HashMap<>();
@@ -42,9 +48,49 @@ public class PromoCodeController {
             map.put("discount_rate", promoCode.getDiscount_rate());
             log.info("[找到团长]");
         }
-
         return map;
     }
+
+    // 查询是否存在团长码通过openId
+    @GetMapping(path="/checkPromoCodeByOpenId", produces = "application/json")
+    public Map<String, Object> checkPromoCodeByOpenId(@RequestParam("openId") String openId){
+        Map<String, Object> map = new HashMap<>();
+
+        PromoCode promoCode = promoCodeDao.findByOpenId(openId);
+
+        if(promoCode == null){
+            map.put("success", false);
+        }else{
+            map.put("success", true);
+            map.put("promoCodeHeaderId", promoCode.getPromoCodeHeaderId());
+            map.put("promo_code", promoCode.getPromoCode());
+            map.put("discount_rate", promoCode.getDiscount_rate());
+            map.put("commission_rate", promoCode.getCommission_rate());
+            log.info("[找到团长]");
+        }
+        return map;
+    }
+
+    @GetMapping(path="/order_filter_by_promocode_header_id", produces = "application/json")
+    public ResponseEntity<Map<String, List<WxOrderRoot>>> filterOrderRootByPromoCodeHeaderId(@RequestParam("promoCodeHeaderId") int promoCodeHeaderId){
+        log.info("[Get order_filter_by_promocode_header_id]");
+        Map<String, List<WxOrderRoot>> result = new HashMap<>();
+        result.put("data", new ArrayList<>());
+        List<WxOrderRoot> wxOrderRoot = orderRootDao.findByPromoCodeHeaderId(promoCodeHeaderId);
+
+        try {
+            for(WxOrderRoot item : wxOrderRoot){
+                result.get("data").add(item);
+            }
+        }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
 
     @PostMapping(path="/add", produces = "application/json")
     public ResponseEntity<PromoCode> savePromoCode(@Valid @RequestBody PromoCode promoCode){ //if any attribute in v is not valid type, it will return 400

@@ -4,7 +4,12 @@
 <#include "../header/top.ftlh">
 <link href="${path}/css/menulist.css" rel="stylesheet" />
 <title>欢喜食货(商品列表)</title>
-
+<style>
+    .sidebar ul li .menulistIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 <div id="wrapper" class="toggled container1">
     <#--Left Side Bar-->

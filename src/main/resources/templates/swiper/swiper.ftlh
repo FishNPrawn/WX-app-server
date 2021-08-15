@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(轮播图)</title>
+<style>
+    .sidebar ul li .swiperIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 
@@ -40,8 +46,8 @@
                                     <td>${swiperImg.swiper_img_id}</td>
                                     <td contenteditable="true" id="${swiperImg.swiper_img_id}" style="width: 70%;">${swiperImg.image_src}</td>
                                     <td><img src="${swiperImg.image_src}" alt="" height="80" width="120" /></td>
-                                    <td><a onclick="sendUpdateRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess" class="btn btn-primary btn-sm">修改</a>
-                                    <td><a onclick="sendDeleteRequest(`${swiperImg.swiper_img_id}`)" href = "/allswiper/addsuccess" class="btn btn-danger btn-sm">删除</a>
+                                    <td><a onclick="sendUpdateRequest(`${swiperImg.swiper_img_id}`)" href = "/swiper/addsuccess" class="btn btn-primary btn-sm">修改</a>
+                                    <td><a onclick="sendDeleteRequest(`${swiperImg.swiper_img_id}`)" href = "/swiper/addsuccess" class="btn btn-danger btn-sm">删除</a>
                                 </tr>
                             </#list>
                             </tbody>
