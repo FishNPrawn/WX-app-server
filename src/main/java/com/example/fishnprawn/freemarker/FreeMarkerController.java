@@ -238,16 +238,16 @@ public class FreeMarkerController {
 
     //----------------------------------------轮播图---------------------------------------------------//
     // http://localhost:8080/swiper
-    @GetMapping("/allswiper")
+    @GetMapping("/swiper")
     public String swiper(ModelMap map){
         List<SwiperImg> swiperImgList = repositorySwiperImg.findAll();
         map.put("swiperImgList", swiperImgList);
         return "/swiper/swiper";
     }
 
-    @GetMapping("/allswiper/addsuccess")
+    @GetMapping("/swiper/addsuccess")
     public String addSwipersuccess(ModelMap map){
-        map.put("url", "/allswiper");
+        map.put("url", "/swiper");
         return "/operation/success";
     }
 

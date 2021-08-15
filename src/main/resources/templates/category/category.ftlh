@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(食品分类)</title>
+<style>
+    .sidebar ul li .categoryIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 

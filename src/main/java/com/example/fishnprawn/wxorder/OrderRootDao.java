@@ -13,4 +13,6 @@ public interface OrderRootDao extends JpaRepository<WxOrderRoot, Integer> {
     List<WxOrderRoot> findByOpenIdAndOrderStatus(String openId, Integer orderStatus);
 
     List<WxOrderRoot> findByOrderId(Integer orderId);
+
+    List<WxOrderRoot> findByPromoCodeHeaderId(int promoCodeHeaderId);
 }

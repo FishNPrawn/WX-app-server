@@ -3,6 +3,12 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <title>欢喜食货(团长码)</title>
+<style>
+    .sidebar ul li .promocodeIcon{
+        color: #11101d;
+        background: #fff;
+    }
+</style>
 <body>
 
 <div id="wrapper" class="toggled container1">
@@ -29,6 +35,7 @@
                         <thead class="thead-dark">
                         <tr class="table-info table-hover text-center ">
                             <th>团长id</th>
+                            <th>open id</th>
                             <th>团长姓名</th>
                             <th>团长码</th>
                             <th>团长佣金率</th>
@@ -45,6 +52,7 @@
                         <#list promocode as promocode>
                             <tr>
                                 <td><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}">${promocode.promoCodeHeaderId}</a></td>
+                                <td>${promocode.openId}</td>
                                 <td>${promocode.username}</td>
                                 <td>${promocode.promoCode}</td>
                                 <td>${promocode.commission_rate}</td>
@@ -53,7 +61,7 @@
 <#--                                <td>${promocode.address}</td>-->
 <#--                                <td>${promocode.city}</td>-->
                                 <td>${promocode.remark}</td>
-                                <td><button class="btn btn-primary btn-sm" data-modal-target="#update_promo_code_modal-test" id="updatePromoCode">修改</button>
+                                <td><button class="btn btn-primary btn-sm" data-modal-target="#update_promo_code_modal-test" id="updatePromoCode${promocode.promoCodeHeaderId}">修改</button>
                                 <td><a class="btn btn-danger btn-sm" onclick="sendDeleteRequest(`${promocode.promoCodeHeaderId}`)" href = "/promocode/addsuccess">删除</a>
                             </tr>
                         </#list>
@@ -76,6 +84,10 @@
             <div class="form-group">
                 <label>团长姓名</label>
                 <input id="username" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>open id</label>
+                <input id="openid" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>团长码</label>
@@ -114,8 +126,8 @@
 <#--修改-->
 <div class="modal-test" id="update_promo_code_modal-test">
     <div class="modal-header-test">
-        <div class="title-test">添加团长</div>
-        <button data-close-button class="close-button-test" id="promo_code_close_btn" >&times;</button>
+        <div class="title-test">修改团长信息</div>
+        <button data-close-button class="close-button-test" id="update_promo_code_close_btn" >&times;</button>
     </div>
     <div class="modal-body-test" id="cat-window">
         <form role="form">

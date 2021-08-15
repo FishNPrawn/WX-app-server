@@ -9,7 +9,9 @@ const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.getElementById('add_promo_code')
 const overlay = document.getElementById('overlay')
 const promo_code_close_btn = document.getElementById("promo_code_close_btn")
+const update_promo_code_close_btn = document.getElementById('update_promo_code_close_btn')
 const updatePromoCode = document.getElementById('updatePromoCode');
+
 
 // =======================modal===========================================
 openModalButtons.forEach(button => {
@@ -27,6 +29,14 @@ overlay.addEventListener('click', () => {
 })
 
 promo_code_close_btn.addEventListener('click', ()=>{
+    // delete button todo
+    const modals = document.querySelectorAll('.modal-test.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
+})
+
+update_promo_code_close_btn.addEventListener('click', ()=>{
     // delete button todo
     const modals = document.querySelectorAll('.modal-test.active')
     modals.forEach(modal => {
@@ -58,6 +68,7 @@ add_promo_code.addEventListener('click', ()=>{
     var address = document.getElementById('address').value;
     var city = document.getElementById('city').value;
     var remark = document.getElementById('remark').value;
+    var openid = document.getElementById('openid').value
 
     if(remark == ""){
         remark = "无备注";
@@ -81,6 +92,8 @@ add_promo_code.addEventListener('click', ()=>{
     }
     else if(city == ""){
         alert("请填写城市");
+    }else if(openid == ""){
+        alert("请填写");
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "add"]).join("/")
@@ -95,7 +108,8 @@ add_promo_code.addEventListener('click', ()=>{
             "phone": phone,
             "address": address,
             "city": city,
-            "remark": remark
+            "remark": remark,
+            "openId": openid
         });
         xhr.send(data);
     }
