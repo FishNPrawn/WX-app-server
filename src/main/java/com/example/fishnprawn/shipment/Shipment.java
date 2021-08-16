@@ -19,8 +19,10 @@ public class Shipment {
     @GenericGenerator(name = "native", strategy = "native")
     private int shipment_id;
 
+
     @NotNull
-    private String order_number;
+    @Column(name = "order_number")
+    private String orderNumber;
 
     @NotNull
     private String shipment_number;

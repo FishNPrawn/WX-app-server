@@ -350,7 +350,7 @@ save_shipment.addEventListener('click', ()=>{
         xhr.setRequestHeader("Content-Type", "application/json");
 
         let data = JSON.stringify({
-            "order_number": order_number_value,
+            "orderNumber": order_number_value,
             "shipment_number": shipment_number_value,
             "shipment_company": shipment_company_value,
             "package_weight": package_weight_value
@@ -414,7 +414,7 @@ save_change_shipment.addEventListener('click', ()=>{
         xhr.open("PUT", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify({
-            "order_number": order_number_value,
+            "orderNumber": order_number_value,
             "shipment_number": shipment_number_change_value,
             "shipment_company": shipmentChangeSelect_value,
             "package_weight": package_weight_change_value
