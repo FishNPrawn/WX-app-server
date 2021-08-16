@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,6 +104,19 @@ public class PromoCodeController {
     public ResponseEntity<PromoCode> deleteCategoryById(@PathVariable Integer id){
         System.out.println("[Delete one category] parameters: "+ id);
         return new ResponseEntity<>(promoCodeServices.deleteById(id), HttpStatus.OK);
+    }
+
+    //http://localhost:8080/promo_code/updatebyid/{id}
+    @PutMapping(path="/updatebyid/{id}", produces = "application/json")
+    public ResponseEntity<PromoCode> updatePromoCodeById(@NotNull @PathVariable Integer id,
+                                               @Valid @RequestBody PromoCode promoCode){
+        //id is not match
+        if(!id.equals(promoCode.getPromoCodeHeaderId())){
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        log.info("[Update one promocode] parameters: " + id);
+        return new ResponseEntity<>(promoCodeServices.updateById(id, promoCode), HttpStatus.CREATED);
     }
 
 }

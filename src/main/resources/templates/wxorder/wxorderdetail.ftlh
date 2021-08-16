@@ -304,7 +304,7 @@
                             <h6 class="deliver_company_title">快递公司</h6>
                             <#assign shipment_or_not = false >
                             <#list shipments as shipments>
-                                <#if shipments.order_number == order_number >
+                                <#if shipments.orderNumber == order_number >
                                     <h6 class="d-none" id="shipment_id">${shipments.shipment_id}</h6>
                                     <h6 class="deliver_company_value" id="deliver_company_value">${shipments.shipment_company}</h6>
                                     <#assign shipment_or_not = true >
@@ -318,7 +318,7 @@
                         <div class="deliver_package d-flex mt-1">
                             <h6 class="deliver_package_title mt-2">快递单号</h6>
                             <#list shipments as shipments>
-                                <#if shipments.order_number == order_number >
+                                <#if shipments.orderNumber == order_number >
                                     <h6 class="deliver_package_value mt-2" id="deliver_package_number">${shipments.shipment_number}</h6>
                                     <button class="btn btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
                                 </#if>
@@ -330,7 +330,7 @@
                         <div class="package_weight d-flex mt-1">
                             <h6 class="package_weight_title mt-2">包裹重量</h6>
                             <#list shipments as shipments>
-                                <#if shipments.order_number == order_number >
+                                <#if shipments.orderNumber == order_number >
                                     <h6 class="package_weight_value mt-2" id="package_weight_value">${shipments.package_weight}</h6>
                                 </#if>
                             </#list>
