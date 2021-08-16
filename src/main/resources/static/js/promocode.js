@@ -10,7 +10,6 @@ const closeModalButtons = document.getElementById('add_promo_code')
 const overlay = document.getElementById('overlay')
 const promo_code_close_btn = document.getElementById("promo_code_close_btn")
 const update_promo_code_close_btn = document.getElementById('update_promo_code_close_btn')
-const updatePromoCode = document.getElementById('updatePromoCode');
 
 
 // =======================modal===========================================
@@ -128,5 +127,56 @@ function sendDeleteRequest(promoCodeHeaderId){
 
 
 
+function updatePromoCode(r){
+    var li = r.parentElement.parentElement;
+
+    document.getElementById('update_username_input').value = li.querySelector('.username_text').innerHTML;
+    document.getElementById('update_openid_input').value = li.querySelector('.openId_text').innerHTML;
+    document.getElementById('update_promo_code_input').value = li.querySelector('.promoCode_text').innerHTML;
+    document.getElementById('update_commission_rate').value = li.querySelector('.commission_rate_text').innerHTML;
+    document.getElementById('update_discount_rate_input').value = li.querySelector('.discount_rate_text').innerHTML;
+    document.getElementById('update_phone_input').value = li.querySelector('.phone_text').innerHTML;
+    document.getElementById('update_address_input').value = li.querySelector('.address_text').innerHTML;
+    document.getElementById('update_city_input').value = li.querySelector('.city_text').innerHTML;
+    document.getElementById('update_remark_input').value = li.querySelector('.remark_text').innerHTML;
+
+    let promoCodeHeaderId = li.querySelector('.promoCodeHeaderId_text a').textContent;
+    console.log(promoCodeHeaderId)
+
+    var update_promo_code = document.getElementById('update_promo_code');
+    update_promo_code.onclick = function (){
+
+        var username = document.getElementById('update_username_input').value;
+        var openid = document.getElementById('update_openid_input').value
+        var promo_code = document.getElementById('update_promo_code_input').value;
+        var commission_rate = document.getElementById('update_commission_rate').value;
+        var discount_rate = document.getElementById('update_discount_rate_input').value;
+        var phone = document.getElementById('update_phone_input').value;
+        var address = document.getElementById('update_address_input').value;
+        var city = document.getElementById('update_city_input').value;
+        var remark = document.getElementById('update_remark_input').value;
+
+
+        let xhr = new XMLHttpRequest();
+        let url = ([PREFIX, "updatebyid", promoCodeHeaderId]).join("/")
+        console.log(url)
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        let data = JSON.stringify(
+            {
+                "username": username,
+                "promoCode": promo_code,
+                "commission_rate": commission_rate,
+                "discount_rate": discount_rate,
+                "phone": phone,
+                "address": address,
+                "city": city,
+                "remark": remark,
+                "openId": openid
+            });
+        xhr.send(data);
+    }
+
+}
 
 
