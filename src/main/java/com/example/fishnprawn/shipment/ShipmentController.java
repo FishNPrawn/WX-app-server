@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequestMapping(ShipmentController.BASE_URL)
 @RestController
@@ -24,6 +26,9 @@ public class ShipmentController {
 
     @Autowired
     private ShipmentServices shipmentServices;
+
+    @Autowired
+    private ShipmentDao shipmentDao;
 
     @PostMapping(path="/add", produces = "application/json")
     public ResponseEntity<Shipment> saveRemark(@Valid @RequestBody Shipment shipment, @RequestParam("orderId") int orderId){
@@ -49,6 +54,26 @@ public class ShipmentController {
         }
         System.out.println("[Update one shipment] parameters: " + id);
         return new ResponseEntity<>(shipmentServices.updateById(id, shipment), HttpStatus.CREATED);
+    }
+
+    //http://localhost:8080//order/shipment/checkShipmentNumberByOrderNumber?order_number=123456
+    @GetMapping(path="/checkShipmentNumberByOrderNumber", produces = "application/json")
+    public Map<String, Object> checkShipmentNumberByOrderNumber(@RequestParam("order_number") String order_number){
+        Map<String, Object> map = new HashMap<>();
+
+        Shipment shipment = shipmentDao.findByOrderNumber(order_number);
+
+        if(shipment == null){
+            map.put("success", false);
+        }else{
+            map.put("success", true);
+            map.put("order_number", shipment.getOrderNumber());
+            map.put("shipment_number", shipment.getShipment_number());
+            map.put("shipment_company", shipment.getShipment_company());
+            map.put("package_weight", shipment.getPackage_weight());
+            log.info("[找到团长]");
+        }
+        return map;
     }
 
 }
