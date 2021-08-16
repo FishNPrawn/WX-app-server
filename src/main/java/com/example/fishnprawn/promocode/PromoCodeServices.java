@@ -37,8 +37,21 @@ public class PromoCodeServices implements Services<PromoCode> {
     }
 
     @Override
-    public PromoCode updateById(Integer anId, PromoCode anObj) {
-        return null;
+    public PromoCode updateById(Integer id, PromoCode promoCode) {
+        /*Validation*/
+        if(!promocodeDao.existsById(id)){
+            throw new NotFoundException();
+        }
+        /*Operation*/
+        try {
+            //must use findById, or we cannot update field by reflection
+            PromoCode promoCodeId = promocodeDao.findById(id).orElse(null);
+            promoCode.setPromoCodeHeaderId(id);
+            save(promoCode);
+            return promoCode;
+        }catch(RuntimeException e){
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override
