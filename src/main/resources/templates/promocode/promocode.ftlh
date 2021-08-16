@@ -8,6 +8,11 @@
         color: #11101d;
         background: #fff;
     }
+
+    .modal-body-test{
+        max-height: calc(100vh - 300px);
+        overflow-y: auto;
+    }
 </style>
 <body>
 
@@ -51,17 +56,17 @@
                         <tbody>
                         <#list promocode as promocode>
                             <tr>
-                                <td><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}">${promocode.promoCodeHeaderId}</a></td>
-                                <td>${promocode.openId}</td>
-                                <td>${promocode.username}</td>
-                                <td>${promocode.promoCode}</td>
-                                <td>${promocode.commission_rate}</td>
-                                <td>${promocode.discount_rate}</td>
-<#--                                <td>${promocode.phone}</td>-->
-<#--                                <td>${promocode.address}</td>-->
-<#--                                <td>${promocode.city}</td>-->
-                                <td>${promocode.remark}</td>
-                                <td><button class="btn btn-primary btn-sm" data-modal-target="#update_promo_code_modal-test" id="updatePromoCode${promocode.promoCodeHeaderId}">修改</button>
+                                <td class="promoCodeHeaderId_text"><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}">${promocode.promoCodeHeaderId}</a></td>
+                                <td class="openId_text">${promocode.openId}</td>
+                                <td class="username_text">${promocode.username}</td>
+                                <td class="promoCode_text">${promocode.promoCode}</td>
+                                <td class="commission_rate_text">${promocode.commission_rate}</td>
+                                <td class="discount_rate_text">${promocode.discount_rate}</td>
+                                <td class="phone_text d-none">${promocode.phone}</td>
+                                <td class="address_text d-none">${promocode.address}</td>
+                                <td class="city_text d-none">${promocode.city}</td>
+                                <td class="remark_text">${promocode.remark}</td>
+                                <td><button class="btn btn-primary btn-sm" data-modal-target="#update_promo_code_modal-test" onclick="updatePromoCode(this)">修改</button>
                                 <td><a class="btn btn-danger btn-sm" onclick="sendDeleteRequest(`${promocode.promoCodeHeaderId}`)" href = "/promocode/addsuccess">删除</a>
                             </tr>
                         </#list>
@@ -133,38 +138,42 @@
         <form role="form">
             <div class="form-group">
                 <label>团长姓名</label>
-                <input id="username" type="text" class="form-control"/>
+                <input id="update_username_input" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>open id</label>
+                <input id="update_openid_input" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>团长码</label>
-                <input id="promo_code" type="text" class="form-control"/>
+                <input id="update_promo_code_input" type="text" class="form-control"/>
             </div>
 
             <div class="form-group">
                 <label>团长佣金率</label>
-                <input id="commission_rate" type="number" class="form-control"/>
+                <input id="update_commission_rate" type="number" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>客户折扣率</label>
-                <input id="discount_rate" type="number" class="form-control"/>
+                <input id="update_discount_rate_input" type="number" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>电话</label>
-                <input id="phone" type="text" class="form-control"/>
+                <input id="update_phone_input" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>地址</label>
-                <input id="address" type="text" class="form-control"/>
+                <input id="update_address_input" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>城市</label>
-                <input id="city" type="text" class="form-control"/>
+                <input id="update_city_input" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label>备注(可不填)</label>
-                <input id="remark" type="text" class="form-control"/>
+                <input id="update_remark_input" type="text" class="form-control"/>
             </div>
-            <a href="/promocode/addsuccess" id="add_promo_code" class="btn btn-info btn-dark">添加</a>
+            <a href="/promocode/addsuccess" id="update_promo_code" class="btn btn-info btn-dark">修改</a>
         </form>
     </div>
 </div>
