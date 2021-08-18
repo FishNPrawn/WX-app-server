@@ -99,6 +99,12 @@ public class PromoCodeController {
         return new ResponseEntity<>(promoCodeServices.save(promoCode), HttpStatus.CREATED);
     }
 
+    @PostMapping(path="/createByUser", produces = "application/json")
+    public ResponseEntity<PromoCode> createByUser(@RequestBody PromoCode promoCode){ //if any attribute in v is not valid type, it will return 400
+        log.info("[Create one promo code by user]");
+        return new ResponseEntity<>(promoCodeServices.save(promoCode), HttpStatus.CREATED);
+    }
+
 
     @DeleteMapping(path="/deletebyid/{id}", produces = "application/json")
     public ResponseEntity<PromoCode> deleteCategoryById(@PathVariable Integer id){
