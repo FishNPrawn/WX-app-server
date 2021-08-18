@@ -62,6 +62,18 @@ public class PromoCodeServices implements Services<PromoCode> {
     @Override
     public PromoCode save(PromoCode promoCode) {
         try {
+
+            promoCode.setCommission_rate(0.02);
+            promoCode.setDiscount_rate(0.98);
+            String city = promoCode.getCity();
+            System.out.println("city" + city);
+            String phoneNumber = promoCode.getPhone();
+            String promo_code = "abc";
+            if(city.equals("广州")){
+                promo_code = "1" + phoneNumber.substring(phoneNumber.length() - 3);
+            }
+            promoCode.setPromoCode(promo_code);
+
             promocodeDao.save(promoCode);
             return promoCode;
         }catch(RuntimeException e){

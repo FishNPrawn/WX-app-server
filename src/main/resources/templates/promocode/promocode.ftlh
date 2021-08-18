@@ -56,7 +56,7 @@
                         <tbody>
                         <#list promocode as promocode>
                             <tr>
-                                <td class="promoCodeHeaderId_text"><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}">${promocode.promoCodeHeaderId}</a></td>
+                                <td class="promoCodeHeaderId_text"><a href="/promocode/detail?promoCodeHeaderId=${promocode.promoCodeHeaderId}" target="_blank">${promocode.promoCodeHeaderId}</a></td>
                                 <td class="openId_text">${promocode.openId}</td>
                                 <td class="username_text">${promocode.username}</td>
                                 <td class="promoCode_text">${promocode.promoCode}</td>

@@ -22,8 +22,8 @@ public class Good{
     @GenericGenerator(name = "native", strategy = "native")
     private int good_id;
 
+//    @Column(unique = false)
     @NotNull
-    @Column(unique = true)
     private String good_name;
 
     @NotNull

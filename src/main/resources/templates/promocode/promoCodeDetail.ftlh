@@ -3,9 +3,6 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <link rel="stylesheet" href="${path}/css/promoCodeDetail.css">
-<title>欢喜食货(团长)</title>
-<body>
-
 <#list promocode as promocode>
     <#if promocode.promoCodeHeaderId == promo_code_header_id  >
         <#assign username = promocode.username>
@@ -15,6 +12,10 @@
         <#assign commission_rate = promocode.commission_rate>
     </#if>
 </#list>
+<title>欢喜食货(${username})</title>
+<body>
+
+
 
 <#assign order_number = 0>
 <#list orderlist as order>
