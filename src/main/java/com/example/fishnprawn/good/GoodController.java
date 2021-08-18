@@ -85,7 +85,9 @@ public class GoodController {
             ArrayList<Good> allGood = new ArrayList<>();
             current.put(cat, allGood);
             for(Good g: goods.get(cat)){
-                allGood.add(g);
+                if(g.getGood_status()==1){
+                    allGood.add(g);
+                }
             }
         }
 
@@ -148,9 +150,11 @@ public class GoodController {
             List<Good> goods = goodServices.getAll(filter);
             for(Good good: goods)
             {
-                GoodViewclass goodViewclass = new GoodViewclass();
-                goodViewclass.setAttributes(good);
-                result.get("data").add(goodViewclass);
+                if(good.getGood_status() == 1){
+                    GoodViewclass goodViewclass = new GoodViewclass();
+                    goodViewclass.setAttributes(good);
+                    result.get("data").add(goodViewclass);
+                }
             }
         } catch (Exception e)
         {
