@@ -7,7 +7,7 @@
     </div>
     <div class="navbar__right">
         <a href="../home">
-            <img width="40" src="${path}/img/avatar.jpg" alt="" style="border-radius: 50%;"/>
+            <img width="40" src="https://fnpphoto.cn/backend/avatar.jpg" alt="" style="border-radius: 50%;"/>
         </a>
     </div>
 </nav>

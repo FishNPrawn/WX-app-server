@@ -45,6 +45,7 @@
                             <th>团长码</th>
                             <th>团长佣金率</th>
                             <th>客户折扣率</th>
+                            <th>审核</th>
 <#--                            <th>电话</th>-->
 <#--                            <th>地址</th>-->
 <#--                            <th>城市</th>-->
@@ -62,6 +63,13 @@
                                 <td class="promoCode_text">${promocode.promoCode}</td>
                                 <td class="commission_rate_text">${promocode.commission_rate}</td>
                                 <td class="discount_rate_text">${promocode.discount_rate}</td>
+                                <#if promocode.promo_code_verify == 0>
+                                    <td class="promo_code_verify_text">审核中</td>
+                                <#elseif promocode.promo_code_verify == 1>
+                                    <td class="promo_code_verify_text">审核通过</td>
+                                <#elseif promocode.promo_code_verify == 2>
+                                    <td class="promo_code_verify_text">审核不通过</td>
+                                </#if>
                                 <td class="phone_text d-none">${promocode.phone}</td>
                                 <td class="address_text d-none">${promocode.address}</td>
                                 <td class="city_text d-none">${promocode.city}</td>
@@ -106,6 +114,10 @@
             <div class="form-group">
                 <label>客户折扣率</label>
                 <input id="discount_rate" type="number" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>审核(0: 待审核; 1: 审核通过; 2: 审核不通过)</label>
+                <input id="promo_code_verify" type="number" class="form-control" min="0" max="2"/>
             </div>
             <div class="form-group">
                 <label>电话</label>
@@ -156,6 +168,10 @@
             <div class="form-group">
                 <label>客户折扣率</label>
                 <input id="update_discount_rate_input" type="number" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>审核(0: 待审核; 1: 审核通过; 2: 审核不通过)</label>
+                <input id="update_promo_code_verify_input" type="number" class="form-control" min="0" max="2"/>
             </div>
             <div class="form-group">
                 <label>电话</label>
