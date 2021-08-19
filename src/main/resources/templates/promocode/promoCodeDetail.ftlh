@@ -105,7 +105,7 @@
                         <tbody>
                         <#list orderlist?sort_by("orderId")?reverse as order>
                             <tr>
-                                <#if order.promoCodeHeaderId == promo_code_header_id>
+                                <#if order.promoCodeHeaderId == promo_code_header_id  && (order.orderStatus == 0 || order.orderStatus == 3)>
                                     <td><a href="/detail?orderId=${order.orderId}" target="_blank">${order.order_number}</a></td>
                                     <td>${order.user_name}</td>
                                     <td>${order.order_total_weight}</td>

@@ -82,7 +82,7 @@ public class PromoCodeController {
 
         try {
             for(WxOrderRoot item : wxOrderRoot){
-                if(item.getOrderStatus() == 0){
+                if(item.getOrderStatus() == 0 || item.getOrderStatus() == 3){
                     result.get("data").add(item);
                 }
             }
