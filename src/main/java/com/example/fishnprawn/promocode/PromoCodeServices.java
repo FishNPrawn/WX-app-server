@@ -70,7 +70,15 @@ public class PromoCodeServices implements Services<PromoCode> {
             String phoneNumber = promoCode.getPhone();
             String promo_code = "abc";
             if(city.equals("广州")){
-                promo_code = "1" + phoneNumber.substring(phoneNumber.length() - 3);
+                promo_code = "01" + phoneNumber.substring(phoneNumber.length() - 3);
+            }else if(city.equals("深圳")){
+                promo_code = "02" + phoneNumber.substring(phoneNumber.length() - 3);
+            } else if(city.equals("佛山")){
+                promo_code = "03" + phoneNumber.substring(phoneNumber.length() - 3);
+            }else if(city.equals("潮汕")){
+                promo_code = "04" + phoneNumber.substring(phoneNumber.length() - 3);
+            }else if(city.equals("其他")){
+                promo_code = "20" + phoneNumber.substring(phoneNumber.length() - 3);
             }
             promoCode.setPromoCode(promo_code);
 

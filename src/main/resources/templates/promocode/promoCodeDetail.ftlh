@@ -26,7 +26,7 @@
 
 <#assign total_price_without_express_fee = 0>
 <#list orderlist as order>
-    <#if order.promoCodeHeaderId == promo_code_header_id>
+    <#if order.promoCodeHeaderId == promo_code_header_id && (order.orderStatus == 0 || order.orderStatus == 3)>
         <#assign total_price_without_express_fee = total_price_without_express_fee + order.order_total_price>
     </#if>
 </#list>
