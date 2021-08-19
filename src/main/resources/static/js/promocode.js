@@ -67,7 +67,8 @@ add_promo_code.addEventListener('click', ()=>{
     var address = document.getElementById('address').value;
     var city = document.getElementById('city').value;
     var remark = document.getElementById('remark').value;
-    var openid = document.getElementById('openid').value
+    var openid = document.getElementById('openid').value;
+    var promo_code_verify = document.getElementById('promo_code_verify').value;
 
     if(remark == ""){
         remark = "无备注";
@@ -93,6 +94,8 @@ add_promo_code.addEventListener('click', ()=>{
         alert("请填写城市");
     }else if(openid == ""){
         alert("请填写");
+    }else if(promo_code_verify == ""){
+        alert("请正确数字");
     }else{
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "add"]).join("/")
@@ -108,7 +111,8 @@ add_promo_code.addEventListener('click', ()=>{
             "address": address,
             "city": city,
             "remark": remark,
-            "openId": openid
+            "openId": openid,
+            "promo_code_verify": promo_code_verify
         });
         xhr.send(data);
     }
@@ -139,9 +143,18 @@ function updatePromoCode(r){
     document.getElementById('update_address_input').value = li.querySelector('.address_text').innerHTML;
     document.getElementById('update_city_input').value = li.querySelector('.city_text').innerHTML;
     document.getElementById('update_remark_input').value = li.querySelector('.remark_text').innerHTML;
+    var promo_code_verify_text =  li.querySelector('.promo_code_verify_text').textContent;
+    if(promo_code_verify_text == "审核中"){
+        promo_code_verify_text = 0;
+    }else if(promo_code_verify_text == "审核通过"){
+        promo_code_verify_text = 1;
+    }else if(promo_code_verify_text == "审核不通过"){
+        promo_code_verify_text = 2;
+    }
+    document.getElementById('update_promo_code_verify_input').value = promo_code_verify_text;
 
     let promoCodeHeaderId = li.querySelector('.promoCodeHeaderId_text a').textContent;
-    console.log(promoCodeHeaderId)
+
 
     var update_promo_code = document.getElementById('update_promo_code');
     update_promo_code.onclick = function (){
@@ -155,7 +168,7 @@ function updatePromoCode(r){
         var address = document.getElementById('update_address_input').value;
         var city = document.getElementById('update_city_input').value;
         var remark = document.getElementById('update_remark_input').value;
-
+        var promo_code_verify = document.getElementById('update_promo_code_verify_input').value;
 
         let xhr = new XMLHttpRequest();
         let url = ([PREFIX, "updatebyid", promoCodeHeaderId]).join("/")
@@ -172,7 +185,8 @@ function updatePromoCode(r){
                 "address": address,
                 "city": city,
                 "remark": remark,
-                "openId": openid
+                "openId": openid,
+                "promo_code_verify": promo_code_verify
             });
         xhr.send(data);
     }

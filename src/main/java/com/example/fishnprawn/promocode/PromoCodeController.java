@@ -67,6 +67,7 @@ public class PromoCodeController {
             map.put("promo_code", promoCode.getPromoCode());
             map.put("discount_rate", promoCode.getDiscount_rate());
             map.put("commission_rate", promoCode.getCommission_rate());
+            map.put("promo_code_verify", promoCode.getPromo_code_verify());
             log.info("[找到团长]");
         }
         return map;
@@ -81,7 +82,9 @@ public class PromoCodeController {
 
         try {
             for(WxOrderRoot item : wxOrderRoot){
-                result.get("data").add(item);
+                if(item.getOrderStatus() == 0){
+                    result.get("data").add(item);
+                }
             }
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
