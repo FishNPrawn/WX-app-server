@@ -79,7 +79,7 @@
                         </div>
                         <div class="commander_box3_info_value">
                             <div>${commission_rate}</div>
-                            <div class="d-flex">${earning} <div class="ml-1">RMB</div></div>
+                            <div class="d-flex">${earning?string("#.##")} <div class="ml-1">RMB</div></div>
                         </div>
                     </div>
                 </div>
