@@ -15,6 +15,18 @@
 <div id="wrapper" class="toggled container1">
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
+    <#if !isAdmin??>
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex">
+                    <img width="200" src="https://fnpphoto.cn/backend/avatar.jpg" alt="" style="border-radius: 50%;"/>
+                    <h2 class="d-flex text-center align-content-center align-items-center">您不是管理员，没有管理权限</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <#else >
     <main>
         <#--主要内容content-->
         <div id="page-content-wrapper" class="container">
@@ -56,6 +68,7 @@
                 </div>
         </div>
     </main>
+    </#if>
 </div>
 <div class="modal-test" id="modal-test">
     <div class="modal-header-test">
