@@ -19,6 +19,19 @@
 <div id="wrapper" class="toggled container1">
     <#--Left Side Bar-->
     <#include "../header/sidebar.ftlh">
+
+    <#if !isAdmin??>
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex">
+                    <img width="200" src="https://fnpphoto.cn/backend/avatar.jpg" alt="" style="border-radius: 50%;"/>
+                    <h2 class="d-flex text-center align-content-center align-items-center">您不是管理员，没有管理权限</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <#else >
     <main>
         <#--主要内容content-->
         <div id="page-content-wrapper" class="container">
@@ -64,11 +77,11 @@
                                 <td class="commission_rate_text">${promocode.commission_rate}</td>
                                 <td class="discount_rate_text">${promocode.discount_rate}</td>
                                 <#if promocode.promo_code_verify == 0>
-                                    <td class="promo_code_verify_text">审核中</td>
+                                    <td class="promo_code_verify_text col-1 text-secondary">审核中</td>
                                 <#elseif promocode.promo_code_verify == 1>
-                                    <td class="promo_code_verify_text">审核通过</td>
+                                    <td class="promo_code_verify_text text-success">审核通过</td>
                                 <#elseif promocode.promo_code_verify == 2>
-                                    <td class="promo_code_verify_text">审核不通过</td>
+                                    <td class="promo_code_verify_text text-danger">审核不通过</td>
                                 </#if>
                                 <td class="phone_text d-none">${promocode.phone}</td>
                                 <td class="address_text d-none">${promocode.address}</td>
@@ -84,6 +97,7 @@
             </div>
         </div>
     </main>
+    </#if>
 </div>
 
 <#--添加-->

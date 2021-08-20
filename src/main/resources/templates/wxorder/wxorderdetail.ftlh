@@ -79,10 +79,12 @@
                 </div>
 
                 <div>
-                    <#if order_status == 1 || order_status==2>
+                    <#if order_status == 1>
+                        <#if isAdmin??>
                         <button class="btn btn-primary text-white my-3" data-modal-target="#modal-test" id="addCategory">
                             添加
                         </button>
+                        </#if>
                         <button class="btn btn-danger text-white my-3" data-modal-target="#modal-test-shipment" id="shipmentBtn">
                             发货
                         </button>
@@ -109,7 +111,9 @@
                             <th>商品单价</th>
                             <th>数量</th>
                             <th>总额</th>
+                            <#if isAdmin??>
                             <th>删除</th>
+                            </#if>
                         </tr>
                         </thead>
                         <tbody>
@@ -123,7 +127,9 @@
                                 <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
                                 <td id="order_total_price${orderdetail.order_detail_id}">${orderdetail.good_quantity*orderdetail.good_price}</td>
+                                <#if isAdmin??>
                                 <td><a class="btn btn-danger btn-sm text-white"  data-toggle="modal" data-target="#confirmModal${orderdetail.order_detail_id}">删除</a>
+                                </#if>
                                 <!-- Modal -->
                                 <div class="modal fade" id="confirmModal${orderdetail.order_detail_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -179,11 +185,13 @@
                     <h5>￥</h5>
                     <h4 class="order_price_with_express_fee_value ml-1">${order_price_with_express_fee}</h4>
                 </div>
+                <#if isAdmin??>
                 <div class="change_total_price_wrapper">
                     <a class="change_total_price_btn" data-modal-target="#modal-test-update-price-express-fee">
                         <i class="fa fa-arrow-left left-arrow-color" aria-hidden="true"></i>改价格
                     </a>
                 </div>
+                </#if>
             </div>
 
             <div class="userinfo_comment mb-4 mt-4">
