@@ -89,6 +89,13 @@ public class FreeMarkerController {
     public String category(ModelMap map){
         List<Category> categoryList = repositoryCat.findAll();
         map.put("categoryList", categoryList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/category/category";
     }
 
@@ -117,6 +124,12 @@ public class FreeMarkerController {
     public String menulist(ModelMap map){
         List<Good> menulist = repositoryGood.findAll();
         map.put("menulist", menulist);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
         return "/menulist/menulist";
     }
     @GetMapping("/goodlist/addgoodsuccess")
@@ -225,6 +238,12 @@ public class FreeMarkerController {
         List<Shipment> shipments = repositoryShipment.findAll();
         map.put("shipments", shipments);
 
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "wxorder/wxorderdetail";
     }
 
@@ -242,6 +261,12 @@ public class FreeMarkerController {
     public String swiper(ModelMap map){
         List<SwiperImg> swiperImgList = repositorySwiperImg.findAll();
         map.put("swiperImgList", swiperImgList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
         return "/swiper/swiper";
     }
 
@@ -259,6 +284,12 @@ public class FreeMarkerController {
 
         List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
         map.put("orderlist", orderlist);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
 
         return "/wxorder/allorder";
     }
@@ -293,6 +324,12 @@ public class FreeMarkerController {
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();
         map.put("userInfoList", userInfoList);
 
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/home/home";
     }
 
@@ -307,6 +344,12 @@ public class FreeMarkerController {
     public String comment(ModelMap map){
         List<Comment> commentList = repositoryComment.findAll();
         map.put("commentList", commentList);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
         return "/comment/comment";
     }
 
@@ -335,6 +378,13 @@ public class FreeMarkerController {
     public String promocode(ModelMap map){
         List<PromoCode> promocode = repositoryPromoCode.findAll();
         map.put("promocode", promocode);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Admin admin = adminDao.findByUsername(username);
+        if(admin.getAdmintype() == 2){
+            map.put("isAdmin", true);
+        }
+
         return "/promocode/promocode";
     }
 

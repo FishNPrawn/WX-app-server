@@ -107,6 +107,19 @@
 
 <div class="container1">
     <#include "../header/navbar.ftlh">
+
+    <#if !isAdmin??>
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="center d-flex">
+                    <img width="200" src="https://fnpphoto.cn/backend/avatar.jpg" alt="" style="border-radius: 50%;"/>
+                    <h2 class="d-flex text-center align-content-center align-items-center">您不是管理员，没有管理权限</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <#else >
     <main>
         <div class="main__container">
             <!-- MAIN TITLE STARTS HERE -->
@@ -253,6 +266,7 @@
             <!-- CHARTS ENDS HERE -->
         </div>
     </main>
+    </#if>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="${path}/js/home.js"></script>
