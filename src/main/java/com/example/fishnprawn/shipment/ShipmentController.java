@@ -56,7 +56,7 @@ public class ShipmentController {
         return new ResponseEntity<>(shipmentServices.updateById(id, shipment), HttpStatus.CREATED);
     }
 
-    //http://localhost:8080//order/shipment/checkShipmentNumberByOrderNumber?order_number=123456
+    //http://localhost:8080/order/shipment/checkShipmentNumberByOrderNumber?order_number=123456
     @GetMapping(path="/checkShipmentNumberByOrderNumber", produces = "application/json")
     public Map<String, Object> checkShipmentNumberByOrderNumber(@RequestParam("order_number") String order_number){
         Map<String, Object> map = new HashMap<>();
