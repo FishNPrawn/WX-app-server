@@ -52,9 +52,7 @@
                             <th>创建时间</th>
                             <th>状态</th>
 <#--                            <th>详情</th>-->
-                            <#if isAdmin??>
                             <th>删除订单</th>
-                            </#if>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,9 +72,7 @@
                                     <td>${order.order_create_time}</td>
                                     <td><div class="prepare_deliver">待发货</div></td>
 <#--                                    <td><a class="btn btn-primary btn-sm" href="/detail?orderId=${order.orderId}" target="_blank">详情</a></td>-->
-                                    <#if isAdmin??>
                                     <td><a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#confirmModal${order.orderId}">删除</a></td>
-                                    </#if>
                                     <!-- Modal -->
                                     <div class="modal fade" id="confirmModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">

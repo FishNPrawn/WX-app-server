@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExpressFeeCalculation {
     public static final String BASE_URL = "/calculate";
 
+    @GetMapping("/check_deliver_or_not")
+    public Boolean check_deliver_or_not(@RequestParam("province") String province){
+        String provinceSubstring = province.substring(0,3);
+        if(provinceSubstring.equals("广东省")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @GetMapping("/total_price_with_promo_code")
     public double total_price_with_promo_code(@RequestParam("order_total_price") double order_total_price,
                                               @RequestParam(value = "discount_rate",required = false, defaultValue = "1") double discount_rate){
