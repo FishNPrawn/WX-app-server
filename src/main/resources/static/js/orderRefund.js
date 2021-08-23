@@ -64,6 +64,10 @@ add_orderRefund.addEventListener('click', ()=>{
     var refund_price_input = document.getElementById('refund_price_input').value;
     var refund_remark_input = document.getElementById('refund_remark_input').value;
 
+    if(refund_remark_input == ""){
+        refund_remark_input = "无备注";
+    }
+
     let xhr = new XMLHttpRequest();
     let url = ([PREFIX, "add"]).join("/")
 
