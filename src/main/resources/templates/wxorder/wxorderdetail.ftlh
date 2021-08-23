@@ -107,9 +107,9 @@
 <#--                            <th>order_detail_id</th>-->
 <#--                            <th>good_id</th>-->
                             <th>商品信息</th>
+                            <th>数量</th>
                             <th>商品图</th>
                             <th>商品单价</th>
-                            <th>数量</th>
                             <th>总额</th>
                             <#if isAdmin??>
                             <th>删除</th>
@@ -123,9 +123,9 @@
 <#--                                <td>${orderdetail.order_detail_id}</td>-->
 <#--                                <td>${orderdetail.good_id}</td>-->
                                 <td>${orderdetail.good_name}</td>
-                                <td><img height="40" width="40" src="${orderdetail.good_image}"></td>
-                                <td>${orderdetail.good_price}</td>
                                 <td>${orderdetail.good_quantity}</td>
+                                <td><img height="70" width="70" src="${orderdetail.good_image}"></td>
+                                <td>${orderdetail.good_price}</td>
                                 <td id="order_total_price${orderdetail.order_detail_id}">${orderdetail.good_quantity*orderdetail.good_price}</td>
                                 <#if isAdmin??>
                                 <td><a class="btn btn-danger btn-sm text-white"  data-toggle="modal" data-target="#confirmModal${orderdetail.order_detail_id}">删除</a>

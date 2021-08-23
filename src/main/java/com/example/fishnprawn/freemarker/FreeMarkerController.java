@@ -6,6 +6,8 @@ import com.example.fishnprawn.admin.AdminDao;
 import com.example.fishnprawn.comment.Comment;
 import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.global.GlobalConst;
+import com.example.fishnprawn.orderRefund.OrderRefund;
+import com.example.fishnprawn.orderRefund.OrderRefundDao;
 import com.example.fishnprawn.promocode.PromoCode;
 import com.example.fishnprawn.promocode.PromoCodeDao;
 import com.example.fishnprawn.shipment.Shipment;
@@ -77,6 +79,9 @@ public class FreeMarkerController {
 
     @Autowired
     private PromoCodeDao repositoryPromoCode;
+
+    @Autowired
+    private OrderRefundDao repositoryOrderRefund;
 
     @GetMapping("/")
     public String indexPage(){
@@ -324,6 +329,9 @@ public class FreeMarkerController {
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();
         map.put("userInfoList", userInfoList);
 
+        List<OrderRefund> orderRefundList = repositoryOrderRefund.findAll();
+        map.put("orderRefundList", orderRefundList);
+
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Admin admin = adminDao.findByUsername(username);
         if(admin.getAdmintype() == 2){
@@ -417,6 +425,20 @@ public class FreeMarkerController {
         return "/promocode/promoCodeDetail";
     }
 
+
+    @GetMapping("/orderRefund")
+    public String orderRefund(ModelMap map){
+
+        List<OrderRefund> orderRefundList = repositoryOrderRefund.findAll();
+        map.put("orderRefundList", orderRefundList);
+        return "/orderRefund/orderRefund";
+    }
+
+    @GetMapping("/orderRefund/addsuccess")
+    public String addOrderRefundSuccess(ModelMap map){
+        map.put("url", "/orderRefund");
+        return "/operation/success";
+    }
 
 
 }
