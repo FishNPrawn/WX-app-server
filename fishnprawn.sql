@@ -154,6 +154,18 @@ CREATE TABLE `promo_code`
     `discount_rate` double not null,
     primary key (`promo_code_header_id`)
 );
+
+CREATE TABLE `order_refund`
+(
+    `order_refund_id` int not null auto_increment,
+    `order_number` text not null,
+    `good_name` varchar(32) not null,
+    `good_quantity` int not null,
+    `refund_price` double not null,
+    `refund_remark` text not null,
+    `order_refund_time` timestamp not null default current_timestamp,
+    primary key (`order_refund_id`)
+);
 INSERT INTO promo_code
 VALUES (1, '杨洋', '139222610000', '广州市花都区工业区', '广州', '无备注', 'yy123', 0.1, 0.02);
 

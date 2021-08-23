@@ -81,6 +81,13 @@
             <span class="tooltip">全部订单</span>
         </li>
         <li>
+            <a href="../orderRefund" class="orderRefundIcon">
+                <i class='fa fa-times' ></i>
+                <span class="links_name">退款</span>
+            </a>
+            <span class="tooltip">退款</span>
+        </li>
+        <li>
             <a href="../commentList">
                 <i class='fa fa-comment-o' ></i>
                 <span class="links_name">用户评论</span>
@@ -189,22 +196,28 @@
                         <#assign order_cancel_number = order_cancel_number+1 >
                     </#if>
                 </#list>
+
+                <#assign refund_total = 0>
+                <#list orderRefundList as orderRefundList>
+                    <#assign refund_total = refund_total + orderRefundList.refund_price>
+                </#list>
                 <div class="card_wrapper">
                     <i
-                            class="fa fa-calendar-check-o fa-2x text-yellow"
+                            class="fa fa-times fa-2x text-yellow"
                             aria-hidden="true"
                     ></i>
                     <div class="card_inner">
-                        <p class="text-primary-p mt-3">已完成订单</p>
-                        <span class="font-bold text-title">${order_no_deliver}</span>
+                        <p class="text-primary-p mt-3">退款金额</p>
+                        <span class="font-bold text-title">${refund_total}</span>
                     </div>
                 </div>
 
                 <#-- -----------------总交易金额------------------------------->
                 <#assign totol_order_money = 0>
-                <#list orderdetailist as orderdetailist>
-                    <#assign totol_order_money = totol_order_money +  orderdetailist.good_price*orderdetailist.good_quantity >
+                <#list orderlist as orderlist>
+                    <#assign totol_order_money = totol_order_money+orderlist.order_total_price_with_express_fee >
                 </#list>
+
                 <div class="card_wrapper">
                     <i
                             class="fa fa-money fa-2x text-green"
