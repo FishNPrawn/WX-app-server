@@ -1,13 +1,13 @@
 // BASE_DOMAIN
-const TABLE = "orderRefund"
+const TABLE = "paySupplier"
 const PREFIX = ([BASE_DOMAIN, TABLE]).join("/");
 //放上騰訊雲只要改這邊就好
 
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const overlay = document.getElementById('overlay')
-const orderRefund_close_btn = document.getElementById("orderRefund_close_btn")
-const update_orderRefund_close_btn = document.getElementById('update_orderRefund_close_btn');
+const paySupplier_close_btn = document.getElementById("paySupplier_close_btn")
+const update_paySupplier_close_btn = document.getElementById('update_paySupplier_close_btn');
 
 // =======================modal===========================================
 openModalButtons.forEach(button => {
@@ -24,7 +24,7 @@ overlay.addEventListener('click', () => {
     })
 })
 
-orderRefund_close_btn.addEventListener('click', ()=>{
+paySupplier_close_btn.addEventListener('click', ()=>{
     // delete button todo
     const modals = document.querySelectorAll('.modal-test.active')
     modals.forEach(modal => {
@@ -32,7 +32,7 @@ orderRefund_close_btn.addEventListener('click', ()=>{
     })
 })
 
-update_orderRefund_close_btn.addEventListener('click', ()=>{
+update_paySupplier_close_btn.addEventListener('click', ()=>{
     // delete button todo
     const modals = document.querySelectorAll('.modal-test.active')
     modals.forEach(modal => {
@@ -56,17 +56,12 @@ function closeModal(modal) {
 // =======================modal===========================================
 
 // =======================添加退款=======================
-const add_orderRefund = document.getElementById('add_orderRefund');
-add_orderRefund.addEventListener('click', ()=>{
-    var order_number_input = document.getElementById('order_number_input').value;
-    var good_name_input = document.getElementById('good_name_input').value;
-    var good_quantity_input = document.getElementById('good_quantity_input').value;
-    var refund_price_input = document.getElementById('refund_price_input').value;
-    var refund_remark_input = document.getElementById('refund_remark_input').value;
-
-    if(refund_remark_input == ""){
-        refund_remark_input = "无备注";
-    }
+const add_paySupplier = document.getElementById('add_paySupplier');
+add_paySupplier.addEventListener('click', ()=>{
+    var pay_supplier_input = document.getElementById('pay_supplier_input').value;
+    var pay_supplier_date_input = document.getElementById('pay_supplier_date_input').value;
+    var pay_supplier_price_input = document.getElementById('pay_supplier_price_input').value;
+    var pay_supplier_or_not_input = document.getElementById('pay_supplier_or_not_input').value;
 
     let xhr = new XMLHttpRequest();
     let url = ([PREFIX, "add"]).join("/")
@@ -74,55 +69,57 @@ add_orderRefund.addEventListener('click', ()=>{
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     let data = JSON.stringify({
-            "orderNumber": order_number_input,
-            "good_name": good_name_input,
-            "good_quantity": good_quantity_input,
-            "refund_price": refund_price_input,
-            "refund_remark": refund_remark_input
-        });
+        "pay_supplier": pay_supplier_input,
+        "pay_supplier_date": pay_supplier_date_input,
+        "pay_supplier_price": pay_supplier_price_input,
+        "pay_supplier_or_not": pay_supplier_or_not_input
+    });
     xhr.send(data);
 })
 // =======================添加退款=======================
-function deleteOrderRefund(order_refund_id){
+function deletePaySupplier(pay_supplier_id){
     let xhr = new XMLHttpRequest();
-    let url = ([PREFIX, "deletebyid",`${order_refund_id}`]).join("/")
+    let url = ([PREFIX, "deletebyid",`${pay_supplier_id}`]).join("/")
     xhr.open("DELETE", url);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }
 // =======================添加退款=======================
 
-function updateOrderRefund(r){
+function updatePaySupplier(r){
     var li = r.parentElement.parentElement;
+    var pay_supplier_or_not_text;
+    if(li.querySelector('.pay_supplier_or_not_text').textContent == "未结算"){
+        pay_supplier_or_not_text = 0;
+    }else if(li.querySelector('.pay_supplier_or_not_text').textContent == "已结算"){
+        pay_supplier_or_not_text = 1;
+    }
 
-    document.getElementById('update_order_number_input').value = li.querySelector('.order_number_text').innerHTML;
-    document.getElementById('update_good_name_input').value = li.querySelector('.good_name_text').innerHTML;
-    document.getElementById('update_good_quantity_input').value = li.querySelector('.good_quantity_text').innerHTML;
-    document.getElementById('update_refund_price_input').value = li.querySelector('.refund_price_text').innerHTML;
-    document.getElementById('update_refund_remark_input').value = li.querySelector('.refund_remark_text').innerHTML;
+    document.getElementById('update_pay_supplier_input').value = li.querySelector('.pay_supplier_text').innerHTML;
+    document.getElementById('update_pay_supplier_date_input').value = li.querySelector('.pay_supplier_date_text').innerHTML;
+    document.getElementById('update_pay_supplier_price_input').value = li.querySelector('.pay_supplier_price_text').innerHTML;
+    document.getElementById('update_pay_supplier_or_not_input').value = pay_supplier_or_not_text;
 
-    var order_refund_id = li.querySelector('.order_refund_id').textContent
+    var pay_supplier_id = li.querySelector('.pay_supplier_id').textContent
 
-    var update_orderRefund = document.getElementById('update_orderRefund');
-    update_orderRefund.onclick = function (){
-        var update_order_number_input = document.getElementById('update_order_number_input').value;
-        var update_good_name_input = document.getElementById('update_good_name_input').value;
-        var update_good_quantity_input = document.getElementById('update_good_quantity_input').value;
-        var update_refund_price_input = document.getElementById('update_refund_price_input').value;
-        var update_refund_remark_input = document.getElementById('update_refund_remark_input').value;
+    var update_paySupplier = document.getElementById('update_paySupplier');
+    update_paySupplier.onclick = function (){
+        var update_pay_supplier_input = document.getElementById('update_pay_supplier_input').value;
+        var update_pay_supplier_date_input = document.getElementById('update_pay_supplier_date_input').value;
+        var update_pay_supplier_price_input = document.getElementById('update_pay_supplier_price_input').value;
+        var update_pay_supplier_or_not_input = document.getElementById('update_pay_supplier_or_not_input').value;
 
         let xhr = new XMLHttpRequest();
-        let url = ([PREFIX, "updatebyid", order_refund_id]).join("/")
+        let url = ([PREFIX, "updatebyid", pay_supplier_id]).join("/")
         console.log(url)
         xhr.open("PUT", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(
             {
-                "orderNumber": update_order_number_input,
-                "good_name": update_good_name_input,
-                "good_quantity": update_good_quantity_input,
-                "refund_price": update_refund_price_input,
-                "refund_remark": update_refund_remark_input
+                "pay_supplier": update_pay_supplier_input,
+                "pay_supplier_date": update_pay_supplier_date_input,
+                "pay_supplier_price": update_pay_supplier_price_input,
+                "pay_supplier_or_not": update_pay_supplier_or_not_input
             });
         xhr.send(data);
     }
@@ -155,7 +152,7 @@ function confirmDate() {
     var tr = table.getElementsByTagName("tr");
 
     for (i = 0; i < tr.length; i++){
-        td = tr[i].getElementsByTagName("td")[6];
+        td = tr[i].getElementsByTagName("td")[3];
         if (td) {
             tdValue = td.textContent;
             var date = new Date(tdValue);
@@ -180,10 +177,26 @@ function clearDate() {
     var tr = table.getElementsByTagName("tr");
 
     for (i = 0; i < tr.length; i++){
-        td = tr[i].getElementsByTagName("td")[2];
+        td = tr[i].getElementsByTagName("td")[3];
         tr[i].style.display = "";
     }
 }
 
 
 // -----------------------------------------filter-----------------------------------------
+
+// checkbox select all
+$(document).ready(function() {
+    $('#selectAllBoxes').click(function(event){
+        if(this.checked){
+            $('.checkBoxes').each(function(){
+                this.checked = true;
+            });
+        }else{
+            $('.checkBoxes').each(function(){
+                this.checked = false;
+            });
+        }
+    });
+});
+

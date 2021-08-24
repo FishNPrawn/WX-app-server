@@ -166,6 +166,16 @@ CREATE TABLE `order_refund`
     `order_refund_time` timestamp not null default current_timestamp,
     primary key (`order_refund_id`)
 );
+
+CREATE TABLE `pay_supplier`
+(
+    `pay_supplier_id` int not null auto_increment,
+    `pay_supplier` varchar(128) not null,
+    `pay_supplier_date` text not null,
+    `pay_supplier_price` double not null,
+    `pay_supplier_or_not` int not null,
+    primary key (`pay_supplier_id`)
+);
 INSERT INTO promo_code
 VALUES (1, '杨洋', '139222610000', '广州市花都区工业区', '广州', '无备注', 'yy123', 0.1, 0.02);
 
