@@ -287,6 +287,9 @@ main {
     border-radius: 5px;
     font-size: 14px;
 }
+.card3:hover{
+    color: #3a3e41;
+}
 
 .card4 {
     background: #fddcdf;
@@ -298,6 +301,55 @@ main {
 }
 .card4:hover{
     color: #f65a6f;
+}
+
+.card5 {
+    background: #d1ecf1;
+    color: #35a4ba;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.card5:hover {
+    color: #35a4ba;
+}
+
+.card6 {
+    background: #d2f9ee;
+    color: #38e1b0;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.card7 {
+    background: #d6d8d9;
+    color: #3a3e41;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.card7:hover{
+    color: #3a3e41;
+}
+
+.card8 {
+    background: #fddcdf;
+    color: #f65a6f;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.card8:hover{
+    color: #f65a6f;
+}
+
+.card1 p, .card2 p, .card3 p, .card4 p, .card5 p, .card6 p, .card7 p, .card8 p{
+    font-size: 20px;
 }
 
 /*  SIDEBAR STARTS HERE  */

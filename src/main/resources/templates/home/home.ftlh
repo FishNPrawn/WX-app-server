@@ -133,37 +133,41 @@
                 </a>
             </div>
             <!-- MAIN CARDS ENDS HERE -->
-
+            <#assign pay_supplier_total = 0>
+            <#list paySupplierList as paySupplierList>
+                <#assign pay_supplier_total = pay_supplier_total + paySupplierList.pay_supplier_price>
+            </#list>
+            <#assign earning = totol_order_money - refund_total - pay_supplier_total>
             <!-- CHARTS STARTS HERE -->
             <div class="charts">
                 <div class="charts__left">
                     <div class="charts__left__title">
                         <div>
-                            <h1>Daily Reports</h1>
+                            <h1>资金</h1>
 <#--                            <p>Cupertino, California, USA</p>-->
                         </div>
                         <i class="fa fa-usd" aria-hidden="true"></i>
                     </div>
 <#--                    <div id="apex1"></div>-->
                     <div class="charts__right__cards">
-                        <a class="card1 text-decoration-none" href="../orderlist">
-                            <h1>待发货</h1>
-                            <p>${order_no_deliver}</p>
+                        <a class="card5 text-decoration-none" href="../allorder">
+                            <h1>总交易金额</h1>
+                            <p>$${totol_order_money}</p>
                         </a>
 
-                        <div class="card2">
-                            <h1>待收货</h1>
-                            <p>${order_wait_get_number}</p>
+                        <div class="card6">
+                            <h1>收益</h1>
+                            <p>$${earning}</p>
                         </div>
 
-                        <div class="card3">
-                            <h1>待评价</h1>
-                            <p>${order_wait_comment}</p>
-                        </div>
+                        <a class="card7 text-decoration-none" href="../orderRefund">
+                            <h1>商家退款</h1>
+                            <p>$${refund_total}</p>
+                        </a>
 
-                        <a class="card4 text-decoration-none" href="../cancelorder">
-                            <h1>订单取消</h1>
-                            <p>${order_cancel_number}</p>
+                        <a class="card8 text-decoration-none" href="../paySupplier">
+                            <h1>供应商结算</h1>
+                            <p>$${pay_supplier_total}</p>
                         </a>
                     </div>
                 </div>
