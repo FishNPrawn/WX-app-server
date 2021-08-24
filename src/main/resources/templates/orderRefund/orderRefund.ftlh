@@ -3,7 +3,7 @@
 <html lang="en">
 <#include "../header/top.ftlh">
 <link rel="stylesheet" href="${path}/css/wxorderdetail.css">
-<title>欢喜食货(待发货订单)</title>
+<title>欢喜食货(商家退款)</title>
 <style>
     .sidebar ul li .orderRefundIcon{
         color: #11101d;
@@ -71,8 +71,8 @@
                                     <td class="good_quantity_text">${orderRefundList.good_quantity}</td>
                                     <td class="refund_price_text">${orderRefundList.refund_price}</td>
                                     <td class="refund_remark_text">${orderRefundList.refund_remark}</td>
-                                    <td id="abc">${orderRefundList.order_refund_time}</td>
-                                    <td><a class="btn btn-primary btn-sm" data-modal-target="#update_orderRefund_modal-test" onclick="updateOrderRefund(this)" href = "#" >修改</a>
+                                    <td>${orderRefundList.order_refund_time}</td>
+                                    <td><button class="btn btn-primary btn-sm" data-modal-target="#update_orderRefund_modal-test" onclick="updateOrderRefund(this)">修改</button>
                                     <td><a class="btn btn-danger btn-sm" onclick="deleteOrderRefund(`${orderRefundList.order_refund_id}`)" href = "/orderRefund/addsuccess">删除</a>
                                 </tr>
                             </#list>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <#include "../header/top.ftlh">
-    <link rel="stylesheet" type="text/css" href="${path}/css/sidebar.css">
+<#--    <link rel="stylesheet" type="text/css" href="${path}/css/sidebar.css">-->
     <style>
         .sidebar ul li .homeIcon{
             color: #11101d;
@@ -15,105 +15,8 @@
 </head>
 <body id="body">
 
-<div class="sidebar nav__menu nav" id="nav-menu">
-    <ul class="nav_list">
-        <li>
-            <a href="../home" class="homeIcon">
-                <i class='bx bx-home-alt'></i>
-                <span class="links_name">主页面</span>
-            </a>
-            <span class="tooltip">主页面</span>
-        </li>
-        <li>
-            <a href="../admin">
-                <i class='bx bx-user' ></i>
-                <span class="links_name">管理员</span>
-            </a>
-            <span class="tooltip">管理员</span>
-        </li>
-        <li>
-            <a href="../userInfoList">
-                <i class="fa fa-weixin" aria-hidden="true"></i>
-                <span class="links_name">微信用户</span>
-            </a>
-            <span class="tooltip">微信用户</span>
-        </li>
-        <li>
-            <a href="../promocode">
-                <i class='bx bxs-coupon'></i>
-                <span class="links_name">团长码</span>
-            </a>
-            <span class="tooltip">团长码</span>
-        </li>
-        <li>
-            <a href="../category">
-                <i class='bx bx-category'></i>
-                <span class="links_name">食品分类</span>
-            </a>
-            <span class="tooltip">食品分类</span>
-        </li>
-        <li>
-            <a href="../menulist">
-                <i class="fa fa-cutlery"></i>
-                <span class="links_name">商品列表</span>
-            </a>
-            <span class="tooltip">商品列表</span>
-        </li>
-        <li>
-            <a href="../orderlist">
-                <i class='bx bx-list-ol' ></i>
-                <span class="links_name">待发货订单</span>
-            </a>
-            <span class="tooltip">待发货订单</span>
-        </li>
-        <li>
-            <a href="../cancelorder">
-                <i class='bx bx-list-minus'></i>
-                <span class="links_name">已取消订单</span>
-            </a>
-            <span class="tooltip">已取消订单</span>
-        </li>
-        <li>
-            <a href="../allorder">
-                <i class='bx bx-list-check' ></i>
-                <span class="links_name">全部订单</span>
-            </a>
-            <span class="tooltip">全部订单</span>
-        </li>
-        <li>
-            <a href="../orderRefund" class="orderRefundIcon">
-                <i class='fa fa-times' ></i>
-                <span class="links_name">退款</span>
-            </a>
-            <span class="tooltip">退款</span>
-        </li>
-        <li>
-            <a href="../commentList">
-                <i class='fa fa-comment-o' ></i>
-                <span class="links_name">用户评论</span>
-            </a>
-            <span class="tooltip">用户评论</span>
-        </li>
-        <li>
-            <a href="../swiper">
-                <i class='fa fa-picture-o' ></i>
-                <span class="links_name">轮播图</span>
-            </a>
-            <span class="tooltip">轮播图</span>
-        </li>
-    </ul>
-    <div class="profile_content">
-        <div class="profile">
-            <a href='../logout'>
-                <i class='bx bx-log-out' id="log_out" ></i>
-            </a>
-        </div>
-    </div>
-    <i class="fa fa-times nav__close" id="nav-close"></i>
-</div>
-
 <div class="container1">
-    <#include "../header/navbar.ftlh">
+    <#include "../header/sidebar.ftlh">
 
     <#if !isAdmin??>
     <main>
@@ -149,7 +52,7 @@
                 <#list userInfoList as userInfoList>
                     <#assign userCount = userCount +  1 >
                 </#list>
-                <div class="card_wrapper">
+                <a class="card_wrapper text-decoration-none" href="../userInfoList">
                     <i
                             class="fa fa-user-o fa-2x text-lightblue"
                             aria-hidden="true"
@@ -158,20 +61,20 @@
                         <p class="text-primary-p mt-3">用户量</p>
                         <span class="font-bold text-title">${userCount}</span>
                     </div>
-                </div>
+                </a>
 
                 <#-- -----------------总订单------------------------------->
                 <#assign totol_order = 0>
                 <#list orderlist as orderlist>
                     <#assign totol_order = totol_order+1 >
                 </#list>
-                <div class="card_wrapper">
+                <a class="card_wrapper text-decoration-none" href="../allorder">
                     <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
                     <div class="card_inner">
                         <p class="text-primary-p mt-3">总订单</p>
                         <span class="font-bold text-title">${totol_order}</span>
                     </div>
-                </div>
+                </a>
 
                 <#-- -----------------未发货订单------------------------------->
                 <#assign order_finish = 0>
@@ -201,7 +104,7 @@
                 <#list orderRefundList as orderRefundList>
                     <#assign refund_total = refund_total + orderRefundList.refund_price>
                 </#list>
-                <div class="card_wrapper">
+                <a class="card_wrapper text-decoration-none" href="../orderRefund">
                     <i
                             class="fa fa-times fa-2x text-yellow"
                             aria-hidden="true"
@@ -210,7 +113,7 @@
                         <p class="text-primary-p mt-3">退款金额</p>
                         <span class="font-bold text-title">${refund_total}</span>
                     </div>
-                </div>
+                </a>
 
                 <#-- -----------------总交易金额------------------------------->
                 <#assign totol_order_money = 0>
@@ -218,7 +121,7 @@
                     <#assign totol_order_money = totol_order_money+orderlist.order_total_price_with_express_fee >
                 </#list>
 
-                <div class="card_wrapper">
+                <a class="card_wrapper text-decoration-none" href="../allorder">
                     <i
                             class="fa fa-money fa-2x text-green"
                             aria-hidden="true"
@@ -227,7 +130,7 @@
                         <p class="text-primary-p mt-3">总交易金额</p>
                         <span class="font-bold text-title">${totol_order_money}</span>
                     </div>
-                </div>
+                </a>
             </div>
             <!-- MAIN CARDS ENDS HERE -->
 
@@ -237,27 +140,16 @@
                     <div class="charts__left__title">
                         <div>
                             <h1>Daily Reports</h1>
-                            <p>Cupertino, California, USA</p>
+<#--                            <p>Cupertino, California, USA</p>-->
                         </div>
                         <i class="fa fa-usd" aria-hidden="true"></i>
                     </div>
-                    <div id="apex1"></div>
-                </div>
-
-                <div class="charts__right">
-                    <div class="charts__right__title">
-                        <div>
-                            <h1>订单报告</h1>
-                            <p>Cupertino, California, USA</p>
-                        </div>
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                    </div>
-
+<#--                    <div id="apex1"></div>-->
                     <div class="charts__right__cards">
-                        <div class="card1">
+                        <a class="card1 text-decoration-none" href="../orderlist">
                             <h1>待发货</h1>
                             <p>${order_no_deliver}</p>
-                        </div>
+                        </a>
 
                         <div class="card2">
                             <h1>待收货</h1>
@@ -269,10 +161,42 @@
                             <p>${order_wait_comment}</p>
                         </div>
 
-                        <div class="card4">
+                        <a class="card4 text-decoration-none" href="../cancelorder">
                             <h1>订单取消</h1>
                             <p>${order_cancel_number}</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="charts__right">
+                    <div class="charts__right__title">
+                        <div>
+                            <h1>订单报告</h1>
+<#--                            <p>Cupertino, California, USA</p>-->
                         </div>
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="charts__right__cards">
+                        <a class="card1 text-decoration-none" href="../orderlist">
+                            <h1>待发货</h1>
+                            <p>${order_no_deliver}</p>
+                        </a>
+
+                        <div class="card2">
+                            <h1>待收货</h1>
+                            <p>${order_wait_get_number}</p>
+                        </div>
+
+                        <div class="card3">
+                            <h1>待评价</h1>
+                            <p>${order_wait_comment}</p>
+                        </div>
+
+                        <a class="card4 text-decoration-none" href="../cancelorder">
+                            <h1>订单取消</h1>
+                            <p>${order_cancel_number}</p>
+                        </a>
                     </div>
                 </div>
             </div>
