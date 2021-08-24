@@ -35,7 +35,7 @@ function dateSearch(){
 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-        td_status = tr[i].getElementsByTagName("td")[6];
+        td_status = tr[i].getElementsByTagName("td")[7];
         if (td_status) {
             txtStatus = td_status.textContent || td_status.innerText;
             if (txtStatus.toUpperCase().indexOf(filter) > -1 ) {

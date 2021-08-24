@@ -8,20 +8,20 @@
             </a>
             <span class="tooltip">主页面</span>
         </li>
-        <li>
-            <a href="../admin" class="adminIcon">
-                <i class='bx bx-user' ></i>
-                <span class="links_name">管理员</span>
-            </a>
-            <span class="tooltip">管理员</span>
-        </li>
-        <li>
-            <a href="../userInfoList" class="userInfoListIcon">
-                <i class="fa fa-weixin" aria-hidden="true"></i>
-                <span class="links_name">微信用户</span>
-            </a>
-            <span class="tooltip">微信用户</span>
-        </li>
+<#--        <li>-->
+<#--            <a href="../admin" class="adminIcon">-->
+<#--                <i class='bx bx-user' ></i>-->
+<#--                <span class="links_name">管理员</span>-->
+<#--            </a>-->
+<#--            <span class="tooltip">管理员</span>-->
+<#--        </li>-->
+<#--        <li>-->
+<#--            <a href="../userInfoList" class="userInfoListIcon">-->
+<#--                <i class="fa fa-weixin" aria-hidden="true"></i>-->
+<#--                <span class="links_name">微信用户</span>-->
+<#--            </a>-->
+<#--            <span class="tooltip">微信用户</span>-->
+<#--        </li>-->
         <li>
             <a href="../promocode" class="promocodeIcon">
                 <i class='bx bxs-coupon'></i>
@@ -63,13 +63,20 @@
                 <span class="links_name">全部订单</span>
             </a>
             <span class="tooltip">全部订单</span>
+        <li>
+            <a href="../paySupplier" class="paySupplier">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                <span class="links_name">供应商结算</span>
+            </a>
+            <span class="tooltip">供应商结算</span>
+        </li>
         </li>
         <li>
             <a href="../orderRefund" class="orderRefundIcon">
                 <i class='fa fa-times' ></i>
-                <span class="links_name">退款</span>
+                <span class="links_name">商家退款</span>
             </a>
-            <span class="tooltip">退款</span>
+            <span class="tooltip">商家退款</span>
         </li>
         <li>
             <a href="../commentList" class="commentListIcon">

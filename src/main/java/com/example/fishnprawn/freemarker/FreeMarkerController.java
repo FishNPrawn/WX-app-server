@@ -8,6 +8,8 @@ import com.example.fishnprawn.comment.CommentDao;
 import com.example.fishnprawn.global.GlobalConst;
 import com.example.fishnprawn.orderRefund.OrderRefund;
 import com.example.fishnprawn.orderRefund.OrderRefundDao;
+import com.example.fishnprawn.paySupplier.PaySupplier;
+import com.example.fishnprawn.paySupplier.PaySupplierDao;
 import com.example.fishnprawn.promocode.PromoCode;
 import com.example.fishnprawn.promocode.PromoCodeDao;
 import com.example.fishnprawn.shipment.Shipment;
@@ -82,6 +84,10 @@ public class FreeMarkerController {
 
     @Autowired
     private OrderRefundDao repositoryOrderRefund;
+
+    @Autowired
+    private PaySupplierDao repositoryPaySupplier;
+
 
     @GetMapping("/")
     public String indexPage(){
@@ -428,15 +434,28 @@ public class FreeMarkerController {
 
     @GetMapping("/orderRefund")
     public String orderRefund(ModelMap map){
-
         List<OrderRefund> orderRefundList = repositoryOrderRefund.findAll();
         map.put("orderRefundList", orderRefundList);
         return "/orderRefund/orderRefund";
     }
 
+    @GetMapping("/paySupplier")
+    public String paySupplier(ModelMap map){
+        List<PaySupplier> paySupplierList = repositoryPaySupplier.findAll();
+        map.put("paySupplierList", paySupplierList);
+
+        return "/orderRefund/paySupplier";
+    }
+
     @GetMapping("/orderRefund/addsuccess")
     public String addOrderRefundSuccess(ModelMap map){
         map.put("url", "/orderRefund");
+        return "/operation/success";
+    }
+
+    @GetMapping("/paySupplier/addsuccess")
+    public String addPaySupplierSuccess(ModelMap map){
+        map.put("url", "/paySupplier");
         return "/operation/success";
     }
 
