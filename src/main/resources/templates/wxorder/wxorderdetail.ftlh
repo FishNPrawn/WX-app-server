@@ -122,8 +122,8 @@
                             <tr>
 <#--                                <td>${orderdetail.order_detail_id}</td>-->
 <#--                                <td>${orderdetail.good_id}</td>-->
-                                <td>${orderdetail.good_name}</td>
-                                <td>${orderdetail.good_quantity}</td>
+                                <td style="font-size: 20px; font-weight: 500;">${orderdetail.good_name}</td>
+                                <td style="font-size: 20px; font-weight: 500;">${orderdetail.good_quantity}</td>
                                 <td><img height="70" width="70" src="${orderdetail.good_image}"></td>
                                 <td>${orderdetail.good_price}</td>
                                 <td id="order_total_price${orderdetail.order_detail_id}">${orderdetail.good_quantity*orderdetail.good_price}</td>
