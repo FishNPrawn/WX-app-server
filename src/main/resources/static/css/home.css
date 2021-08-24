@@ -266,6 +266,9 @@ main {
     border-radius: 5px;
     font-size: 14px;
 }
+.card1:hover {
+    color: #35a4ba;
+}
 
 .card2 {
     background: #d2f9ee;
@@ -292,6 +295,9 @@ main {
     padding: 25px;
     border-radius: 5px;
     font-size: 14px;
+}
+.card4:hover{
+    color: #f65a6f;
 }
 
 /*  SIDEBAR STARTS HERE  */
