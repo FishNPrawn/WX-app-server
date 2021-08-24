@@ -338,6 +338,9 @@ public class FreeMarkerController {
         List<OrderRefund> orderRefundList = repositoryOrderRefund.findAll();
         map.put("orderRefundList", orderRefundList);
 
+        List<PaySupplier> paySupplierList = repositoryPaySupplier.findAll();
+        map.put("paySupplierList", paySupplierList);
+
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Admin admin = adminDao.findByUsername(username);
         if(admin.getAdmintype() == 2){
