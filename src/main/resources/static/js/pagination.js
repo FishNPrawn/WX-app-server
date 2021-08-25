@@ -1,5 +1,5 @@
 var numberOfItems = $('#loop .list-group_name').length;
-var limitPerPage = 10;
+// var limitPerPage = 10;
 
 $("#loop .list-group_name:gt(" + (limitPerPage - 1) + ")").hide();
 var totolPages = Math.ceil(numberOfItems / limitPerPage);

@@ -37,6 +37,9 @@
 
             <div class="d-flex justify-content-between">
                 <#--   页数       -->
+                <script>
+                    var limitPerPage = 300;
+                </script>
                 <#include "../header/pagination.ftlh">
                 <button class="btn border my-3" onclick="window.parent.location.href='/comment/commentExcel';">
                     批量导入

@@ -34,6 +34,9 @@
             </div>
             <#--   页数       -->
             <div class="d-flex justify-content-between">
+                <script>
+                    var limitPerPage = 20;
+                </script>
                 <#include "../header/pagination.ftlh">
                 <div class="form-inline col-xs-4">
                     <select class="form-select mr-2" name="date" class="date" onchange="dateSearch()">
