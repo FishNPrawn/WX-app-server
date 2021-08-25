@@ -1,6 +1,8 @@
 package com.example.fishnprawn.comment;
 
 
+import com.example.fishnprawn.category.Category;
+import com.example.fishnprawn.utils.ExcelImport;
 import com.example.fishnprawn.wxorder.OrderRootDao;
 import com.example.fishnprawn.wxorder.WxOrderResponse;
 import com.example.fishnprawn.wxorder.WxOrderRoot;
@@ -12,7 +14,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -95,6 +100,37 @@ public class CommentController {
     public ResponseEntity<Comment> deleteCommentById(@PathVariable Integer id){
         System.out.println("[Delete one comment] parameters: "+ id);
         return new ResponseEntity<>(commentServices.deleteById(id), HttpStatus.OK);
+    }
+
+    @RequestMapping("/uploadCommentByExcel")
+    public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file, ModelMap map){
+        ModelAndView modelAndView = new ModelAndView();
+        String name = file.getOriginalFilename();
+
+        List<Comment> list;
+        try {
+            list = ExcelImport.excelToCommentList(file.getInputStream());
+            log.info("excel导入的list={}", list);
+
+            //excel的数据保存到数据库
+            try {
+                for(Comment excel:list){
+                    if(excel != null){
+                        commentDao.save(excel);
+                    }
+                }
+            }catch (Exception e){
+                log.error("某一行存入数据库失败={}", e);
+            }
+
+        }catch (Exception e){
+            log.error("失败", e);
+        }
+
+
+        modelAndView.setViewName("/operation/success");
+        map.put("url", "/commentList");
+        return modelAndView;
     }
 
 }
