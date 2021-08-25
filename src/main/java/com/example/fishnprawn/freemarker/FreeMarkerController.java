@@ -376,6 +376,12 @@ public class FreeMarkerController {
         return "/operation/success";
     }
 
+    @GetMapping("/comment/commentExcel")
+    public String commentExcel(ModelMap map){
+        map.put("url", "/comment");
+        return "/comment/excel";
+    }
+
     @GetMapping("/userInfoList")
     public String userinfo(ModelMap map){
         List<UserInfo> userInfoList = repositoryUserInfo.findAll();
