@@ -35,8 +35,14 @@
                 </div>
             </div>
 
-            <#--   页数       -->
-            <#include "../header/pagination.ftlh">
+            <div class="d-flex justify-content-between">
+                <#--   页数       -->
+                <#include "../header/pagination.ftlh">
+                <button class="btn border my-3" onclick="window.parent.location.href='/comment/commentExcel';">
+                    批量导入
+                </button>
+            </div>
+
 
             <div class="row clearfix">
                 <div class="col-md-12 column">
