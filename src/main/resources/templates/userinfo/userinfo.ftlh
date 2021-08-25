@@ -37,6 +37,9 @@
             </div>
 
             <#--   页数       -->
+            <script>
+                var limitPerPage = 50;
+            </script>
             <#include "../header/pagination.ftlh">
 
             <div class="row clearfix">
