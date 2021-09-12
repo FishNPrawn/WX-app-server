@@ -37,6 +37,9 @@
 
             <div class="d-flex justify-content-between">
                 <#--   页数       -->
+                <script>
+                    var limitPerPage = 300;
+                </script>
                 <#include "../header/pagination.ftlh">
                 <button class="btn border my-3" onclick="window.parent.location.href='/comment/commentExcel';">
                     批量导入
@@ -49,8 +52,8 @@
                     <table class="table table-responsive-xl">
                         <thead class="thead-dark">
                         <tr class="table-info table-hover text-center">
-                            <th>comment_id</th>
-                            <th>open_id</th>
+<#--                            <th>comment_id</th>-->
+                            <th>用户名</th>
                             <th>good_id</th>
                             <th>商品名</th>
                             <th>内容</th>
@@ -62,7 +65,7 @@
                         <tbody id="loop">
                         <#list commentList as commentList>
                             <tr class="list-group_name">
-                                <td>${commentList.commentId}</td>
+<#--                                <td>${commentList.commentId}</td>-->
                                 <td>${commentList.username}</td>
                                 <td>${commentList.goodId}</td>
                                 <td>${commentList.name}</td>

@@ -53,6 +53,9 @@
 
             <#--   页数       -->
             <div class="d-flex justify-content-between">
+                <script>
+                    var limitPerPage = 10;
+                </script>
                 <#include "../header/pagination.ftlh">
                 <div class="form-inline col-xs-4">
                     <input class="form-control searchInput" type="text" id="myInput" onkeyup="mySearch()" placeholder="查找商品/分类">
@@ -65,7 +68,7 @@
                     <div class="col-md-12 column">
                         <table class="table table-responsive-xl" id="myTable" style="box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;">
                             <thead class="thead-dark">
-                            <tr class="table-info  table-hover text-center">
+                            <tr class="table-info table-hover text-center">
                                 <th><input class="checkbox" id="selectAllBoxes" type="checkbox"></th>
                                 <th>商品名</th>
                                 <th>分类</th>

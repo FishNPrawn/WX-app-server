@@ -34,6 +34,9 @@
             </div>
             <#--   页数       -->
             <div class="d-flex justify-content-between">
+                <script>
+                    var limitPerPage = 20;
+                </script>
                 <#include "../header/pagination.ftlh">
                 <div class="form-inline col-xs-4">
                     <select class="form-select mr-2" name="date" class="date" onchange="dateSearch()">
@@ -65,6 +68,7 @@
                             <th>总金额(含运费)</th>
                             <th>创建时间</th>
                             <th>状态</th>
+                            <th>物流</th>
                             <#--                            <th>删除</th>-->
                         </tr>
                         </thead>
@@ -92,6 +96,17 @@
                                 <#elseif order.orderStatus == 4>
                                     <td><div class="order_cancel">订单取消4</div></td>
                                 </#if>
+                                <#assign shipment_or_not = false >
+                                <#list shipments as shipments>
+                                    <#if shipments.orderNumber == order.order_number >
+                                        <td><a class="btn btn-success btn-sm" href="https://m.kuaidi100.com/result.jsp?nu=${shipments.shipment_number}&com=jd" target="_blank">查看物流</a></td>
+                                        <#assign shipment_or_not = true>
+                                    </#if>
+                                </#list>
+                                <#if shipment_or_not == false >
+                                    <td>无物流信息</td>
+                                </#if>
+<#--                                <td>查看物流</td>-->
                                     <#--                                <td><a class="btn btn-danger">删除</a>-->
                             </tr>
                         </#list>
