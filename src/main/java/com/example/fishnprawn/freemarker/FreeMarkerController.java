@@ -296,6 +296,9 @@ public class FreeMarkerController {
         List<WxOrderRoot> orderlist = repositoryOrderRoot.findAll();
         map.put("orderlist", orderlist);
 
+        List<Shipment> shipments = repositoryShipment.findAll();
+        map.put("shipments", shipments);
+
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Admin admin = adminDao.findByUsername(username);
         if(admin.getAdmintype() == 2){
