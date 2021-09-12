@@ -327,7 +327,7 @@
                             <h6 class="deliver_package_title mt-2">快递单号</h6>
                             <#list shipments as shipments>
                                 <#if shipments.orderNumber == order_number >
-                                    <h6 class="deliver_package_value mt-2" id="deliver_package_number">${shipments.shipment_number}</h6>
+                                    <a class="deliver_package_value" id="deliver_package_number" href="https://m.kuaidi100.com/result.jsp?nu=${shipments.shipment_number}&com=jd" target="_blank">${shipments.shipment_number}</a>
                                     <button class="btn btn-sm ml-2 copy_deliver_package" onclick="copyDeliverNumber('deliver_package_number')">复制</button>
                                 </#if>
                             </#list>
