@@ -148,7 +148,7 @@ function updateMenulist(r){
     document.getElementById("update_good_image_description").value =  li.querySelector('.image_description_text').src;
     document.getElementById("update_good_origin_price_input").value = li.querySelector('.priceorigintext').innerHTML;
     document.getElementById("update_good_cat_image_input").value = li.querySelector('.cat_image_text').src;
-    let content_id = li.querySelector('.idtext').value;
+    let content_id = li.querySelector('.idtext').value.replace(",", "");
 
     updateBtn.onclick = function(){
         let goodtext =  document.getElementById("update_good_name_input").value
