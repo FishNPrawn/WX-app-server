@@ -43,7 +43,7 @@ public class WxOrderController {
 
     /* 创建订单 */
     @PostMapping("/create")
-    public String create(@Valid OrderReq orderReq){
+    public void create(@Valid OrderReq orderReq){
         //数据转换
         WxOrderResponse orderBean = new WxOrderResponse();
         orderBean.setOrder_number(orderReq.getOrder_number());
@@ -65,18 +65,12 @@ public class WxOrderController {
 
         try{
             orderDetailList = new Gson().fromJson(orderReq.getItems(), new TypeToken<List<WxOrderDetail>>(){}.getType());
+            orderBean.setOrderDetailList(orderDetailList);
+            wxOrder.createOrder(orderBean);
             System.out.println("order_Detail: " +orderDetailList);
-
         }catch (Exception e){
             log.error("【对象转换】错误, string={}", orderReq.getItems());
         }
-
-        orderBean.setOrderDetailList(orderDetailList);
-
-        wxOrder.createOrder(orderBean);
-
-
-        return "success";
     }
 
     /* 创建订单 */
