@@ -34,7 +34,7 @@ public class CategoryController {
     //http://localhost:8080/category/getAllcategory
     @GetMapping(path = "/json/getAllcategory", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, List<Map<String, String>>>> getAllCategory(@RequestParam(required = false) Map<String, String> filter) {
-        System.out.println("[Get all category] | parameters: " + filter);
+//        System.out.println("[Get all category] | parameters: " + filter);
         //1. Turn keys into lowercase
         //2. Check Nullity, if null return Bad Request
         //3. Treat every valid parameter as String
