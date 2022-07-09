@@ -32,23 +32,26 @@ public class WxOrderUtils {
 
     //创建订单
     public WxOrderResponse createOrder(WxOrderResponse orderBean){
-        WxOrderRoot wxOrderRoot = new WxOrderRoot();
-        BeanUtils.copyProperties(orderBean, wxOrderRoot);
-
-        WxOrderRoot orderRoot = orderRootDao.save(wxOrderRoot);
-
-        for (WxOrderDetail orderDetail : orderBean.getOrderDetailList()) {
-            Good foodInfo = goodDao.findById(orderDetail.getGood_id()).orElse(null);
-            //订单详情入库
+        try {
+            WxOrderRoot wxOrderRoot = new WxOrderRoot();
+            BeanUtils.copyProperties(orderBean, wxOrderRoot);
+            WxOrderRoot orderRoot = orderRootDao.save(wxOrderRoot);
+            for (WxOrderDetail orderDetail : orderBean.getOrderDetailList()) {
+                Good foodInfo = goodDao.findById(orderDetail.getGood_id()).orElse(null);
+                //订单详情入库
 //            orderDetail.setGood_id(orderRoot.getOrder_id());
-            orderDetail.setOrderId(orderRoot.getOrderId());
-            BeanUtils.copyProperties(foodInfo, orderDetail);
-            orderDetailDao.save(orderDetail);
+                orderDetail.setOrderId(orderRoot.getOrderId());
+                BeanUtils.copyProperties(foodInfo, orderDetail);
+                orderDetailDao.save(orderDetail);
+            }
+
+            log.info("[添加订单成功={}]", orderBean);
+            log.info("[添加订单成功]");
+            return orderBean;
+        }catch (Exception e){
+            log.info("[添加订单失败={}]", orderBean);
         }
-
-        log.info("[添加订单成功={}]", orderBean);
-
-        return orderBean;
+        return null;
     }
 
     //确认收货

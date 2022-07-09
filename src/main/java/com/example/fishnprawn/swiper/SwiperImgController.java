@@ -27,7 +27,7 @@ public class SwiperImgController {
     //http://localhost:8080/allswiper/getAllSwiper
     @GetMapping(path = "/getAllSwiper", produces= MediaType.APPLICATION_JSON_VALUE)
     public Map<String, List<Map<String, String>>> getAllSwiper(@RequestParam(required = false) Map<String, String> filter) {
-        System.out.println("[Get all Swiper| parameters: " + filter);
+//        System.out.println("[Get all Swiper| parameters: " + filter);
 
         List<SwiperImg> list = swiperImgServices.getAll(filter);
 
