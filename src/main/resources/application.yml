@@ -16,7 +16,7 @@ server:
     port: 443
     ssl:
         key-store: classpath:joynfish.com.jks
-        key-store-password: 05d1h01i21d53he
+        key-store-password: 3v17hk17gq
         key-store-type: JKS
     servlet:
         context-path: /
