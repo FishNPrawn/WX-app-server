@@ -17,7 +17,7 @@
 
 <div class="hero">
     <nav>
-        <h2 class="logo">欢喜<span>食货</span></h2>
+        <h2 class="logo">欢喜食货<span>-广州汇洋网络技术有限公司旗下平台</span></h2>
         <ul>
             <li><a href="#">主页</a></li>
             <li><a href="#aboutus">公司介绍</a></li>
