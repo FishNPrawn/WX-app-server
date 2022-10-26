@@ -1,16 +1,16 @@
-server:
-    port: 8080
-    servlet:
-        context-path: /
-################# For 腾讯云 https #########################################
 #server:
-#    port: 8443
-#    ssl:
-#        key-store: classpath:fishnprawn.cn.jks
-#        key-store-password: 9j93756w87
-#        key-store-type: JKS
+#    port: 8080
 #    servlet:
 #        context-path: /
+################# For 腾讯云 https #########################################
+server:
+    port: 8443
+    ssl:
+        key-store: classpath:fishnprawn.cn.jks
+        key-store-password: 9j93756w87
+        key-store-type: JKS
+    servlet:
+        context-path: /
 
 
 spring:
